@@ -25,7 +25,13 @@ public class Bandeja {
         this.nombreProducto = nombreProducto;
         this.precioProducto = precioProducto;
     }
-
+    public void sacarProducto(){
+        if (this.stock-1==-1){
+            System.out.println("No es posible sacar producto.Está acabado");
+        }else{
+            this.stock--;
+        }
+    }
     public void setId(int id) {
         this.id = id;
     }
