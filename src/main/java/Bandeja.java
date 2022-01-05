@@ -102,6 +102,9 @@ public class Bandeja {
     public String informacionBandeja() {
         String texto = "La bandeja con ID =" + id + " que contiene " + nombreProducto + "tiene un Stock " + stock
                 + " con un precio de " + precioProducto;
+        if (this.stock == 0) {
+            texto += "\n Hay que añadir mas stock";
+        }
         return texto;
     }
 }
