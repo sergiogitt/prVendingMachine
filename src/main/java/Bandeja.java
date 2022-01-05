@@ -3,11 +3,11 @@ import java.util.Random;
 
 public class Bandeja {
 
-    final int MAXIMO_PRODUCTO_POR_BANDEJA = 15;
-    int id;
-    int stock;
-    String nombreProducto;
-    double precioProducto;
+    private final int MAXIMO_PRODUCTO_POR_BANDEJA = 15;
+    private int id;
+    private int stock;
+    private String nombreProducto;
+    private double precioProducto;
 
     public Bandeja() {
         this.id = numeroAleatorio();
