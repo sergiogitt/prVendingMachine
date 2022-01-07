@@ -29,11 +29,12 @@ public class TarjetaCredito {
     }
 
     public TarjetaCredito(double numTarjeta, LocalDate fechaVencimiento, int cvv) {
-
-        if ((numTarjeta / Math.pow(10, 15) > 1) && ((numTarjeta / Math.pow(10, 16)) < 1)) { //comnprobacion tarjeta tiene 16 cifas
+        String comprobacionLongitud = String.valueOf(numTarjeta);
+        
+        if (comprobacionLongitud.length()== 18) { //comprobacion tarjeta tiene 16 cifas
             this.numTarjeta = numTarjeta;
         } else {
-            this.numTarjeta = 912343456; //COMPROBAR ERROR EN CANTIDAD DE DIGITOS QUE ACEPTA!!!!!!
+            this.numTarjeta = 1234123412341234.0; 
         }
 
         if (fechaVencimiento.isBefore(LocalDate.now())) {                                  // Si la tarjeta ha caducado antes de hoy se crea otra
