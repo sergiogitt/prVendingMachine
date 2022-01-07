@@ -29,24 +29,25 @@ public class TarjetaCredito {
     }
 
     public TarjetaCredito(double numTarjeta, LocalDate fechaVencimiento, int cvv) {
-        String comprobacionLongitud = String.valueOf(numTarjeta);
+        String comprobacionLongitudNumeroTarjeta = String.valueOf(numTarjeta);
 
-        if (comprobacionLongitud.length() == 18) { //comprobacion tarjeta tiene 16 cifas
+        if (comprobacionLongitudNumeroTarjeta.length() == 18) { //comprobacion tarjeta tiene 16 cifas
             this.numTarjeta = numTarjeta;
         } else {
             this.numTarjeta = 1234123412341234.0;
         }
 
         if (fechaVencimiento.isBefore(LocalDate.now())) {                                  // Si la tarjeta ha caducado antes de hoy se crea otra
-            //con un vencimiento de 5 años
+                                                                                            //con un vencimiento de 5 aï¿½os
             this.fechaVencimiento = LocalDate.now().plusYears(5);
 
         } else {
             this.fechaVencimiento = fechaVencimiento;
 
         }
+        String comprobacionLongitudCVVTarjeta = String.valueOf(cvv);
 
-        if ((cvv / Math.pow(10, 2) > 1) && ((cvv / Math.pow(10, 3)) < 1)) {                //comprobacion CVV tiene 3 cifras
+        if (comprobacionLongitudCVVTarjeta.length() == 3) {                //comprobacion CVV tiene 3 cifras
             this.cvv = cvv;
         } else {
             this.cvv = 123;

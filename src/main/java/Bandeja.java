@@ -9,8 +9,8 @@ public class Bandeja {
     private int stock;
     private String nombreProducto;
     private double precioProducto;
-    private final int MINIMA_BANDEJA_AVISO_REPONER = 1;
-    private final int MAXIMO_BANDEJA_AVISO_REPONER = 5;
+    private final int MINIMO_STOCK_BANDEJA_AVISO_REPONER = 1;
+    private final int MAXIMO_STOCK_BANDEJA_AVISO_REPONER = 5;
     
 
     public Bandeja() {
@@ -41,7 +41,7 @@ public class Bandeja {
     }
 
     public void sacarProducto() {
-        if (this.stock - 1 == -1) {
+        if (this.stock - 1 == -1) {                     //no dejar sacar con un stock de 0 items
              JOptionPane.showMessageDialog(null,"No es posible sacar producto.Esta acabado");
         } else {
             this.stock--;
@@ -50,7 +50,7 @@ public class Bandeja {
     }
 
     public void meterProducto(int cantidad) {
-        if (cantidad < 0) {                       //control cantidad positiva
+        if (cantidad < 0) {
             cantidad = Math.abs(cantidad);
         }
         if (this.stock + cantidad > MAXIMO_PRODUCTO_POR_BANDEJA) {
@@ -114,7 +114,7 @@ public class Bandeja {
                 + " con un precio de " + precioProducto;
         if (this.stock == 0) {
             texto += "\nHay que añadir mas stock";
-        } else if (this.stock <= MAXIMO_BANDEJA_AVISO_REPONER && this.stock >= MINIMA_BANDEJA_AVISO_REPONER) {
+        } else if (this.stock <= MAXIMO_STOCK_BANDEJA_AVISO_REPONER && this.stock >= MINIMO_STOCK_BANDEJA_AVISO_REPONER) {
             texto += "\nSe recomienda añadir mas stock";
         }
         return texto;
