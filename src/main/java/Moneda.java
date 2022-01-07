@@ -1,11 +1,15 @@
 
-public class Monedas {
+import javax.swing.JOptionPane;
+
+public class Moneda {
 
     private double valor;
     private int cantidadDeMonedas;
     private final int MAXIMA_CANTIDAD_MONEDAS = 30;
+    private final int MINIMA_MONEDA_AVISO_REPONER = 1;
+    private final int MAXIMO_MONEDA_AVISO_REPONER = 10;
 
-    public Monedas(double valor, int cantidadDeMonedas) {
+    public Moneda(double valor, int cantidadDeMonedas) {
         if (valor < 0) {
             this.valor = Math.abs(valor);
         } else {
@@ -38,12 +42,15 @@ public class Monedas {
         if (cantidad < 0) {                     //control de cantidad positiva
             cantidad = Math.abs(cantidad);
         }
-        if (this.cantidadDeMonedas - cantidad < 0) {
-            System.out.println("No hay cambio suficiente para esta moneda");
+        if (this.cantidadDeMonedas - cantidad < 0 && this.valor == 0.10) {
+            JOptionPane.showMessageDialog(null, "No hay cambio suficiente intenta introducir la cantidad excata");
+        } else if (this.cantidadDeMonedas - cantidad < 0) {
+            JOptionPane.showMessageDialog(null, "No hay cambio suficiente para la moneda de valor " + this.valor);
         } else {
             this.cantidadDeMonedas -= cantidad;
 
         }
+
     }
 
     public int cambioMonedas(double cambioADevolver) {
@@ -71,11 +78,11 @@ public class Monedas {
     }
 
     public String informacionMonedas() {
-        String texto = "De la moneda " + valor + "hay " + cantidadDeMonedas + "unidades";
+        String texto = "De la moneda " + valor + " hay " + cantidadDeMonedas + " unidades";
         if (this.cantidadDeMonedas == 0) {
-            texto += "\n Hay que añadir mas monedas";
-        } else if (this.cantidadDeMonedas <= 10 && this.cantidadDeMonedas >= 1) {
-            texto += "\n Se recomienda añadir mas stock";
+            texto += "\nHay que añadir mas monedas";
+        } else if (this.cantidadDeMonedas <= MAXIMO_MONEDA_AVISO_REPONER && this.cantidadDeMonedas >= MINIMA_MONEDA_AVISO_REPONER) {
+            texto += "\nSe recomienda añadir mas stock";
         }
         return texto;
     }

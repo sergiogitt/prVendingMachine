@@ -21,16 +21,16 @@ public class Maquina {
     private Bandeja bandeja5;
     private Bandeja bandeja6;
 
-    private Monedas monedas20;
-    private Monedas monedas10;
-    private Monedas monedas5;
-    private Monedas monedas2;
-    private Monedas monedas1;
-    private Monedas monedas0coma50;
-    private Monedas monedas0coma20;
-    private Monedas monedas0coma10;
+    private Moneda monedas20;
+    private Moneda monedas10;
+    private Moneda monedas5;
+    private Moneda monedas2;
+    private Moneda monedas1;
+    private Moneda monedas0coma50;
+    private Moneda monedas0coma20;
+    private Moneda monedas0coma10;
 
-    public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4, Bandeja bandeja5, Bandeja bandeja6, Monedas monedas20, Monedas monedas10, Monedas monedas5, Monedas monedas2, Monedas monedas1, Monedas monedas0coma50, Monedas monedas0coma20, Monedas monedas0coma10) {
+    public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4, Bandeja bandeja5, Bandeja bandeja6, Moneda monedas20, Moneda monedas10, Moneda monedas5, Moneda monedas2, Moneda monedas1, Moneda monedas0coma50, Moneda monedas0coma20, Moneda monedas0coma10) {
         this.id = id;
         this.direccion = direccion;
         this.bandeja1 = bandeja1;

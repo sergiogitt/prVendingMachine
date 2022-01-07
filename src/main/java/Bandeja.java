@@ -1,13 +1,17 @@
 
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public class Bandeja {
 
     private final int MAXIMO_PRODUCTO_POR_BANDEJA = 15;
-    private int id;
+    private String id;
     private int stock;
     private String nombreProducto;
     private double precioProducto;
+    private final int MINIMA_BANDEJA_AVISO_REPONER = 1;
+    private final int MAXIMO_BANDEJA_AVISO_REPONER = 5;
+    
 
     public Bandeja() {
         this.id = numeroAleatorio();
@@ -28,11 +32,17 @@ public class Bandeja {
         }
         this.nombreProducto = nombreProducto;
         this.precioProducto = precioProducto;
+        if (precioProducto < 0) {
+            this.precioProducto = Math.abs(precioProducto);
+        } else if (precioProducto == 0) {
+            JOptionPane.showMessageDialog(null, "Has introducido un precio cero, vamos a poner por defecto un precio de 5 euros, si quieres cambiarlo hazlo manualmente");
+            this.precioProducto=5;
+        }
     }
 
     public void sacarProducto() {
         if (this.stock - 1 == -1) {
-            System.out.println("No es posible sacar producto.EstÃ¡ acabado");
+             JOptionPane.showMessageDialog(null,"No es posible sacar producto.EstÃ¡ acabado");
         } else {
             this.stock--;
         }
@@ -71,7 +81,7 @@ public class Bandeja {
         return MAXIMO_PRODUCTO_POR_BANDEJA;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -87,25 +97,25 @@ public class Bandeja {
         return precioProducto;
     }
 
-    public static int numeroAleatorio() {
+    public static String numeroAleatorio() {
         int numero;
         String texto = "";
         Random aleatorio = new Random();
         for (int i = 0; i < 3; i++) {
-            numero = aleatorio.nextInt();
+            numero = aleatorio.nextInt(10);
             texto += numero;
         }
-        numero = Integer.parseInt(texto);
-        return numero;
+       
+        return texto;
     }
 
     public String informacionBandeja() {
-        String texto = "Una bandeja con ID =" + id + " que contiene " + nombreProducto + "tiene un Stock " + stock
+        String texto = "Una bandeja con ID = " + id + " que contiene " + nombreProducto + " tiene un Stock " + stock
                 + " con un precio de " + precioProducto;
         if (this.stock == 0) {
-            texto += "\n Hay que añadir mas stock";
-        }   else if (this.stock <= 5 && this.stock >= 1) {
-            texto += "\n Se recomienda añadir mas stock";
+            texto += "\nHay que añadir mas stock";
+        } else if (this.stock <= MAXIMO_BANDEJA_AVISO_REPONER && this.stock >= MINIMA_BANDEJA_AVISO_REPONER) {
+            texto += "\nSe recomienda añadir mas stock";
         }
         return texto;
     }
