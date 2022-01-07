@@ -42,7 +42,7 @@ public class Bandeja {
 
     public void sacarProducto() {
         if (this.stock - 1 == -1) {
-             JOptionPane.showMessageDialog(null,"No es posible sacar producto.Está acabado");
+             JOptionPane.showMessageDialog(null,"No es posible sacar producto.Esta acabado");
         } else {
             this.stock--;
         }

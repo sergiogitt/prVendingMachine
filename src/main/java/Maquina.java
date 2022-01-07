@@ -30,7 +30,14 @@ public class Maquina {
     private Moneda monedas0coma20;
     private Moneda monedas0coma10;
 
-    public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4, Bandeja bandeja5, Bandeja bandeja6, Moneda monedas20, Moneda monedas10, Moneda monedas5, Moneda monedas2, Moneda monedas1, Moneda monedas0coma50, Moneda monedas0coma20, Moneda monedas0coma10) {
+    private TarjetaCredito tarjeta1;
+    private TarjetaCredito tarjeta2;
+    private TarjetaCredito tarjeta3;
+
+    public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4,
+            Bandeja bandeja5, Bandeja bandeja6, Moneda monedas20,
+            Moneda monedas10, Moneda monedas5, Moneda monedas2, Moneda monedas1, Moneda monedas0coma50, Moneda monedas0coma20, Moneda monedas0coma10,
+            TarjetaCredito tarjeta1, TarjetaCredito tarjeta2, TarjetaCredito tarjeta3) {
         this.id = id;
         this.direccion = direccion;
         this.bandeja1 = bandeja1;
@@ -87,6 +94,10 @@ public class Maquina {
         } else {
             this.monedas0coma10 = monedas0coma10;
         }
+        this.tarjeta1=tarjeta1;
+        this.tarjeta2=tarjeta2;
+        this.tarjeta3=tarjeta3;
+        
     }
 
     public void setId(UUID id) {
@@ -106,7 +117,7 @@ public class Maquina {
     }
 
     public String informacionCompletaMaquina() {
-        String texto = "La maquina con id " + id + " que esta ubicada en la direccion " + direccion + "tiene: \n"
+        String texto = "La maquina con id " + id + " que esta ubicada en la direccion " + direccion + " tiene: \n"
                 + bandeja1.informacionBandeja() + "\n"
                 + bandeja2.informacionBandeja() + "\n"
                 + bandeja3.informacionBandeja() + "\n"

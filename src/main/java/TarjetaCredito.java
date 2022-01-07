@@ -30,15 +30,15 @@ public class TarjetaCredito {
 
     public TarjetaCredito(double numTarjeta, LocalDate fechaVencimiento, int cvv) {
         String comprobacionLongitud = String.valueOf(numTarjeta);
-        
-        if (comprobacionLongitud.length()== 18) { //comprobacion tarjeta tiene 16 cifas
+
+        if (comprobacionLongitud.length() == 18) { //comprobacion tarjeta tiene 16 cifas
             this.numTarjeta = numTarjeta;
         } else {
-            this.numTarjeta = 1234123412341234.0; 
+            this.numTarjeta = 1234123412341234.0;
         }
 
         if (fechaVencimiento.isBefore(LocalDate.now())) {                                  // Si la tarjeta ha caducado antes de hoy se crea otra
-                                                                                           //con un vencimiento de 5 años
+            //con un vencimiento de 5 años
             this.fechaVencimiento = LocalDate.now().plusYears(5);
 
         } else {
@@ -53,13 +53,14 @@ public class TarjetaCredito {
         }
     }
 
-    public boolean tarjetaValida(double numTarjeta, LocalDate fechaVencimiento, int cvv) { //comprobacion tarjeta iguales
-        boolean tarjetaIgual = true;
-        if (this.numTarjeta != numTarjeta || !this.fechaVencimiento.equals(fechaVencimiento) || this.cvv != cvv) {
-            tarjetaIgual = false;
+    public boolean tarjetaValida(TarjetaCredito tarjetaAValidar) { //comprobacion tarjeta iguales
+        boolean tarjetaDiferente = false;
+        if (this.numTarjeta != tarjetaAValidar.getNumTarjeta() && !this.fechaVencimiento.equals(tarjetaAValidar.getFechaVencimiento())
+                && this.cvv != tarjetaAValidar.getCvv()) {
+            tarjetaDiferente = true;
 
         }
-        return tarjetaIgual;
+        return tarjetaDiferente;
 
     }
 }
