@@ -69,14 +69,15 @@ public class Monedas {
     public void setCantidadDeMonedas(int cantidadDeMonedas) {
         this.cantidadDeMonedas = cantidadDeMonedas;
     }
-    
-    public String informacionMonedas(){
-    String texto= "De la moneda " + valor + "hay " + cantidadDeMonedas+ "unidades"; 
+
+    public String informacionMonedas() {
+        String texto = "De la moneda " + valor + "hay " + cantidadDeMonedas + "unidades";
         if (this.cantidadDeMonedas == 0) {
             texto += "\n Hay que añadir mas monedas";
+        } else if (this.cantidadDeMonedas <= 10 && this.cantidadDeMonedas >= 1) {
+            texto += "\n Se recomienda añadir mas stock";
         }
-    return texto;
+        return texto;
     }
-    
-}
 
+}
