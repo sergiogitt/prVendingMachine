@@ -42,6 +42,7 @@ public class TestMaquinaCompleto {
                 monedas20, monedas10, monedas5, monedas2, monedas1, monedas0coma50, monedas0coma20, monedas0coma10,
                 tarjeta1, tarjeta2, tarjeta3);
 
+        System.out.println(maquina1.informacionCompletaMaquina());
         boolean eleccionModoValida = false;
         int eleccionModo = 0;
         do {
@@ -51,26 +52,82 @@ public class TestMaquinaCompleto {
                     eleccionModo = Integer.parseInt(texto);
                     eleccionModoValida = true;
                 } catch (NumberFormatException nfe) {
-                    System.out.println("Has introducido un caracter erroneo, introduce un caracter numerico ");
-
+                    JOptionPane.showMessageDialog(null,"Has introducido un caracter erroneo, introduce un caracter numerico ");
                 }
             } while (!eleccionModoValida);
+            if (eleccionModo != 1 && eleccionModo != 2) {
+                JOptionPane.showInputDialog("Introduce un numero que este en el menu por favor");
+            }
         } while (eleccionModo != 1 && eleccionModo != 2);
 
         switch (eleccionModo) {
+            case 1:
 
-        
-    
+                int eleccionUsuario = 0;
+                boolean eleccionModoUsuarioValida = false;
+                do {
+                    do {
+                        String text = JOptionPane.showInputDialog("Elige que opcion deseas realizar\n" +
+                                "1.Consultar precio\n2.Comprar producto");
+                        try {
+                            eleccionUsuario = Integer.parseInt(text);
+                            eleccionModoUsuarioValida = true;
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null,"Has introducido un caracter erroneo, introduce un caracter numerico ");
 
-        case1:
-                
-                break;
-                case2:
-                
-                break;
-        
+                        }
+                    } while (!eleccionModoUsuarioValida);
+                }while(eleccionUsuario!=1&&eleccionUsuario!=2);
+
+                if (eleccionModo != 1 && eleccionModo != 2) {
+                    JOptionPane.showInputDialog("Introduce un numero que este en el menu por favor");
+                }
+
+                switch (eleccionUsuario) {
+                    case 1:
+                        String saberPrecioProducto = "";
+                        do {
+                            saberPrecioProducto = JOptionPane.showInputDialog("Tecle el identificador del producto que " +
+                                    " desee saber el precio\n-"+bandeja1.getNombreProducto()+"tiene codigo: "+bandeja1.getId()+"\n"+
+                                    "-"+bandeja2.getNombreProducto()+" tiene codigo: "+bandeja2.getId()+"\n"
+                                    +"-"+bandeja3.getNombreProducto()+" tiene codigo: "+bandeja3.getId()+"\n"
+                                    +"-"+bandeja4.getNombreProducto()+" tiene codigo: "+bandeja4.getId()+"\n"
+                                    +"-"+bandeja5.getNombreProducto()+" tiene codigo: "+bandeja5.getId()+"\n"
+                                    +"-"+bandeja6.getNombreProducto()+" tiene codigo: "+bandeja6.getId());
+                            if (bandeja1.getId().equals(saberPrecioProducto)) {
+                                JOptionPane.showMessageDialog(null, bandeja1.getPrecioProducto());
+                            } else if (bandeja2.equals(saberPrecioProducto)) {
+                                JOptionPane.showMessageDialog(null, bandeja2.getPrecioProducto());
+                            } else if (bandeja3.equals(saberPrecioProducto)) {
+                                JOptionPane.showMessageDialog(null, bandeja3.getPrecioProducto());
+                            } else if (bandeja4.equals(saberPrecioProducto)) {
+                                JOptionPane.showMessageDialog(null, bandeja4.getPrecioProducto());
+                            } else if (bandeja5.equals(saberPrecioProducto)) {
+                                JOptionPane.showMessageDialog(null, bandeja5.getPrecioProducto());
+                            } else if (bandeja6.equals(saberPrecioProducto)) {
+                                JOptionPane.showMessageDialog(null, bandeja6.getPrecioProducto());
+                            }
+                            if (!saberPrecioProducto.equals(bandeja1.getId()) && !saberPrecioProducto.equals(bandeja2.getId()) && !saberPrecioProducto.equals(bandeja3.getId()) &&
+                                    !saberPrecioProducto.equals(bandeja4.getId()) && !saberPrecioProducto.equals(bandeja5.getId()) && !saberPrecioProducto.equals(bandeja6.getId())){
+                                JOptionPane.showMessageDialog(null,"Introduzca un codigo valido");
+                            }
+                        } while (!saberPrecioProducto.equals(bandeja1.getId()) && !saberPrecioProducto.equals(bandeja2.getId()) && !saberPrecioProducto.equals(bandeja3.getId()) &&
+                               !saberPrecioProducto.equals(bandeja4.getId()) && !saberPrecioProducto.equals(bandeja5.getId()) && !saberPrecioProducto.equals(bandeja6.getId()));
+
+
+                        break;
+                    case 2:
+
+
+                        break;
+
+                }
+
         }
-        
+        while (eleccionModo != 1 && eleccionModo != 2) ;
 
+
+
+        }
     }
-}
+

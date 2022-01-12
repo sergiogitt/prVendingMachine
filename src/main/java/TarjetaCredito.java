@@ -12,7 +12,7 @@ import java.time.LocalDate;
  */
 public class TarjetaCredito {
 
-    private double numTarjeta;
+    private double  numTarjeta;
     private LocalDate fechaVencimiento;
     private int cvv;
 

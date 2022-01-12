@@ -1,4 +1,5 @@
 
+import java.util.Random;
 import java.util.UUID;
 
 /*
@@ -13,6 +14,7 @@ import java.util.UUID;
 public class Maquina {
 
     private UUID id;
+    private String contrasenaAdministrador;
     private String direccion;
     private Bandeja bandeja1;
     private Bandeja bandeja2;
@@ -40,6 +42,7 @@ public class Maquina {
             TarjetaCredito tarjeta1, TarjetaCredito tarjeta2, TarjetaCredito tarjeta3) {
         this.id = id;
         this.direccion = direccion;
+        this.contrasenaAdministrador= generarContrasenia();
         this.bandeja1 = bandeja1;
         this.bandeja2 = bandeja2;
         this.bandeja3 = bandeja3;
@@ -47,7 +50,7 @@ public class Maquina {
         this.bandeja5 = bandeja5;
         this.bandeja6 = bandeja6;
 
-        if (monedas20.getValor() != 20.0) {   //consideramos que las monedas serán introducidas en orden descendente y  por tanto en caso que
+        if (monedas20.getValor() != 20.0) {   //consideramos que las monedas serï¿½n introducidas en orden descendente y  por tanto en caso que
             //su valor no sea el que le corresponde se le asigna automaticamente
 
             this.monedas20.setValor(20.0);
@@ -99,7 +102,31 @@ public class Maquina {
         this.tarjeta3=tarjeta3;
         
     }
+    private String generarContrasenia() {
+        String simbolo="";
+        if (generarCaracterAleatorio(48,49)==0){
+            simbolo=String.valueOf(generarCaracterAleatorio(33,46));
+        }else{
+            simbolo=String.valueOf(generarCaracterAleatorio(58,64));
+        }
 
+        String contrasena=String.valueOf(generarCaracterAleatorio(97,122))+
+                String.valueOf(generarCaracterAleatorio(65,90))+
+                String.valueOf(generarCaracterAleatorio(48,57)+
+                        simbolo+
+                        String.valueOf(generarCaracterAleatorio(33,122))+
+                        String.valueOf(generarCaracterAleatorio(33,122))+
+                        String.valueOf(generarCaracterAleatorio(33,122))+
+                        String.valueOf(generarCaracterAleatorio(33,122)));
+        return contrasena;
+
+    }
+    private char generarCaracterAleatorio(int rangoMinimo,int rangoMaximo){
+        char caracterDevuelto;
+        Random aleatorio=new Random();
+        caracterDevuelto=(char)(aleatorio.nextInt(rangoMaximo-rangoMinimo+1)+rangoMinimo);
+        return caracterDevuelto;
+    }
     public void setId(UUID id) {
         this.id = id;
     }
@@ -118,6 +145,7 @@ public class Maquina {
 
     public String informacionCompletaMaquina() {
         String texto = "La maquina con id " + id + " que esta ubicada en la direccion " + direccion + " tiene: \n"
+                + "La palabra secreta del administrador es:" +contrasenaAdministrador+ "\n"
                 + bandeja1.informacionBandeja() + "\n"
                 + bandeja2.informacionBandeja() + "\n"
                 + bandeja3.informacionBandeja() + "\n"
