@@ -51,17 +51,26 @@ public class TestMaquinaCompleto {
                     eleccionModo = Integer.parseInt(texto);
                     eleccionModoValida = true;
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null,"Has introducido un caracter erroneo, introduce un caracter numerico ");
+                    System.out.println("Has introducido un caracter erroneo, introduce un caracter numerico ");
+
                 }
             } while (!eleccionModoValida);
-            if (eleccionModo != 1 && eleccionModo != 2){
-                JOptionPane.showMessageDialog(null,"Introduce un numero que se muestre en el menu,por favor.");
-            }
         } while (eleccionModo != 1 && eleccionModo != 2);
 
         switch (eleccionModo) {
 
+        
+    
 
+        case1:
+                
+                break;
+                case2:
+                
+                break;
+        
         }
+        
+
     }
 }

@@ -1,5 +1,4 @@
 
-import java.util.Random;
 import java.util.UUID;
 
 /*
@@ -14,7 +13,6 @@ import java.util.UUID;
 public class Maquina {
 
     private UUID id;
-    private String contraseñaAdministrador;
     private String direccion;
     private Bandeja bandeja1;
     private Bandeja bandeja2;
@@ -42,7 +40,6 @@ public class Maquina {
             TarjetaCredito tarjeta1, TarjetaCredito tarjeta2, TarjetaCredito tarjeta3) {
         this.id = id;
         this.direccion = direccion;
-        this.contraseñaAdministrador =generarContraseña();
         this.bandeja1 = bandeja1;
         this.bandeja2 = bandeja2;
         this.bandeja3 = bandeja3;
@@ -50,7 +47,7 @@ public class Maquina {
         this.bandeja5 = bandeja5;
         this.bandeja6 = bandeja6;
 
-        if (monedas20.getValor() != 20.0) {   //consideramos que las monedas ser�n introducidas en orden descendente y  por tanto en caso que
+        if (monedas20.getValor() != 20.0) {   //consideramos que las monedas ser�n introducidas en orden descendente y  por tanto en caso que
             //su valor no sea el que le corresponde se le asigna automaticamente
 
             this.monedas20.setValor(20.0);
@@ -101,29 +98,6 @@ public class Maquina {
         this.tarjeta2=tarjeta2;
         this.tarjeta3=tarjeta3;
         
-    }
-
-    private String generarContraseña() {
-        char caracter=;
-        if (generarCaracterAleatorio(48,49)){
-
-        }
-        String contraseña=String.valueOf(generarCaracterAleatorio(97,122))+
-                String.valueOf(generarCaracterAleatorio(65,90))+
-                String.valueOf(generarCaracterAleatorio(48,57)+
-                String.valueOf(generarCaracterAleatorio(33,47))+
-                String.valueOf(generarCaracterAleatorio(97,122))+
-                String.valueOf(generarCaracterAleatorio(97,122))+
-                String.valueOf(generarCaracterAleatorio(97,122))+
-                String.valueOf(generarCaracterAleatorio(97,122))+;
-
-
-    }
-    private char generarCaracterAleatorio(int rangoMinimo,int rangoMaximo){
-        char caracterDevuelto;
-        Random aleatorio=new Random();
-        caracterDevuelto=(char)(aleatorio.nextInt(rangoMaximo-rangoMinimo+1)+rangoMinimo);
-        return caracterDevuelto;
     }
 
     public void setId(UUID id) {
