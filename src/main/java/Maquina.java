@@ -139,6 +139,10 @@ public class Maquina {
         return direccion;
     }
 
+    public String getContrasenaAdministrador() {
+        return contrasenaAdministrador;
+    }
+
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
