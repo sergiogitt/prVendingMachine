@@ -117,7 +117,7 @@ public class TestMaquinaCompleto {
                     String codigoAdministrador="";
                     String eleccionAdministrador="";
                     do {
-                        codigoAdministrador=JOptionPane.showInputDialog(null,"Introduzca el numero secreto de administrador:");
+                        codigoAdministrador=JOptionPane.showInputDialog(null,"Introduzca el numero secreto de administrador:\nNo es "+maquina1.getContrasenaAdministrador()+ " aso que no pruebes esa");
                         if (!codigoAdministrador.equals(maquina1.getContrasenaAdministrador())){
                             JOptionPane.showMessageDialog(null,"El numero secreto no es correcto, intentelo de nuevo");
                         }
@@ -175,12 +175,12 @@ public class TestMaquinaCompleto {
                                     case "3":
                                         do {
                                             bandejaSaberId=JOptionPane.showInputDialog(null,"Teclee la bandeja que desees cambiar de producto: \n" +
-                                                    "1.Bandeja que tiene codigo "+bandeja1.getId()+ " que contiene "+bandeja1.getNombreProducto()+"\n"+
-                                                    "2.Bandeja que tiene codigo "+bandeja2.getId()+ " que contiene "+bandeja2.getNombreProducto()+"\n"+
-                                                    "3.Bandeja que tiene codigo "+bandeja3.getId()+ " que contiene "+bandeja3.getNombreProducto()+"\n"+
-                                                    "4.Bandeja que tiene codigo "+bandeja4.getId()+ " que contiene "+bandeja4.getNombreProducto()+"\n"+
-                                                    "5.Bandeja que tiene codigo "+bandeja5.getId()+ " que contiene "+bandeja5.getNombreProducto()+"\n"+
-                                                    "6.Bandeja que tiene codigo "+bandeja6.getId()+ " que contiene "+bandeja6.getNombreProducto()+"\n"+
+                                                    "1.Bandeja que tiene codigo "+bandeja1.getId()+ " que contiene "+bandeja1.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
+                                                    "2.Bandeja que tiene codigo "+bandeja2.getId()+ " que contiene "+bandeja2.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
+                                                    "3.Bandeja que tiene codigo "+bandeja3.getId()+ " que contiene "+bandeja3.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
+                                                    "4.Bandeja que tiene codigo "+bandeja4.getId()+ " que contiene "+bandeja4.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
+                                                    "5.Bandeja que tiene codigo "+bandeja5.getId()+ " que contiene "+bandeja5.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
+                                                    "6.Bandeja que tiene codigo "+bandeja6.getId()+ " que contiene "+bandeja6.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
                                                     "7.Volver al modo menu del administrador.");
                                             String nuevoProducto="";
                                             double nuevoPrecioProducto;
@@ -271,7 +271,7 @@ public class TestMaquinaCompleto {
 
     public static void cambiarProducto(Bandeja bandeja){
         String nuevoProducto="";
-        double nuevoPrecioProducto;
+        double nuevoPrecioProducto=0;
         boolean precioCorrecto=false;
        nuevoProducto=JOptionPane.showInputDialog(null,"Introduce el nombre que va a tener el producto con codigo "+ bandeja.getId());
        bandeja.setNombreProducto(nuevoProducto);
@@ -285,6 +285,7 @@ public class TestMaquinaCompleto {
                 JOptionPane.showMessageDialog(null,"Introduce un valor numerico");
             }
         }while (!precioCorrecto);
+        bandeja.setPrecioProducto(nuevoPrecioProducto);
     }
     public static void cambiarId(Bandeja bandeja){
         bandeja.setId();
