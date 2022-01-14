@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Bandeja {
 
-    private final int MAXIMO_PRODUCTO_POR_BANDEJA = 15;
+    public static final int MAXIMO_PRODUCTO_POR_BANDEJA = 15;
     private String id;
     private int stock;
     private String nombreProducto;
@@ -87,6 +87,9 @@ public class Bandeja {
             JOptionPane.showMessageDialog(null, "Has introducido un precio cero, vamos a poner por defecto un precio de 5 euros, si quieres cambiarlo hazlo manualmente");
             this.precioProducto=5;
         }
+    }
+    public void rellenarBandeja(){
+        this.setStock(Bandeja.MAXIMO_PRODUCTO_POR_BANDEJA);
     }
 
     public int getMAXIMO_PRODUCTO_POR_BANDEJA() {

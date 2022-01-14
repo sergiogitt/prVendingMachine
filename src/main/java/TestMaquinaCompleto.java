@@ -18,12 +18,12 @@ public class TestMaquinaCompleto {
         UUID id = new UUID(UUID.randomUUID().getMostSignificantBits(), UUID.randomUUID().getLeastSignificantBits());
         String direccion = "calle oporto";
 
-        Bandeja bandeja1 = new Bandeja(15, "cocacola", 2);
-        Bandeja bandeja2 = new Bandeja(15, "Agua1Litro", 1.5);
-        Bandeja bandeja3 = new Bandeja(15, "Biofrutas", 3);
-        Bandeja bandeja4 = new Bandeja(15, "PatatasJamon", 1);
-        Bandeja bandeja5 = new Bandeja(15, "Palomitas", 0.9);
-        Bandeja bandeja6 = new Bandeja(15, "Almendras", 2.5);
+        Bandeja bandeja1 = new Bandeja(10, "cocacola", 2);
+        Bandeja bandeja2 = new Bandeja(10, "Agua1Litro", 1.5);
+        Bandeja bandeja3 = new Bandeja(1, "Biofrutas", 3);
+        Bandeja bandeja4 = new Bandeja(1, "PatatasJamon", 1);
+        Bandeja bandeja5 = new Bandeja(5, "Palomitas", 0.9);
+        Bandeja bandeja6 = new Bandeja(4, "Almendras", 2.5);
 
         Moneda monedas20 = new Moneda(20, 30);
         Moneda monedas10 = new Moneda(10, 30);
@@ -124,14 +124,14 @@ public class TestMaquinaCompleto {
                         if(codigoAdministrador.equals(maquina1.getContrasenaAdministrador())){
                             do {
                                 eleccionAdministrador=JOptionPane.showInputDialog(null,"Teclee la opcion que deseas realizar:\n1.Mostrar estado de la maquina\n" +
-                                        "2.Cambiar codigo de una bandeja\n3.Cambiar producto de una bandeja\n4.Apagar maquina\n5.Salir del modo administrador");
+                                        "2.Cambiar codigo de una bandeja\n3.Cambiar producto de una bandeja\n4.Apagar maquina\n5.Cambiar stock de bandejas\n6.Salir del modo administrador");
                                 if (!eleccionAdministrador.equals("1")&&!eleccionAdministrador.equals("2")&&!eleccionAdministrador.equals("3")
                                         &&!eleccionAdministrador.equals("4")&&!eleccionAdministrador.equals("5")){
                                     JOptionPane.showMessageDialog(null,"Teclee una opcion valida del menu");
                                 }
                                 switch (eleccionAdministrador){
                                     case "1":
-                                        System.out.println(maquina1.informacionCompletaMaquina());
+                                        JOptionPane.showMessageDialog(null, maquina1.informacionCompletaMaquina());
                                         break;
                                     case "2":
                                         String bandejaSaberId="";
@@ -213,8 +213,56 @@ public class TestMaquinaCompleto {
                                     case "4":
                                         apagarMaquina=true;
                                         break;
+                                    case "5":
+                                        do {
+                                            bandejaSaberId=JOptionPane.showInputDialog(null,"Teclee la bandeja que desees cambiar de stock \n" +
+                                                    "1.Bandeja que contiene "+bandeja1.getNombreProducto()+" con un stock de "+bandeja1.getStock()+"\n"+
+                                                    "2.Bandeja que contiene "+bandeja2.getNombreProducto()+" con un stock de "+bandeja2.getStock()+"\n"+
+                                                    "3.Bandeja que contiene "+bandeja3.getNombreProducto()+" con un stock de "+bandeja3.getStock()+"\n"+
+                                                    "4.Bandeja que contiene "+bandeja4.getNombreProducto()+" con un stock de "+bandeja4.getStock()+"\n"+
+                                                    "5.Bandeja que contiene "+bandeja5.getNombreProducto()+" con un stock de "+bandeja5.getStock()+"\n"+
+                                                    "6.Bandeja que contiene "+bandeja6.getNombreProducto()+" con un stock de "+bandeja6.getStock()+"\n"+
+                                                    "7.Reponer todas las bandejas con la maxima capacidad"+"\n"+
+                                                    "8.Volver al modo menu del administrador.");
+                                            String nuevoProducto="";
+                                            double nuevoPrecioProducto;
+                                            boolean precioCorrecto=false;
+                                            switch (bandejaSaberId){
+                                                case "1":
+                                                    cambiarStock(bandeja1);
+                                                    break;
+                                                case "2":
+                                                    cambiarStock(bandeja2);
+                                                    break;
+                                                case "3":
+                                                    cambiarStock(bandeja3);
+                                                    break;
+                                                case "4":
+                                                    cambiarStock(bandeja4);
+                                                    break;
+                                                case "5":
+                                                    cambiarStock(bandeja5);
+                                                    break;
+                                                case "6":
+                                                    cambiarStock(bandeja6);
+                                                    break;
+                                                case "7":
+                                                    bandeja1.rellenarBandeja();
+                                                    bandeja2.rellenarBandeja();
+                                                    bandeja3.rellenarBandeja();
+                                                    bandeja4.rellenarBandeja();
+                                                    bandeja5.rellenarBandeja();
+                                                    bandeja6.rellenarBandeja();
+                                                    break;
+
+                                            }
+                                            if(!bandejaSaberId.equals("1")&&!bandejaSaberId.equals("2")&&!bandejaSaberId.equals("3")&&!bandejaSaberId.equals("4")&&!bandejaSaberId.equals("5")&&!bandejaSaberId.equals("6")&&!bandejaSaberId.equals("7")&&!bandejaSaberId.equals("8")){
+                                                JOptionPane.showMessageDialog(null,"Introduce un numero de los que se muestra en el menu");
+                                            }
+                                        }while(!bandejaSaberId.equals("8"));
+                                        break;
                                 }
-                            }while (!eleccionAdministrador.equals("5")&&!eleccionAdministrador.equals("4"));
+                            }while (!eleccionAdministrador.equals("6")&&!eleccionAdministrador.equals("4"));
                         }
                     }while(!codigoAdministrador.equals(maquina1.getContrasenaAdministrador()));
             }
@@ -225,6 +273,8 @@ public class TestMaquinaCompleto {
         String nuevoProducto="";
         double nuevoPrecioProducto;
         boolean precioCorrecto=false;
+       nuevoProducto=JOptionPane.showInputDialog(null,"Introduce el nombre que va a tener el producto con codigo "+ bandeja.getId());
+       bandeja.setNombreProducto(nuevoProducto);
         do {
             try {
                 String texto=JOptionPane.showInputDialog(null,"Introduce el precio que va a tener el producto llamado "+bandeja.getNombreProducto());
@@ -239,5 +289,20 @@ public class TestMaquinaCompleto {
     public static void cambiarId(Bandeja bandeja){
         bandeja.setId();
         JOptionPane.showMessageDialog(null,"La bandeja que contiene  "+ bandeja.getNombreProducto()+" ahora tiene el codigo "+bandeja.getId());
+    }
+    public static void cambiarStock(Bandeja bandeja){
+        int numeroDeProductoAMeter=0;
+        boolean numeroAMeterCorrecto=false;
+        do {
+            try {
+                String texto=JOptionPane.showInputDialog("Introduce la cantidad de producto que vas a reponer");
+                numeroDeProductoAMeter=Integer.parseInt(texto);
+                numeroAMeterCorrecto=true;
+
+            }catch (NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null,"Introduce un valor numerico");
+            }
+        }while (!numeroAMeterCorrecto);
+        bandeja.meterProducto(numeroDeProductoAMeter);
     }
 }
