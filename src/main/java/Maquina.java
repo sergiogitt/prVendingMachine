@@ -36,6 +36,8 @@ public class Maquina {
     private TarjetaCredito tarjeta2;
     private TarjetaCredito tarjeta3;
 
+    private double dineroRecaudadoConTarjeta;
+
     public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4,
             Bandeja bandeja5, Bandeja bandeja6, Moneda monedas20,
             Moneda monedas10, Moneda monedas5, Moneda monedas2, Moneda monedas1, Moneda monedas0coma50, Moneda monedas0coma20, Moneda monedas0coma10,
@@ -49,7 +51,7 @@ public class Maquina {
         this.bandeja4 = bandeja4;
         this.bandeja5 = bandeja5;
         this.bandeja6 = bandeja6;
-
+        this.dineroRecaudadoConTarjeta=0;
         if (monedas20.getValor() != 20.0) {   //consideramos que las monedas ser�n introducidas en orden descendente y  por tanto en caso que
             //su valor no sea el que le corresponde se le asigna automaticamente
 
@@ -102,6 +104,12 @@ public class Maquina {
         this.tarjeta3=tarjeta3;
         
     }
+    public void compraConTarjeta(double valorAumentado){
+        this.dineroRecaudadoConTarjeta+=valorAumentado;
+    }
+    public boolean tarjetaEnMiBaseDeDatos(TarjetaCredito tarjeta){
+        return tarjeta1.tarjetaValida(tarjeta)||tarjeta2.tarjetaValida(tarjeta)||tarjeta3.tarjetaValida(tarjeta);
+    }
     private String generarContrasenia() {
         String simbolo="";
         if (generarCaracterAleatorio(48,49)==0){
@@ -129,6 +137,10 @@ public class Maquina {
     }
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public double getDineroRecaudadoConTarjeta() {
+        return dineroRecaudadoConTarjeta;
     }
 
     public UUID getId() {

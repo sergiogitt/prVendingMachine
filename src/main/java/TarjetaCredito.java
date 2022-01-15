@@ -67,7 +67,7 @@ public class TarjetaCredito {
 
     public boolean tarjetaValida(TarjetaCredito tarjetaAValidar) { //comprobacion tarjeta iguales
         boolean tarjetaIgual = false;
-        if (this.numTarjeta.equals(tarjetaAValidar.getNumTarjeta())  && !this.fechaVencimiento.equals(tarjetaAValidar.getFechaVencimiento())
+        if (this.numTarjeta.equals(tarjetaAValidar.getNumTarjeta())  && this.fechaVencimiento.equals(tarjetaAValidar.getFechaVencimiento())
                 && this.cvv.equals(tarjetaAValidar.getCvv())) {
             tarjetaIgual = true;
 
