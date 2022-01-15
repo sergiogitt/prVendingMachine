@@ -30,7 +30,7 @@ public class TarjetaCredito {
 
     public TarjetaCredito(String numTarjeta, LocalDate fechaVencimiento, String cvv) {
 
-        if (numTarjeta.length() == 18) { //comprobacion tarjeta tiene 16 cifas
+        if (numTarjeta.length() == 16) { //comprobacion tarjeta tiene 16 cifas
             this.numTarjeta = numTarjeta;
         } else {
             this.numTarjeta = "1234123412341234";
@@ -66,13 +66,13 @@ public class TarjetaCredito {
     }
 
     public boolean tarjetaValida(TarjetaCredito tarjetaAValidar) { //comprobacion tarjeta iguales
-        boolean tarjetaDiferente = false;
+        boolean tarjetaIgual = false;
         if (this.numTarjeta.equals(tarjetaAValidar.getNumTarjeta())  && !this.fechaVencimiento.equals(tarjetaAValidar.getFechaVencimiento())
                 && this.cvv.equals(tarjetaAValidar.getCvv())) {
-            tarjetaDiferente = true;
+            tarjetaIgual = true;
 
         }
-        return tarjetaDiferente;
+        return tarjetaIgual;
 
     }
 }

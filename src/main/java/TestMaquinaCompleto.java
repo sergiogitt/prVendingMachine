@@ -44,6 +44,9 @@ public class TestMaquinaCompleto {
                 tarjeta1, tarjeta2, tarjeta3);
 
         System.out.println(maquina1.informacionCompletaMaquina());
+        System.out.println(tarjeta1.getCvv());
+        System.out.println( tarjeta1.getNumTarjeta());
+
         boolean eleccionModoValida = false;
         int eleccionModo = 0;
         boolean apagarMaquina = false;
@@ -194,7 +197,8 @@ public class TestMaquinaCompleto {
                                                              tarjetaTemporal.setNumTarjeta(numeroTarjetaCliente);
                                                              tarjetaTemporal.setFechaVencimiento(LocalDate.now());
                                                              tarjetaTemporal.setCvv(numeroCVVCliente);
-                                                        }while (!tarjeta1.tarjetaValida(tarjetaTemporal)||!tarjeta2.tarjetaValida(tarjetaTemporal)||!tarjeta3.tarjetaValida(tarjetaTemporal));
+                                                            System.out.println(!tarjeta1.tarjetaValida(tarjetaTemporal)&&!tarjeta2.tarjetaValida(tarjetaTemporal)&&!tarjeta3.tarjetaValida(tarjetaTemporal));
+                                                        }while (tarjeta1.tarjetaValida(tarjetaTemporal)&&tarjeta2.tarjetaValida(tarjetaTemporal)&&tarjeta3.tarjetaValida(tarjetaTemporal));
 
 
                                                         break;
