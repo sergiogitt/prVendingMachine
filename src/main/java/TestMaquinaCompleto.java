@@ -1,5 +1,6 @@
 
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 
@@ -34,9 +35,9 @@ public class TestMaquinaCompleto {
         Moneda monedas0coma20 = new Moneda(0.20, 30);
         Moneda monedas0coma10 = new Moneda(0.10, 30);
 
-        TarjetaCredito tarjeta1 = new TarjetaCredito(1234456884569563.0, LocalDate.now(), 569);
-        TarjetaCredito tarjeta2 = new TarjetaCredito(1234456884879563.0, LocalDate.now(), 454);
-        TarjetaCredito tarjeta3 = new TarjetaCredito(1234456886369563.0, LocalDate.now(), 586);
+        TarjetaCredito tarjeta1 = new TarjetaCredito("1234456884569563", LocalDate.now(), "569");
+        TarjetaCredito tarjeta2 = new TarjetaCredito("1234456884879563", LocalDate.now(), "454");
+        TarjetaCredito tarjeta3 = new TarjetaCredito("1234456886369563", LocalDate.now(), "586");
 
         Maquina maquina1 = new Maquina(id, direccion, bandeja1, bandeja2, bandeja3, bandeja4, bandeja5, bandeja6,
                 monedas20, monedas10, monedas5, monedas2, monedas1, monedas0coma50, monedas0coma20, monedas0coma10,
@@ -136,18 +137,80 @@ public class TestMaquinaCompleto {
                                     if (!productoAComprar.equals(bandeja1.getId()) && !productoAComprar.equals(bandeja2.getId()) && !productoAComprar.equals(bandeja3.getId())
                                             && !productoAComprar.equals(bandeja4.getId()) && !productoAComprar.equals(bandeja5.getId()) && !productoAComprar.equals(bandeja6.getId())) {
                                         JOptionPane.showMessageDialog(null, "Introduzca un codigo valido");
+                                    }else{
+                                        do {
+                                            modoPago = JOptionPane.showInputDialog("Selecciona el mï¿½todo de pago: \n1.Efectivo\n2.Tarjeta\n3.Cancelar compra ");
+                                            if (!modoPago.equals("1") && !modoPago.equals("2")&& !modoPago.equals("3")) {
+                                                JOptionPane.showMessageDialog(null, "Introduce una opcion del menu");
+                                            }else {
+                                                switch (modoPago){
+                                                    case "1":                    //Pago con efectivo
+                                                        JOptionPane.showMessageDialog(null,"opcion uno");
+                                                        break;
+                                                    case "2": //Pago con tarjeta
+                                                        TarjetaCredito tarjetaTemporal =new TarjetaCredito("1",LocalDate.now(),"123");
+                                                        do {
+
+                                                            String numeroTarjetaCliente=JOptionPane.showInputDialog(null,"Instroduce el numero de la tarjeta de credito");
+                                                            String numeroCVVCliente=JOptionPane.showInputDialog(null,"Instroduce el CVV de la tarjeta de credito");
+                                                            boolean diaCorrecto=false;
+                                                            boolean mesCorrecto=false;
+                                                            boolean anioCorrecto=false;
+                                                            int diaFechaVencimiento=0;
+                                                            int mesFechaVencimiento=0;
+                                                            int anioFechaVencimiento=0;
+
+
+                                                            do {
+                                                                try{
+                                                                    String textoDiaFechaVencimiento=JOptionPane.showInputDialog(null,"Instroduce el dia de la tarjeta de redito");
+                                                                    diaFechaVencimiento=Integer.parseInt(textoDiaFechaVencimiento);
+                                                                    diaCorrecto=true;
+                                                                }catch( NumberFormatException nfe){
+                                                                    JOptionPane.showMessageDialog(null,"Introduce una entrada valida");
+                                                                }
+                                                            }while(!diaCorrecto);
+                                                            do {
+                                                                try{
+                                                                    String textoMesFechaVencimiento=JOptionPane.showInputDialog(null,"Introduce el mes de la tarjeta de redito");
+                                                                    mesFechaVencimiento=Integer.parseInt(textoMesFechaVencimiento);
+                                                                    mesCorrecto=true;
+                                                                }catch (NumberFormatException nfe){
+                                                                    JOptionPane.showMessageDialog(null,"Introduce una entrada valida");
+                                                                }
+                                                            }while(!mesCorrecto);
+                                                            do {
+                                                                try{
+                                                                    String textoAnioFechaVencimiento=JOptionPane.showInputDialog(null,"Introduce el anio de la tarjeta de redito");
+                                                                    anioFechaVencimiento=Integer.parseInt(textoAnioFechaVencimiento);
+                                                                    anioCorrecto=true;
+                                                                }catch (NumberFormatException nfe){
+                                                                    JOptionPane.showMessageDialog(null,"Introduce una entrada valida");
+                                                                }
+                                                            }while(!anioCorrecto);
+
+
+                                                             LocalDate fechaCliente= LocalDate.of(diaFechaVencimiento,mesFechaVencimiento,anioFechaVencimiento);
+                                                             tarjetaTemporal.setNumTarjeta(numeroTarjetaCliente);
+                                                             tarjetaTemporal.setFechaVencimiento(LocalDate.now());
+                                                             tarjetaTemporal.setCvv(numeroCVVCliente);
+                                                        }while (!tarjeta1.tarjetaValida(tarjetaTemporal)||!tarjeta2.tarjetaValida(tarjetaTemporal)||!tarjeta3.tarjetaValida(tarjetaTemporal));
+
+
+                                                        break;
+                                                }
+                                            }
+
+                                        } while (!modoPago.equals("1")&&!modoPago.equals("2")&&!modoPago.equals("3"));
+
+
                                     }
 
                                 } while ((!productoAComprar.equals(bandeja1.getId()) && !productoAComprar.equals(bandeja2.getId()) && !productoAComprar.equals(bandeja3.getId())
-                                        && !productoAComprar.equals(bandeja4.getId()) && !productoAComprar.equals(bandeja5.getId()) && !productoAComprar.equals(bandeja6.getId())));
+                                        && !productoAComprar.equals(bandeja4.getId()) && !productoAComprar.equals(bandeja5.getId()) && !productoAComprar.equals(bandeja6.getId()))
+                                        &&!modoPago.equals("1")&&!modoPago.equals("2")&&!modoPago.equals("3"));
 
-                                do {
-                                    modoPago = JOptionPane.showInputDialog("Selecciona el método de pago: \n1.Efectivo\n2.Tarjeta\n3.Cancelar compra ");
-                                    if (!modoPago.equals("1") && !modoPago.equals("2")) {
-                                        JOptionPane.showMessageDialog(null, "Introduce una opción del menu");
 
-                                    }
-                                } while (!modoPago.equals("1") && !modoPago.equals("2") && !modoPago.equals("3"));
 
                                 break;
 
