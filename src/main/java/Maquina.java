@@ -31,6 +31,10 @@ public class Maquina {
     private Moneda monedas0coma50;
     private Moneda monedas0coma20;
     private Moneda monedas0coma10;
+    private Moneda monedas0coma5;
+    private Moneda monedas0coma2;
+    private Moneda monedas0coma1;
+
 
     private TarjetaCredito tarjeta1;
     private TarjetaCredito tarjeta2;
@@ -40,7 +44,8 @@ public class Maquina {
 
     public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4,
             Bandeja bandeja5, Bandeja bandeja6, Moneda monedas20,
-            Moneda monedas10, Moneda monedas5, Moneda monedas2, Moneda monedas1, Moneda monedas0coma50, Moneda monedas0coma20, Moneda monedas0coma10,
+            Moneda monedas10, Moneda monedas5, Moneda monedas2, Moneda monedas1, Moneda monedas0coma50, Moneda monedas0coma20, Moneda monedas0coma10,Moneda monedas0coma5,
+            Moneda monedas0coma2,Moneda monedas0coma1,
             TarjetaCredito tarjeta1, TarjetaCredito tarjeta2, TarjetaCredito tarjeta3) {
         this.id = id;
         this.direccion = direccion;
@@ -98,6 +103,24 @@ public class Maquina {
 
         } else {
             this.monedas0coma10 = monedas0coma10;
+        }
+        if (monedas0coma5.getValor() != 0.05) {
+            this.monedas0coma5.setValor(0.05);
+
+        } else {
+            this.monedas0coma5 = monedas0coma5;
+        }
+        if (monedas0coma2.getValor() != 0.02) {
+            this.monedas0coma2.setValor(0.02);
+
+        } else {
+            this.monedas0coma2 = monedas0coma2;
+        }
+        if (monedas0coma1.getValor() != 0.01) {
+            this.monedas0coma1.setValor(0.01);
+
+        } else {
+            this.monedas0coma1 = monedas0coma1;
         }
         this.tarjeta1=tarjeta1;
         this.tarjeta2=tarjeta2;
