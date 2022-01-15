@@ -45,7 +45,7 @@ public class TestMaquinaCompleto {
         System.out.println(maquina1.informacionCompletaMaquina());
         boolean eleccionModoValida = false;
         int eleccionModo = 0;
-        boolean apagarMaquina=false;
+        boolean apagarMaquina = false;
         do {
             do {
                 String texto = JOptionPane.showInputDialog("Elige el modo de uso: \n 1.Modo venta \n 2.Modo Administardor");
@@ -53,11 +53,11 @@ public class TestMaquinaCompleto {
                     eleccionModo = Integer.parseInt(texto);
                     eleccionModoValida = true;
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null,"Has introducido un caracter erroneo, introduce un caracter numerico ");
+                    JOptionPane.showMessageDialog(null, "Has introducido un caracter erroneo, introduce un caracter numerico ");
                 }
             } while (!eleccionModoValida);
             if (eleccionModo != 1 && eleccionModo != 2) {
-                JOptionPane.showMessageDialog(null,"Introduce un numero que este en el menu por favor");
+                JOptionPane.showMessageDialog(null, "Introduce un numero que este en el menu por favor");
             }
             switch (eleccionModo) {
                 case 1:
@@ -65,29 +65,29 @@ public class TestMaquinaCompleto {
                     boolean eleccionModoUsuarioValida = false;
                     do {
                         do {
-                            String text = JOptionPane.showInputDialog("Elige que opcion deseas realizar\n" +
-                                    "1.Consultar precio\n2.Comprar producto\n3.Salir modo venta");
+                            String text = JOptionPane.showInputDialog("Elige que opcion deseas realizar\n"
+                                    + "1.Consultar precio\n2.Comprar producto\n3.Salir modo venta");
                             try {
                                 eleccionUsuario = Integer.parseInt(text);
                                 eleccionModoUsuarioValida = true;
                             } catch (NumberFormatException nfe) {
-                                JOptionPane.showMessageDialog(null,"Has introducido un caracter erroneo, introduce un caracter numerico ");
+                                JOptionPane.showMessageDialog(null, "Has introducido un caracter erroneo, introduce un caracter numerico ");
                             }
                         } while (!eleccionModoUsuarioValida);
-                        if (eleccionModo != 1 && eleccionModo != 2&&eleccionModo!=3) {
+                        if (eleccionModo < 1 || eleccionModo > 3) {
                             JOptionPane.showInputDialog("Introduce un numero que este en el menu por favor");
                         }
                         switch (eleccionUsuario) {
                             case 1:
                                 String saberPrecioProducto = "";
                                 do {
-                                    saberPrecioProducto = JOptionPane.showInputDialog("Tecle el identificador del producto que " +
-                                            " desee saber el precio\n-"+bandeja1.getNombreProducto()+"tiene codigo: "+bandeja1.getId()+"\n"+
-                                            "-"+bandeja2.getNombreProducto()+" tiene codigo: "+bandeja2.getId()+"\n"
-                                            +"-"+bandeja3.getNombreProducto()+" tiene codigo: "+bandeja3.getId()+"\n"
-                                            +"-"+bandeja4.getNombreProducto()+" tiene codigo: "+bandeja4.getId()+"\n"
-                                            +"-"+bandeja5.getNombreProducto()+" tiene codigo: "+bandeja5.getId()+"\n"
-                                            +"-"+bandeja6.getNombreProducto()+" tiene codigo: "+bandeja6.getId());
+                                    saberPrecioProducto = JOptionPane.showInputDialog("Tecle el identificador del producto que "
+                                            + " desee saber el precio\n-" + bandeja1.getNombreProducto() + "tiene codigo: " + bandeja1.getId() + "\n"
+                                            + "-" + bandeja2.getNombreProducto() + " tiene codigo: " + bandeja2.getId() + "\n"
+                                            + "-" + bandeja3.getNombreProducto() + " tiene codigo: " + bandeja3.getId() + "\n"
+                                            + "-" + bandeja4.getNombreProducto() + " tiene codigo: " + bandeja4.getId() + "\n"
+                                            + "-" + bandeja5.getNombreProducto() + " tiene codigo: " + bandeja5.getId() + "\n"
+                                            + "-" + bandeja6.getNombreProducto() + " tiene codigo: " + bandeja6.getId());
                                     if (bandeja1.getId().equals(saberPrecioProducto)) {
                                         JOptionPane.showMessageDialog(null, bandeja1.getPrecioProducto());
                                     } else if (bandeja2.equals(saberPrecioProducto)) {
@@ -101,52 +101,92 @@ public class TestMaquinaCompleto {
                                     } else if (bandeja6.equals(saberPrecioProducto)) {
                                         JOptionPane.showMessageDialog(null, bandeja6.getPrecioProducto());
                                     }
-                                    if (!saberPrecioProducto.equals(bandeja1.getId()) && !saberPrecioProducto.equals(bandeja2.getId()) && !saberPrecioProducto.equals(bandeja3.getId()) &&
-                                            !saberPrecioProducto.equals(bandeja4.getId()) && !saberPrecioProducto.equals(bandeja5.getId()) && !saberPrecioProducto.equals(bandeja6.getId())){
-                                        JOptionPane.showMessageDialog(null,"Introduzca un codigo valido");
+                                    if (!saberPrecioProducto.equals(bandeja1.getId()) && !saberPrecioProducto.equals(bandeja2.getId()) && !saberPrecioProducto.equals(bandeja3.getId())
+                                            && !saberPrecioProducto.equals(bandeja4.getId()) && !saberPrecioProducto.equals(bandeja5.getId()) && !saberPrecioProducto.equals(bandeja6.getId())) {
+                                        JOptionPane.showMessageDialog(null, "Introduzca un codigo valido");
                                     }
-                                } while (!saberPrecioProducto.equals(bandeja1.getId()) && !saberPrecioProducto.equals(bandeja2.getId()) && !saberPrecioProducto.equals(bandeja3.getId()) &&
-                                        !saberPrecioProducto.equals(bandeja4.getId()) && !saberPrecioProducto.equals(bandeja5.getId()) && !saberPrecioProducto.equals(bandeja6.getId()));
+                                } while (!saberPrecioProducto.equals(bandeja1.getId()) && !saberPrecioProducto.equals(bandeja2.getId()) && !saberPrecioProducto.equals(bandeja3.getId())
+                                        && !saberPrecioProducto.equals(bandeja4.getId()) && !saberPrecioProducto.equals(bandeja5.getId()) && !saberPrecioProducto.equals(bandeja6.getId()));
                                 break;
 
+                            case 2:
+                                String productoAComprar = "";
+                                String modoPago = "";
+                                do {
+                                    productoAComprar = JOptionPane.showInputDialog("Tecle el identificador que desea comprar:\n "
+                                            + bandeja1.getNombreProducto() + "tiene codigo: " + bandeja1.getId() + "\n"
+                                            + "-" + bandeja2.getNombreProducto() + " tiene codigo: " + bandeja2.getId() + "\n"
+                                            + "-" + bandeja3.getNombreProducto() + " tiene codigo: " + bandeja3.getId() + "\n"
+                                            + "-" + bandeja4.getNombreProducto() + " tiene codigo: " + bandeja4.getId() + "\n"
+                                            + "-" + bandeja5.getNombreProducto() + " tiene codigo: " + bandeja5.getId() + "\n"
+                                            + "-" + bandeja6.getNombreProducto() + " tiene codigo: " + bandeja6.getId());
+                                    if (bandeja1.getId().equals(productoAComprar)) {
+                                        JOptionPane.showMessageDialog(null, bandeja1.getPrecioProducto());
+                                    } else if (bandeja2.equals(productoAComprar)) {
+                                        JOptionPane.showMessageDialog(null, bandeja2.getPrecioProducto());
+                                    } else if (bandeja3.equals(productoAComprar)) {
+                                        JOptionPane.showMessageDialog(null, bandeja3.getPrecioProducto());
+                                    } else if (bandeja4.equals(productoAComprar)) {
+                                        JOptionPane.showMessageDialog(null, bandeja4.getPrecioProducto());
+                                    } else if (bandeja5.equals(productoAComprar)) {
+                                        JOptionPane.showMessageDialog(null, bandeja5.getPrecioProducto());
+                                    } else if (bandeja6.equals(productoAComprar)) {
+                                        JOptionPane.showMessageDialog(null, bandeja6.getPrecioProducto());
+                                    }
+                                    if (!productoAComprar.equals(bandeja1.getId()) && !productoAComprar.equals(bandeja2.getId()) && !productoAComprar.equals(bandeja3.getId())
+                                            && !productoAComprar.equals(bandeja4.getId()) && !productoAComprar.equals(bandeja5.getId()) && !productoAComprar.equals(bandeja6.getId())) {
+                                        JOptionPane.showMessageDialog(null, "Introduzca un codigo valido");
+                                    }
+
+                                } while ((!productoAComprar.equals(bandeja1.getId()) && !productoAComprar.equals(bandeja2.getId()) && !productoAComprar.equals(bandeja3.getId())
+                                        && !productoAComprar.equals(bandeja4.getId()) && !productoAComprar.equals(bandeja5.getId()) && !productoAComprar.equals(bandeja6.getId())));
+
+                                do {
+                                    modoPago = JOptionPane.showInputDialog("Selecciona el método de pago: \n1.Efectivo\n2.Tarjeta\n3.Cancelar compra ");
+                                    if (!modoPago.equals("1") && !modoPago.equals("2")) {
+                                        JOptionPane.showMessageDialog(null, "Introduce una opción del menu");
+
+                                    }
+                                } while (!modoPago.equals("1") && !modoPago.equals("2") && !modoPago.equals("3"));
+
+                                break;
 
                         }
-                    }while(eleccionUsuario!=3);
+                    } while (eleccionUsuario != 3);
                     break;
                 case 2:
-                    String codigoAdministrador="";
-                    String eleccionAdministrador="";
+                    String codigoAdministrador = "";
+                    String eleccionAdministrador = "";
                     do {
-                        codigoAdministrador=JOptionPane.showInputDialog(null,"Introduzca el numero secreto de administrador:\nNo es "+maquina1.getContrasenaAdministrador()+ " aso que no pruebes esa");
-                        if (!codigoAdministrador.equals(maquina1.getContrasenaAdministrador())){
-                            JOptionPane.showMessageDialog(null,"El numero secreto no es correcto, intentelo de nuevo");
+                        codigoAdministrador = JOptionPane.showInputDialog(null, "Introduzca el numero secreto de administrador:\nNo es " + maquina1.getContrasenaAdministrador() + " aso que no pruebes esa");
+                        if (!codigoAdministrador.equals(maquina1.getContrasenaAdministrador())) {
+                            JOptionPane.showMessageDialog(null, "El numero secreto no es correcto, intentelo de nuevo");
                         }
-                        if(codigoAdministrador.equals(maquina1.getContrasenaAdministrador())){
+                        if (codigoAdministrador.equals(maquina1.getContrasenaAdministrador())) {
                             do {
-                                eleccionAdministrador=JOptionPane.showInputDialog(null,"Teclee la opcion que deseas realizar:\n1.Mostrar estado de la maquina\n" +
-                                        "2.Cambiar codigo de una bandeja\n3.Cambiar producto de una bandeja\n4.Apagar maquina\n5.Cambiar stock de bandejas\n6.Salir del modo administrador");
-                                if (!eleccionAdministrador.equals("1")&&!eleccionAdministrador.equals("2")&&!eleccionAdministrador.equals("3")
-                                        &&!eleccionAdministrador.equals("4")&&!eleccionAdministrador.equals("5")){
-                                    JOptionPane.showMessageDialog(null,"Teclee una opcion valida del menu");
+                                eleccionAdministrador = JOptionPane.showInputDialog(null, "Teclee la opcion que deseas realizar:\n1.Mostrar estado de la maquina\n"
+                                        + "2.Cambiar codigo de una bandeja\n3.Cambiar producto de una bandeja\n4.Apagar maquina\n5.Cambiar stock de bandejas\n6.Salir del modo administrador");
+                                if (!eleccionAdministrador.equals("1") && !eleccionAdministrador.equals("2") && !eleccionAdministrador.equals("3")
+                                        && !eleccionAdministrador.equals("4") && !eleccionAdministrador.equals("5")) {
+                                    JOptionPane.showMessageDialog(null, "Teclee una opcion valida del menu");
                                 }
-                                switch (eleccionAdministrador){
+                                switch (eleccionAdministrador) {
                                     case "1":
                                         JOptionPane.showMessageDialog(null, maquina1.informacionCompletaMaquina());
                                         break;
                                     case "2":
-                                        String bandejaSaberId="";
+                                        String bandejaSaberId = "";
                                         do {
-                                            bandejaSaberId=JOptionPane.showInputDialog(null,"Teclee la bandeja que desees cambiar el codigo: \n" +
-                                                    "1.Bandeja que tiene codigo "+bandeja1.getId()+ " que contiene "+bandeja1.getNombreProducto()+"\n"+
-                                                    "2.Bandeja que tiene codigo "+bandeja2.getId()+ " que contiene "+bandeja2.getNombreProducto()+"\n"+
-                                                    "3.Bandeja que tiene codigo "+bandeja3.getId()+ " que contiene "+bandeja3.getNombreProducto()+"\n"+
-                                                    "4.Bandeja que tiene codigo "+bandeja4.getId()+ " que contiene "+bandeja4.getNombreProducto()+"\n"+
-                                                    "5.Bandeja que tiene codigo "+bandeja5.getId()+ " que contiene "+bandeja5.getNombreProducto()+"\n"+
-                                                    "6.Bandeja que tiene codigo "+bandeja6.getId()+ " que contiene "+bandeja6.getNombreProducto()+"\n"+
-                                                    "7.Volver al modo menu del administrador.");
+                                            bandejaSaberId = JOptionPane.showInputDialog(null, "Teclee la bandeja que desees cambiar el codigo: \n"
+                                                    + "1.Bandeja que tiene codigo " + bandeja1.getId() + " que contiene " + bandeja1.getNombreProducto() + "\n"
+                                                    + "2.Bandeja que tiene codigo " + bandeja2.getId() + " que contiene " + bandeja2.getNombreProducto() + "\n"
+                                                    + "3.Bandeja que tiene codigo " + bandeja3.getId() + " que contiene " + bandeja3.getNombreProducto() + "\n"
+                                                    + "4.Bandeja que tiene codigo " + bandeja4.getId() + " que contiene " + bandeja4.getNombreProducto() + "\n"
+                                                    + "5.Bandeja que tiene codigo " + bandeja5.getId() + " que contiene " + bandeja5.getNombreProducto() + "\n"
+                                                    + "6.Bandeja que tiene codigo " + bandeja6.getId() + " que contiene " + bandeja6.getNombreProducto() + "\n"
+                                                    + "7.Volver al modo menu del administrador.");
 
-
-                                            switch (bandejaSaberId){
+                                            switch (bandejaSaberId) {
                                                 case "1":
                                                     cambiarId(bandeja1);
                                                     break;
@@ -166,26 +206,26 @@ public class TestMaquinaCompleto {
                                                     cambiarId(bandeja6);
                                                     break;
                                             }
-                                            if(!bandejaSaberId.equals("1")&&!bandejaSaberId.equals("2")&&!bandejaSaberId.equals("3")&&!bandejaSaberId.equals("4")&&!bandejaSaberId.equals("5")&&!bandejaSaberId.equals("6")&&!bandejaSaberId.equals("7")){
-                                                JOptionPane.showMessageDialog(null,"Introduce un numero de los que se muestra en el menu");
+                                            if (!bandejaSaberId.equals("1") && !bandejaSaberId.equals("2") && !bandejaSaberId.equals("3") && !bandejaSaberId.equals("4") && !bandejaSaberId.equals("5") && !bandejaSaberId.equals("6") && !bandejaSaberId.equals("7")) {
+                                                JOptionPane.showMessageDialog(null, "Introduce un numero de los que se muestra en el menu");
                                             }
-                                        }while(!bandejaSaberId.equals("7"));
+                                        } while (!bandejaSaberId.equals("7"));
 
                                         break;
                                     case "3":
                                         do {
-                                            bandejaSaberId=JOptionPane.showInputDialog(null,"Teclee la bandeja que desees cambiar de producto: \n" +
-                                                    "1.Bandeja que tiene codigo "+bandeja1.getId()+ " que contiene "+bandeja1.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
-                                                    "2.Bandeja que tiene codigo "+bandeja2.getId()+ " que contiene "+bandeja2.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
-                                                    "3.Bandeja que tiene codigo "+bandeja3.getId()+ " que contiene "+bandeja3.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
-                                                    "4.Bandeja que tiene codigo "+bandeja4.getId()+ " que contiene "+bandeja4.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
-                                                    "5.Bandeja que tiene codigo "+bandeja5.getId()+ " que contiene "+bandeja5.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
-                                                    "6.Bandeja que tiene codigo "+bandeja6.getId()+ " que contiene "+bandeja6.getNombreProducto()+" a un precio de"+bandeja1.getPrecioProducto()+"$\n"+
-                                                    "7.Volver al modo menu del administrador.");
-                                            String nuevoProducto="";
+                                            bandejaSaberId = JOptionPane.showInputDialog(null, "Teclee la bandeja que desees cambiar de producto: \n"
+                                                    + "1.Bandeja que tiene codigo " + bandeja1.getId() + " que contiene " + bandeja1.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() + "$\n"
+                                                    + "2.Bandeja que tiene codigo " + bandeja2.getId() + " que contiene " + bandeja2.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() + "$\n"
+                                                    + "3.Bandeja que tiene codigo " + bandeja3.getId() + " que contiene " + bandeja3.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() + "$\n"
+                                                    + "4.Bandeja que tiene codigo " + bandeja4.getId() + " que contiene " + bandeja4.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() + "$\n"
+                                                    + "5.Bandeja que tiene codigo " + bandeja5.getId() + " que contiene " + bandeja5.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() + "$\n"
+                                                    + "6.Bandeja que tiene codigo " + bandeja6.getId() + " que contiene " + bandeja6.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() + "$\n"
+                                                    + "7.Volver al modo menu del administrador.");
+                                            String nuevoProducto = "";
                                             double nuevoPrecioProducto;
-                                            boolean precioCorrecto=false;
-                                            switch (bandejaSaberId){
+                                            boolean precioCorrecto = false;
+                                            switch (bandejaSaberId) {
                                                 case "1":
                                                     cambiarProducto(bandeja1);
                                                     break;
@@ -202,32 +242,32 @@ public class TestMaquinaCompleto {
                                                     cambiarProducto(bandeja5);
                                                     break;
                                                 case "6":
-                                                  cambiarProducto(bandeja6);
+                                                    cambiarProducto(bandeja6);
                                                     break;
                                             }
-                                            if(!bandejaSaberId.equals("1")&&!bandejaSaberId.equals("2")&&!bandejaSaberId.equals("3")&&!bandejaSaberId.equals("4")&&!bandejaSaberId.equals("5")&&!bandejaSaberId.equals("6")&&!bandejaSaberId.equals("7")){
-                                                JOptionPane.showMessageDialog(null,"Introduce un numero de los que se muestra en el menu");
+                                            if (!bandejaSaberId.equals("1") && !bandejaSaberId.equals("2") && !bandejaSaberId.equals("3") && !bandejaSaberId.equals("4") && !bandejaSaberId.equals("5") && !bandejaSaberId.equals("6") && !bandejaSaberId.equals("7")) {
+                                                JOptionPane.showMessageDialog(null, "Introduce un numero de los que se muestra en el menu");
                                             }
-                                        }while(!bandejaSaberId.equals("7"));
+                                        } while (!bandejaSaberId.equals("7"));
                                         break;
                                     case "4":
-                                        apagarMaquina=true;
+                                        apagarMaquina = true;
                                         break;
                                     case "5":
                                         do {
-                                            bandejaSaberId=JOptionPane.showInputDialog(null,"Teclee la bandeja que desees cambiar de stock \n" +
-                                                    "1.Bandeja que contiene "+bandeja1.getNombreProducto()+" con un stock de "+bandeja1.getStock()+"\n"+
-                                                    "2.Bandeja que contiene "+bandeja2.getNombreProducto()+" con un stock de "+bandeja2.getStock()+"\n"+
-                                                    "3.Bandeja que contiene "+bandeja3.getNombreProducto()+" con un stock de "+bandeja3.getStock()+"\n"+
-                                                    "4.Bandeja que contiene "+bandeja4.getNombreProducto()+" con un stock de "+bandeja4.getStock()+"\n"+
-                                                    "5.Bandeja que contiene "+bandeja5.getNombreProducto()+" con un stock de "+bandeja5.getStock()+"\n"+
-                                                    "6.Bandeja que contiene "+bandeja6.getNombreProducto()+" con un stock de "+bandeja6.getStock()+"\n"+
-                                                    "7.Reponer todas las bandejas con la maxima capacidad"+"\n"+
-                                                    "8.Volver al modo menu del administrador.");
-                                            String nuevoProducto="";
+                                            bandejaSaberId = JOptionPane.showInputDialog(null, "Teclee la bandeja que desees cambiar de stock \n"
+                                                    + "1.Bandeja que contiene " + bandeja1.getNombreProducto() + " con un stock de " + bandeja1.getStock() + "\n"
+                                                    + "2.Bandeja que contiene " + bandeja2.getNombreProducto() + " con un stock de " + bandeja2.getStock() + "\n"
+                                                    + "3.Bandeja que contiene " + bandeja3.getNombreProducto() + " con un stock de " + bandeja3.getStock() + "\n"
+                                                    + "4.Bandeja que contiene " + bandeja4.getNombreProducto() + " con un stock de " + bandeja4.getStock() + "\n"
+                                                    + "5.Bandeja que contiene " + bandeja5.getNombreProducto() + " con un stock de " + bandeja5.getStock() + "\n"
+                                                    + "6.Bandeja que contiene " + bandeja6.getNombreProducto() + " con un stock de " + bandeja6.getStock() + "\n"
+                                                    + "7.Reponer todas las bandejas con la maxima capacidad" + "\n"
+                                                    + "8.Volver al modo menu del administrador.");
+                                            String nuevoProducto = "";
                                             double nuevoPrecioProducto;
-                                            boolean precioCorrecto=false;
-                                            switch (bandejaSaberId){
+                                            boolean precioCorrecto = false;
+                                            switch (bandejaSaberId) {
                                                 case "1":
                                                     cambiarStock(bandeja1);
                                                     break;
@@ -256,54 +296,56 @@ public class TestMaquinaCompleto {
                                                     break;
 
                                             }
-                                            if(!bandejaSaberId.equals("1")&&!bandejaSaberId.equals("2")&&!bandejaSaberId.equals("3")&&!bandejaSaberId.equals("4")&&!bandejaSaberId.equals("5")&&!bandejaSaberId.equals("6")&&!bandejaSaberId.equals("7")&&!bandejaSaberId.equals("8")){
-                                                JOptionPane.showMessageDialog(null,"Introduce un numero de los que se muestra en el menu");
+                                            if (!bandejaSaberId.equals("1") && !bandejaSaberId.equals("2") && !bandejaSaberId.equals("3") && !bandejaSaberId.equals("4") && !bandejaSaberId.equals("5") && !bandejaSaberId.equals("6") && !bandejaSaberId.equals("7") && !bandejaSaberId.equals("8")) {
+                                                JOptionPane.showMessageDialog(null, "Introduce un numero de los que se muestra en el menu");
                                             }
-                                        }while(!bandejaSaberId.equals("8"));
+                                        } while (!bandejaSaberId.equals("8"));
                                         break;
                                 }
-                            }while (!eleccionAdministrador.equals("6")&&!eleccionAdministrador.equals("4"));
+                            } while (!eleccionAdministrador.equals("6") && !eleccionAdministrador.equals("4"));
                         }
-                    }while(!codigoAdministrador.equals(maquina1.getContrasenaAdministrador()));
+                    } while (!codigoAdministrador.equals(maquina1.getContrasenaAdministrador()));
             }
         } while (!apagarMaquina);
     }
 
-    public static void cambiarProducto(Bandeja bandeja){
-        String nuevoProducto="";
-        double nuevoPrecioProducto=0;
-        boolean precioCorrecto=false;
-       nuevoProducto=JOptionPane.showInputDialog(null,"Introduce el nombre que va a tener el producto con codigo "+ bandeja.getId());
-       bandeja.setNombreProducto(nuevoProducto);
+    public static void cambiarProducto(Bandeja bandeja) {
+        String nuevoProducto = "";
+        double nuevoPrecioProducto = 0;
+        boolean precioCorrecto = false;
+        nuevoProducto = JOptionPane.showInputDialog(null, "Introduce el nombre que va a tener el producto con codigo " + bandeja.getId());
+        bandeja.setNombreProducto(nuevoProducto);
         do {
             try {
-                String texto=JOptionPane.showInputDialog(null,"Introduce el precio que va a tener el producto llamado "+bandeja.getNombreProducto());
-                nuevoPrecioProducto=Double.parseDouble(texto);
-                precioCorrecto=true;
+                String texto = JOptionPane.showInputDialog(null, "Introduce el precio que va a tener el producto llamado " + bandeja.getNombreProducto());
+                nuevoPrecioProducto = Double.parseDouble(texto);
+                precioCorrecto = true;
 
-            }catch (NumberFormatException nfe){
-                JOptionPane.showMessageDialog(null,"Introduce un valor numerico");
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null, "Introduce un valor numerico");
             }
-        }while (!precioCorrecto);
+        } while (!precioCorrecto);
         bandeja.setPrecioProducto(nuevoPrecioProducto);
     }
-    public static void cambiarId(Bandeja bandeja){
+
+    public static void cambiarId(Bandeja bandeja) {
         bandeja.setId();
-        JOptionPane.showMessageDialog(null,"La bandeja que contiene  "+ bandeja.getNombreProducto()+" ahora tiene el codigo "+bandeja.getId());
+        JOptionPane.showMessageDialog(null, "La bandeja que contiene  " + bandeja.getNombreProducto() + " ahora tiene el codigo " + bandeja.getId());
     }
-    public static void cambiarStock(Bandeja bandeja){
-        int numeroDeProductoAMeter=0;
-        boolean numeroAMeterCorrecto=false;
+
+    public static void cambiarStock(Bandeja bandeja) {
+        int numeroDeProductoAMeter = 0;
+        boolean numeroAMeterCorrecto = false;
         do {
             try {
-                String texto=JOptionPane.showInputDialog("Introduce la cantidad de producto que vas a reponer");
-                numeroDeProductoAMeter=Integer.parseInt(texto);
-                numeroAMeterCorrecto=true;
+                String texto = JOptionPane.showInputDialog("Introduce la cantidad de producto que vas a reponer");
+                numeroDeProductoAMeter = Integer.parseInt(texto);
+                numeroAMeterCorrecto = true;
 
-            }catch (NumberFormatException nfe){
-                JOptionPane.showMessageDialog(null,"Introduce un valor numerico");
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null, "Introduce un valor numerico");
             }
-        }while (!numeroAMeterCorrecto);
+        } while (!numeroAMeterCorrecto);
         bandeja.meterProducto(numeroDeProductoAMeter);
     }
 }
