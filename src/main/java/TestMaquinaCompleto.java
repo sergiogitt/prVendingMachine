@@ -49,8 +49,7 @@ public class TestMaquinaCompleto {
         TarjetaCredito tarjeta3 = new TarjetaCredito("1234456886369563", LocalDate.now(), "586");
 
         Maquina maquina1 = new Maquina(id, direccion, bandeja1, bandeja2, bandeja3, bandeja4, bandeja5, bandeja6,
-                monedas20, monedas10, monedas5, monedas2, monedas1, monedas0coma50, monedas0coma20, monedas0coma10,
-                monedas0coma5,monedas0coma2,monedas0coma1,
+               listaMonedas,
                 tarjeta1, tarjeta2, tarjeta3);
 
         System.out.println(maquina1.informacionCompletaMaquina());
@@ -166,28 +165,36 @@ public class TestMaquinaCompleto {
                                                 switch (modoPago){
                                                     case "1"://--------------------------------------Pago con efectivo--------------------------------------------
                                                         double dineroProporcionadoPorClienteTotal=0;
-
-                                                        for(int  i=0;i<=10;i++){
-                                                            dineroProporcionadoPorClienteTotal=cantidadProporcionadaPorCliente(listaMonedas[i],dineroProporcionadoPorClienteTotal);
-                                                        }
-                                                        JOptionPane.showMessageDialog(null,dineroProporcionadoPorClienteTotal);
-                                                        double cambioTotal=dineroProporcionadoPorClienteTotal-bandejaProductoCompra.getPrecioProducto();
+                                                        double cambioTotal=0;
                                                         int monedasParaElCliente[]=new int[11];
-                                                        for(int i=0;i<=10;i++){
-                                                            monedasParaElCliente[i]=listaMonedas[i].cambioMonedas(cambioTotal);
-                                                            cambioTotal-=monedasParaElCliente[i]*listaMonedas[i].getValor();
-                                                        }
-                                                        String devolucionCliente="";
-                                                        for (int i=0;i<=10;i++){
-                                                            if (monedasParaElCliente[i]!=0){
-                                                                devolucionCliente+="De la moneda de valor "+listaMonedas[i].getValor()+" se da como vuelta "+monedasParaElCliente[i]+" unidades\n";
+                                                        do{
+                                                            for(int  i=0;i<=10;i++){
+                                                                dineroProporcionadoPorClienteTotal=cantidadProporcionadaPorCliente(listaMonedas[i],dineroProporcionadoPorClienteTotal);
                                                             }
-                                                        }
-                                                        if (!devolucionCliente.equals("")){
-                                                            JOptionPane.showMessageDialog(null,devolucionCliente);
+                                                            JOptionPane.showMessageDialog(null,"Total efectivo proporcionado: "+dineroProporcionadoPorClienteTotal);
+                                                            cambioTotal=dineroProporcionadoPorClienteTotal-bandejaProductoCompra.getPrecioProducto();
+                                                            if (dineroProporcionadoPorClienteTotal<bandejaProductoCompra.getPrecioProducto()){
+                                                                JOptionPane.showMessageDialog(null,"No has introducido sificiente efectivo para comprar "+bandejaProductoCompra.getNombreProducto()+
+                                                                        "\n.Por favor introduzca " +bandejaProductoCompra.getPrecioProducto());
+                                                            }else{
+                                                                for(int i=0;i<=10;i++){
+                                                                    monedasParaElCliente[i]=listaMonedas[i].cambioMonedas(cambioTotal);
+                                                                    cambioTotal-=monedasParaElCliente[i]*listaMonedas[i].getValor();
+                                                                }
+                                                                String devolucionCliente="";
 
-                                                        }
-
+                                                                for (int i=0;i<=10;i++){
+                                                                    if (monedasParaElCliente[i]!=0){
+                                                                        if (listaMonedas[10].haySaldoSuficiente(cambioTotal)&&monedasParaElCliente[i]!=0){
+                                                                            devolucionCliente+="De la moneda de valor "+listaMonedas[i].getValor()+" se da como vuelta "+monedasParaElCliente[i]+" unidades\n";
+                                                                        }
+                                                                    }
+                                                                }
+                                                                if (!devolucionCliente.equals("")){
+                                                                    JOptionPane.showMessageDialog(null,devolucionCliente);
+                                                                }
+                                                            }
+                                                        }while(dineroProporcionadoPorClienteTotal<bandejaProductoCompra.getPrecioProducto()||!listaMonedas[10].haySaldoSuficiente(cambioTotal));
                                                         break;
                                                     case "2":  //------------------------------Pago con tarjeta--------------------------------
                                                         TarjetaCredito tarjetaTemporal =new TarjetaCredito("1",LocalDate.now(),"123");
