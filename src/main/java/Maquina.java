@@ -23,17 +23,7 @@ public class Maquina {
     private Bandeja bandeja5;
     private Bandeja bandeja6;
 
-    private Moneda monedas20;
-    private Moneda monedas10;
-    private Moneda monedas5;
-    private Moneda monedas2;
-    private Moneda monedas1;
-    private Moneda monedas0coma50;
-    private Moneda monedas0coma20;
-    private Moneda monedas0coma10;
-    private Moneda monedas0coma5;
-    private Moneda monedas0coma2;
-    private Moneda monedas0coma1;
+    private Moneda listaMonedas[];
 
 
     private TarjetaCredito tarjeta1;
@@ -43,9 +33,8 @@ public class Maquina {
     private double dineroRecaudadoConTarjeta;
 
     public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4,
-            Bandeja bandeja5, Bandeja bandeja6, Moneda monedas20,
-            Moneda monedas10, Moneda monedas5, Moneda monedas2, Moneda monedas1, Moneda monedas0coma50, Moneda monedas0coma20, Moneda monedas0coma10,Moneda monedas0coma5,
-            Moneda monedas0coma2,Moneda monedas0coma1,
+            Bandeja bandeja5, Bandeja bandeja6,
+            Moneda listaMonedas[],
             TarjetaCredito tarjeta1, TarjetaCredito tarjeta2, TarjetaCredito tarjeta3) {
         this.id = id;
         this.direccion = direccion;
@@ -57,71 +46,7 @@ public class Maquina {
         this.bandeja5 = bandeja5;
         this.bandeja6 = bandeja6;
         this.dineroRecaudadoConTarjeta=0;
-        if (monedas20.getValor() != 20.0) {   //consideramos que las monedas ser�n introducidas en orden descendente y  por tanto en caso que
-            //su valor no sea el que le corresponde se le asigna automaticamente
-
-            this.monedas20.setValor(20.0);
-        } else {
-            this.monedas20 = monedas20;
-        }
-        if (monedas10.getValor() != 10.0) {
-            this.monedas10.setValor(10.0);
-        } else {
-            this.monedas10 = monedas10;
-        }
-        if (monedas5.getValor() != 5.0) {
-            this.monedas20.setValor(5.0);
-        } else {
-            this.monedas5 = monedas5;
-        }
-        if (monedas2.getValor() != 2.0) {
-            this.monedas2.setValor(2.0);
-        } else {
-            this.monedas2 = monedas2;
-        }
-        if (monedas1.getValor() != 1.0) {
-            this.monedas1.setValor(1.0);
-        } else {
-            this.monedas1 = monedas1;
-        }
-
-        if (monedas0coma50.getValor() != 0.5) {
-            this.monedas0coma50.setValor(0.5);
-
-        } else {
-            this.monedas0coma50 = monedas0coma50;
-        }
-
-        if (monedas0coma20.getValor() != 0.2) {
-            this.monedas0coma20.setValor(0.2);
-
-        } else {
-            this.monedas0coma20 = monedas0coma20;
-        }
-        if (monedas0coma10.getValor() != 0.1) {
-            this.monedas0coma10.setValor(0.1);
-
-        } else {
-            this.monedas0coma10 = monedas0coma10;
-        }
-        if (monedas0coma5.getValor() != 0.05) {
-            this.monedas0coma5.setValor(0.05);
-
-        } else {
-            this.monedas0coma5 = monedas0coma5;
-        }
-        if (monedas0coma2.getValor() != 0.02) {
-            this.monedas0coma2.setValor(0.02);
-
-        } else {
-            this.monedas0coma2 = monedas0coma2;
-        }
-        if (monedas0coma1.getValor() != 0.01) {
-            this.monedas0coma1.setValor(0.01);
-
-        } else {
-            this.monedas0coma1 = monedas0coma1;
-        }
+        this.listaMonedas=listaMonedas;
         this.tarjeta1=tarjeta1;
         this.tarjeta2=tarjeta2;
         this.tarjeta3=tarjeta3;
@@ -181,7 +106,9 @@ public class Maquina {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
+    public boolean liquidoSuficienteParaVenta(double cambioTotal){
+        return listaMonedas[10].haySaldoSuficiente(cambioTotal);
+    }
     public String informacionCompletaMaquina() {
         String texto = "La maquina con id " + id + " que esta ubicada en la direccion " + direccion + " tiene: \n"
                 + "La palabra secreta del administrador es:" +contrasenaAdministrador+ "\n"
@@ -190,15 +117,10 @@ public class Maquina {
                 + bandeja3.informacionBandeja() + "\n"
                 + bandeja4.informacionBandeja() + "\n"
                 + bandeja5.informacionBandeja() + "\n"
-                + bandeja6.informacionBandeja() + "\n"
-                + monedas20.informacionMonedas() + "\n"
-                + monedas10.informacionMonedas() + "\n"
-                + monedas5.informacionMonedas() + "\n"
-                + monedas2.informacionMonedas() + "\n"
-                + monedas1.informacionMonedas() + "\n"
-                + monedas0coma50.informacionMonedas() + "\n"
-                + monedas0coma20.informacionMonedas() + "\n"
-                + monedas0coma10.informacionMonedas() + "\n";
+                + bandeja6.informacionBandeja();
+        for(int i=0;i<listaMonedas.length;i++){
+            texto+="\n"+listaMonedas[i].informacionMonedas();
+        }
         return texto;
     }
 }
