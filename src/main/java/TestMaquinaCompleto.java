@@ -103,15 +103,15 @@ public class TestMaquinaCompleto {
                                             + "-" + bandeja6.getNombreProducto() + " tiene codigo: " + bandeja6.getId());
                                     if (bandeja1.getId().equals(saberPrecioProducto)) {
                                         JOptionPane.showMessageDialog(null, bandeja1.getPrecioProducto());
-                                    } else if (bandeja2.equals(saberPrecioProducto)) {
+                                    } else if (bandeja2.getId().equals(saberPrecioProducto)) {
                                         JOptionPane.showMessageDialog(null, bandeja2.getPrecioProducto());
-                                    } else if (bandeja3.equals(saberPrecioProducto)) {
+                                    } else if (bandeja3.getId().equals(saberPrecioProducto)) {
                                         JOptionPane.showMessageDialog(null, bandeja3.getPrecioProducto());
-                                    } else if (bandeja4.equals(saberPrecioProducto)) {
+                                    } else if (bandeja4.getId().equals(saberPrecioProducto)) {
                                         JOptionPane.showMessageDialog(null, bandeja4.getPrecioProducto());
-                                    } else if (bandeja5.equals(saberPrecioProducto)) {
+                                    } else if (bandeja5.getId().equals(saberPrecioProducto)) {
                                         JOptionPane.showMessageDialog(null, bandeja5.getPrecioProducto());
-                                    } else if (bandeja6.equals(saberPrecioProducto)) {
+                                    } else if (bandeja6.getId().equals(saberPrecioProducto)) {
                                         JOptionPane.showMessageDialog(null, bandeja6.getPrecioProducto());
                                     }
                                     if (!saberPrecioProducto.equals(bandeja1.getId()) && !saberPrecioProducto.equals(bandeja2.getId()) && !saberPrecioProducto.equals(bandeja3.getId())
