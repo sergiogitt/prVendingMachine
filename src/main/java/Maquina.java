@@ -13,7 +13,8 @@ import java.util.UUID;
  * @author Windows10
  */
 public class Maquina {
-
+    
+    public final int MINIMO_MONEDAS_REPOSICION= 10;
     private UUID id;
     private String contrasenaAdministrador;
     private String direccion;
@@ -25,7 +26,7 @@ public class Maquina {
     private Bandeja bandeja6;
 
     private Moneda listaMonedas[];
-
+    
 
     private TarjetaCredito tarjeta1;
     private TarjetaCredito tarjeta2;
@@ -94,10 +95,14 @@ public class Maquina {
         caracterDevuelto=(char)(aleatorio.nextInt(rangoMaximo-rangoMinimo+1)+rangoMinimo);
         return caracterDevuelto;
     }
+    
     public void setId(UUID id) {
         this.id = id;
     }
 
+   
+    
+    
     public double getDineroRecaudadoConTarjeta() {
         return dineroRecaudadoConTarjeta;
     }

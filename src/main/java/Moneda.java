@@ -73,7 +73,8 @@ public class Moneda {
         }
         return numMonedasADevolver;
     }
-
+    
+    
     public double getValor() {
         return valor;
     }
@@ -99,5 +100,5 @@ public class Moneda {
         }
         return texto;
     }
-
+    
 }

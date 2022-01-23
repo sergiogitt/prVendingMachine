@@ -21,40 +21,38 @@ public class TestMaquinaCompleto {
         UUID id = new UUID(UUID.randomUUID().getMostSignificantBits(), UUID.randomUUID().getLeastSignificantBits());
         String direccion = "calle oporto";
 
-        Bandeja bandeja1 = new Bandeja(10,"001", "cocacola", 2);
-        Bandeja bandeja2 = new Bandeja(10,"002", "Agua1Litro", 1.5);
-        Bandeja bandeja3 = new Bandeja(1,"003",  "Biofrutas", 3);
-        Bandeja bandeja4 = new Bandeja(1,"101",  "PatatasJamon", 1);
-        Bandeja bandeja5 = new Bandeja(5,"102",  "Palomitas", 0.9);
-        Bandeja bandeja6 = new Bandeja(4,"103",  "Almendras", 2.5);
+        Bandeja bandeja1 = new Bandeja(10, "001", "cocacola", 2);
+        Bandeja bandeja2 = new Bandeja(10, "002", "Agua1Litro", 1.5);
+        Bandeja bandeja3 = new Bandeja(1, "003", "Biofrutas", 3);
+        Bandeja bandeja4 = new Bandeja(1, "101", "PatatasJamon", 1);
+        Bandeja bandeja5 = new Bandeja(5, "102", "Palomitas", 0.9);
+        Bandeja bandeja6 = new Bandeja(4, "103", "Almendras", 2.5);
 
-        Moneda monedas20 = new Moneda(20, 30);
-        Moneda monedas10 = new Moneda(10, 30);
-        Moneda monedas5 = new Moneda(5, 30);
-        Moneda monedas2 = new Moneda(2, 0);
+        Moneda monedas20 = new Moneda(20, 8);
+        Moneda monedas10 = new Moneda(10, 15);
+        Moneda monedas5 = new Moneda(5, 15);
+        Moneda monedas2 = new Moneda(2, 15);
         Moneda monedas1 = new Moneda(1, 15);
-        Moneda monedas0coma50 = new Moneda(0.50, 150);
+        Moneda monedas0coma50 = new Moneda(0.50, 15);
         Moneda monedas0coma20 = new Moneda(0.20, 10);
-        Moneda monedas0coma10 = new Moneda(0.10, 10);
-        Moneda monedas0coma5 = new Moneda(0.05, 101);
-        Moneda monedas0coma2 = new Moneda(0.02, 10);
-        Moneda monedas0coma1 = new Moneda(0.01, 10);
+        Moneda monedas0coma10 = new Moneda(0.10, 15);
+        Moneda monedas0coma5 = new Moneda(0.05, 15);
+        Moneda monedas0coma2 = new Moneda(0.02, 0);
+        Moneda monedas0coma1 = new Moneda(0.01, 0);
 
-        Moneda listaMonedas[]={monedas20,monedas10,monedas5,monedas2,monedas1,monedas0coma50,monedas0coma20,monedas0coma10,monedas0coma5,monedas0coma2,monedas0coma1};
+        Moneda listaMonedas[] = {monedas20, monedas10, monedas5, monedas2, monedas1, monedas0coma50, monedas0coma20, monedas0coma10, monedas0coma5, monedas0coma2, monedas0coma1};
 
-
-
-        TarjetaCredito tarjeta1 = new TarjetaCredito("1234456884569563", LocalDate.of(1999,3,23), "569");
+        TarjetaCredito tarjeta1 = new TarjetaCredito("1234456884569563", LocalDate.of(1999, 3, 23), "569");
         TarjetaCredito tarjeta2 = new TarjetaCredito("1234456884879563", LocalDate.now(), "454");
         TarjetaCredito tarjeta3 = new TarjetaCredito("1234456886369563", LocalDate.now(), "586");
 
         Maquina maquina1 = new Maquina(id, direccion, bandeja1, bandeja2, bandeja3, bandeja4, bandeja5, bandeja6,
-               listaMonedas,
+                listaMonedas,
                 tarjeta1, tarjeta2, tarjeta3);
 
         System.out.println(maquina1.informacionCompletaMaquina());
         System.out.println(tarjeta1.getCvv());
-        System.out.println( tarjeta1.getNumTarjeta());
+        System.out.println(tarjeta1.getNumTarjeta());
 
         boolean eleccionModoValida = false;
         int eleccionModo = 0;
@@ -125,7 +123,7 @@ public class TestMaquinaCompleto {
                             case 2:
                                 String productoAComprar = "";
                                 String modoPago = "";
-                                Bandeja bandejaProductoCompra=new Bandeja(1,"303","prueba",10);
+                                Bandeja bandejaProductoCompra = new Bandeja(1, "303", "prueba", 10);
                                 do {
                                     productoAComprar = JOptionPane.showInputDialog("Tecle el identificador que desea comprar:\n "
                                             + bandeja1.getNombreProducto() + "tiene codigo: " + bandeja1.getId() + "\n"
@@ -136,132 +134,131 @@ public class TestMaquinaCompleto {
                                             + "-" + bandeja6.getNombreProducto() + " tiene codigo: " + bandeja6.getId());
                                     if (bandeja1.getId().equals(productoAComprar)) {
                                         JOptionPane.showMessageDialog(null, bandeja1.getPrecioProducto());
-                                        bandejaProductoCompra=bandeja1;
+                                        bandejaProductoCompra = bandeja1;
                                     } else if (bandeja2.getId().equals(productoAComprar)) {
                                         JOptionPane.showMessageDialog(null, bandeja2.getPrecioProducto());
-                                        bandejaProductoCompra=bandeja2;
+                                        bandejaProductoCompra = bandeja2;
                                     } else if (bandeja3.getId().equals(productoAComprar)) {
                                         JOptionPane.showMessageDialog(null, bandeja3.getPrecioProducto());
-                                        bandejaProductoCompra=bandeja3;
+                                        bandejaProductoCompra = bandeja3;
                                     } else if (bandeja4.getId().equals(productoAComprar)) {
                                         JOptionPane.showMessageDialog(null, bandeja4.getPrecioProducto());
-                                        bandejaProductoCompra=bandeja4;
+                                        bandejaProductoCompra = bandeja4;
                                     } else if (bandeja5.getId().equals(productoAComprar)) {
                                         JOptionPane.showMessageDialog(null, bandeja5.getPrecioProducto());
-                                        bandejaProductoCompra=bandeja5;
+                                        bandejaProductoCompra = bandeja5;
                                     } else if (bandeja6.getId().equals(productoAComprar)) {
                                         JOptionPane.showMessageDialog(null, bandeja6.getPrecioProducto());
-                                        bandejaProductoCompra=bandeja6;
+                                        bandejaProductoCompra = bandeja6;
                                     }
                                     if (!productoAComprar.equals(bandeja1.getId()) && !productoAComprar.equals(bandeja2.getId()) && !productoAComprar.equals(bandeja3.getId())
                                             && !productoAComprar.equals(bandeja4.getId()) && !productoAComprar.equals(bandeja5.getId()) && !productoAComprar.equals(bandeja6.getId())) {
                                         JOptionPane.showMessageDialog(null, "Introduzca un codigo valido");
-                                    }else{
+                                    } else {
                                         do {
                                             modoPago = JOptionPane.showInputDialog("Selecciona el metodo de pago: \n1.Efectivo\n2.Tarjeta\n3.Cancelar compra ");
-                                            if (!modoPago.equals("1") && !modoPago.equals("2")&& !modoPago.equals("3")) {
+                                            if (!modoPago.equals("1") && !modoPago.equals("2") && !modoPago.equals("3")) {
                                                 JOptionPane.showMessageDialog(null, "Introduce una opcion del menu");
-                                            }else {
-                                                switch (modoPago){
+                                            } else {
+                                                switch (modoPago) {
                                                     case "1"://--------------------------------------Pago con efectivo--------------------------------------------
-                                                        double dineroProporcionadoPorClienteTotal=0;
-                                                        double cambioTotal=0;
-                                                        int monedasParaElCliente[]=new int[11];
-                                                        do{
-                                                            for(int  i=0;i<=10;i++){
-                                                                dineroProporcionadoPorClienteTotal=cantidadProporcionadaPorCliente(listaMonedas[i],dineroProporcionadoPorClienteTotal);
+                                                        double dineroProporcionadoPorClienteTotal = 0;
+                                                        double cambioTotal = 0;
+                                                        int monedasParaElCliente[] = new int[11];
+                                                        do {
+                                                            for (int i = 0; i <= 10; i++) {
+                                                                dineroProporcionadoPorClienteTotal = cantidadProporcionadaPorCliente(listaMonedas[i], dineroProporcionadoPorClienteTotal);
                                                             }
-                                                            JOptionPane.showMessageDialog(null,"Total efectivo proporcionado: "+dineroProporcionadoPorClienteTotal);
-                                                            cambioTotal=dineroProporcionadoPorClienteTotal-bandejaProductoCompra.getPrecioProducto();
-                                                            if (dineroProporcionadoPorClienteTotal<bandejaProductoCompra.getPrecioProducto()){
-                                                                JOptionPane.showMessageDialog(null,"No has introducido sificiente efectivo para comprar "+bandejaProductoCompra.getNombreProducto()+
-                                                                        "\n.Por favor introduzca " +bandejaProductoCompra.getPrecioProducto());
-                                                            }else{
-                                                                for(int i=0;i<=10;i++){
-                                                                    monedasParaElCliente[i]=listaMonedas[i].cambioMonedas(cambioTotal);
-                                                                    cambioTotal-=monedasParaElCliente[i]*listaMonedas[i].getValor();
+                                                            JOptionPane.showMessageDialog(null, "Total efectivo proporcionado: " + dineroProporcionadoPorClienteTotal);
+                                                            cambioTotal = dineroProporcionadoPorClienteTotal - bandejaProductoCompra.getPrecioProducto();
+                                                            if (dineroProporcionadoPorClienteTotal < bandejaProductoCompra.getPrecioProducto()) {
+                                                                JOptionPane.showMessageDialog(null, "No has introducido sificiente efectivo para comprar " + bandejaProductoCompra.getNombreProducto()
+                                                                        + "\n.Por favor introduzca " + bandejaProductoCompra.getPrecioProducto());
+                                                            } else {
+                                                                for (int i = 0; i <= 10; i++) {
+                                                                    monedasParaElCliente[i] = listaMonedas[i].cambioMonedas(cambioTotal);
+                                                                    cambioTotal -= monedasParaElCliente[i] * listaMonedas[i].getValor();
                                                                 }
-                                                                String devolucionCliente="";
+                                                                String devolucionCliente = "";
 
-                                                                for (int i=0;i<=10;i++){
-                                                                    if (monedasParaElCliente[i]!=0){
-                                                                        if (listaMonedas[10].haySaldoSuficiente(cambioTotal)&&monedasParaElCliente[i]!=0){
-                                                                            devolucionCliente+="De la moneda de valor "+listaMonedas[i].getValor()+" se da como vuelta "+monedasParaElCliente[i]+" unidades\n";
+                                                                for (int i = 0; i <= 10; i++) {
+                                                                    if (monedasParaElCliente[i] != 0) {
+                                                                        if (listaMonedas[10].haySaldoSuficiente(cambioTotal) && monedasParaElCliente[i] != 0) {
+                                                                            devolucionCliente += "De la moneda de valor " + listaMonedas[i].getValor() + " se da como vuelta " + monedasParaElCliente[i] + " unidades\n";
                                                                         }
                                                                     }
                                                                 }
-                                                                if (!devolucionCliente.equals("")){
-                                                                    JOptionPane.showMessageDialog(null,devolucionCliente+"\nLa compra se realizo correctamente");
+                                                                if (!devolucionCliente.equals("")) {
+                                                                    JOptionPane.showMessageDialog(null, devolucionCliente + "\nLa compra se realizo correctamente");
                                                                     maquina1.compraTotal(bandejaProductoCompra.getPrecioProducto());
-                                                                }else if(devolucionCliente.equals("")&&dineroProporcionadoPorClienteTotal==bandejaProductoCompra.getPrecioProducto()){
+                                                                } else if (devolucionCliente.equals("") && dineroProporcionadoPorClienteTotal == bandejaProductoCompra.getPrecioProducto()) {
                                                                     maquina1.compraTotal(bandejaProductoCompra.getPrecioProducto());
-                                                                } else if (dineroProporcionadoPorClienteTotal>bandejaProductoCompra.getPrecioProducto()&&!listaMonedas[10].haySaldoSuficiente(cambioTotal)){
-                                                                    dineroProporcionadoPorClienteTotal=0;
+                                                                } else if (dineroProporcionadoPorClienteTotal > bandejaProductoCompra.getPrecioProducto() && !listaMonedas[10].haySaldoSuficiente(cambioTotal)) {
+                                                                    dineroProporcionadoPorClienteTotal = 0;
                                                                 }
                                                             }
-                                                        }while(dineroProporcionadoPorClienteTotal<bandejaProductoCompra.getPrecioProducto()||!listaMonedas[10].haySaldoSuficiente(cambioTotal));
+                                                        } while (dineroProporcionadoPorClienteTotal < bandejaProductoCompra.getPrecioProducto() || !listaMonedas[10].haySaldoSuficiente(cambioTotal));
                                                         break;
                                                     case "2":  //------------------------------Pago con tarjeta--------------------------------
-                                                        TarjetaCredito tarjetaTemporal =new TarjetaCredito("1",LocalDate.now(),"123");
+                                                        TarjetaCredito tarjetaTemporal = new TarjetaCredito("1", LocalDate.now(), "123");
                                                         do {
 
-                                                            String numeroTarjetaCliente=JOptionPane.showInputDialog(null,"Instroduce el numero de la tarjeta de credito");
-                                                            String numeroCVVCliente=JOptionPane.showInputDialog(null,"Instroduce el CVV de la tarjeta de credito");
-                                                            boolean diaCorrecto=false;
-                                                            boolean mesCorrecto=false;
-                                                            boolean anioCorrecto=false;
-                                                            int diaFechaVencimiento=0;
-                                                            int mesFechaVencimiento=0;
-                                                            int anioFechaVencimiento=0;
-
+                                                            String numeroTarjetaCliente = JOptionPane.showInputDialog(null, "Instroduce el numero de la tarjeta de credito");
+                                                            String numeroCVVCliente = JOptionPane.showInputDialog(null, "Instroduce el CVV de la tarjeta de credito");
+                                                            boolean diaCorrecto = false;
+                                                            boolean mesCorrecto = false;
+                                                            boolean anioCorrecto = false;
+                                                            int diaFechaVencimiento = 0;
+                                                            int mesFechaVencimiento = 0;
+                                                            int anioFechaVencimiento = 0;
 
                                                             do {//-----------------------------------------formato dia numerico----------------------------------------
-                                                                try{
-                                                                    String textoDiaFechaVencimiento=JOptionPane.showInputDialog(null,"Instroduce el dia de la tarjeta de redito");
-                                                                    diaFechaVencimiento=Integer.parseInt(textoDiaFechaVencimiento);
-                                                                    diaCorrecto=true;
-                                                                }catch( NumberFormatException nfe){
-                                                                    JOptionPane.showMessageDialog(null,"Introduce una entrada valida");
+                                                                try {
+                                                                    String textoDiaFechaVencimiento = JOptionPane.showInputDialog(null, "Instroduce el dia de la tarjeta de redito");
+                                                                    diaFechaVencimiento = Integer.parseInt(textoDiaFechaVencimiento);
+                                                                    diaCorrecto = true;
+                                                                } catch (NumberFormatException nfe) {
+                                                                    JOptionPane.showMessageDialog(null, "Introduce una entrada valida");
                                                                 }
-                                                            }while(!diaCorrecto);
+                                                            } while (!diaCorrecto);
                                                             do {//-------------------------------------------formato mes numerico---------------------------------------
-                                                                try{
-                                                                    String textoMesFechaVencimiento=JOptionPane.showInputDialog(null,"Introduce el mes de la tarjeta de redito");
-                                                                    mesFechaVencimiento=Integer.parseInt(textoMesFechaVencimiento);
-                                                                    mesCorrecto=true;
-                                                                }catch (NumberFormatException nfe){
-                                                                    JOptionPane.showMessageDialog(null,"Introduce una entrada valida");
+                                                                try {
+                                                                    String textoMesFechaVencimiento = JOptionPane.showInputDialog(null, "Introduce el mes de la tarjeta de redito");
+                                                                    mesFechaVencimiento = Integer.parseInt(textoMesFechaVencimiento);
+                                                                    mesCorrecto = true;
+                                                                } catch (NumberFormatException nfe) {
+                                                                    JOptionPane.showMessageDialog(null, "Introduce una entrada valida");
                                                                 }
-                                                            }while(!mesCorrecto);
+                                                            } while (!mesCorrecto);
                                                             do {//-------------------------------------------formato anio numerico---------------------------------------------
-                                                                try{
-                                                                    String textoAnioFechaVencimiento=JOptionPane.showInputDialog(null,"Introduce el anio de la tarjeta de redito");
-                                                                    anioFechaVencimiento=Integer.parseInt(textoAnioFechaVencimiento);
-                                                                    anioCorrecto=true;
-                                                                }catch (NumberFormatException nfe){
-                                                                    JOptionPane.showMessageDialog(null,"Introduce una entrada valida");
+                                                                try {
+                                                                    String textoAnioFechaVencimiento = JOptionPane.showInputDialog(null, "Introduce el anio de la tarjeta de redito");
+                                                                    anioFechaVencimiento = Integer.parseInt(textoAnioFechaVencimiento);
+                                                                    anioCorrecto = true;
+                                                                } catch (NumberFormatException nfe) {
+                                                                    JOptionPane.showMessageDialog(null, "Introduce una entrada valida");
                                                                 }
-                                                            }while(!anioCorrecto);
-                                                             LocalDate fechaCliente= LocalDate.now();
-                                                             tarjetaTemporal.setNumTarjeta(numeroTarjetaCliente);
-                                                             tarjetaTemporal.setFechaVencimiento(LocalDate.of(anioFechaVencimiento,mesFechaVencimiento,diaFechaVencimiento));
-                                                             tarjetaTemporal.setCvv(numeroCVVCliente);
-                                                             if (maquina1.tarjetaEnMiBaseDeDatos(tarjetaTemporal)){
-                                                                 maquina1.compraConTarjeta(bandejaProductoCompra.getPrecioProducto());
-                                                                 JOptionPane.showMessageDialog(null,"La tarjeta introducida ha sido validada correctamente");
-                                                             }else{
-                                                                 JOptionPane.showMessageDialog(null,"La tarjeta introducida no se corresponde con ninguna de las que tenemos guardadas");
+                                                            } while (!anioCorrecto);
+                                                            LocalDate fechaCliente = LocalDate.now();
+                                                            tarjetaTemporal.setNumTarjeta(numeroTarjetaCliente);
+                                                            tarjetaTemporal.setFechaVencimiento(LocalDate.of(anioFechaVencimiento, mesFechaVencimiento, diaFechaVencimiento));
+                                                            tarjetaTemporal.setCvv(numeroCVVCliente);
+                                                            if (maquina1.tarjetaEnMiBaseDeDatos(tarjetaTemporal)) {
+                                                                maquina1.compraConTarjeta(bandejaProductoCompra.getPrecioProducto());
+                                                                JOptionPane.showMessageDialog(null, "La tarjeta introducida ha sido validada correctamente");
+                                                            } else {
+                                                                JOptionPane.showMessageDialog(null, "La tarjeta introducida no se corresponde con ninguna de las que tenemos guardadas");
 
-                                                             }
-                                                        }while (!maquina1.tarjetaEnMiBaseDeDatos(tarjetaTemporal));
+                                                            }
+                                                        } while (!maquina1.tarjetaEnMiBaseDeDatos(tarjetaTemporal));
                                                         break;
                                                 }
                                             }
-                                        } while (!modoPago.equals("1")&&!modoPago.equals("2")&&!modoPago.equals("3"));
+                                        } while (!modoPago.equals("1") && !modoPago.equals("2") && !modoPago.equals("3"));
                                     }
                                 } while ((!productoAComprar.equals(bandeja1.getId()) && !productoAComprar.equals(bandeja2.getId()) && !productoAComprar.equals(bandeja3.getId())
                                         && !productoAComprar.equals(bandeja4.getId()) && !productoAComprar.equals(bandeja5.getId()) && !productoAComprar.equals(bandeja6.getId()))
-                                        &&!modoPago.equals("1")&&!modoPago.equals("2")&&!modoPago.equals("3"));
+                                        && !modoPago.equals("1") && !modoPago.equals("2") && !modoPago.equals("3"));
                                 break;
                         }
                     } while (eleccionUsuario != 3);
@@ -277,9 +274,12 @@ public class TestMaquinaCompleto {
                         if (codigoAdministrador.equals(maquina1.getContrasenaAdministrador())) {
                             do {
                                 eleccionAdministrador = JOptionPane.showInputDialog(null, "Teclee la opcion que deseas realizar:\n1.Mostrar estado de la maquina\n"
-                                        + "2.Cambiar codigo de una bandeja\n3.Cambiar producto de una bandeja\n4.Apagar maquina\n5.Cambiar stock de bandejas\n6.Consultar dinero recaudado mediante tarjeta.\n7.Consultar dinero recaudado en total.\n8.Salir del modo administrador");
+                                        + "2.Cambiar codigo de una bandeja\n3.Cambiar producto de una bandeja\n4.Apagar maquina"
+                                        + "\n5.Cambiar stock de bandejas\n6.Consultar dinero recaudado mediante tarjeta."
+                                        + "\n7.Consultar dinero recaudado en total.\n8.Reponer dinero \n9.Salir del modo administrador");
+
                                 if (!eleccionAdministrador.equals("1") && !eleccionAdministrador.equals("2") && !eleccionAdministrador.equals("3")
-                                        && !eleccionAdministrador.equals("4") && !eleccionAdministrador.equals("5")) {
+                                        && !eleccionAdministrador.equals("4") && !eleccionAdministrador.equals("5") && !eleccionAdministrador.equals("6") && !eleccionAdministrador.equals("7") && !eleccionAdministrador.equals("8")) {
                                     JOptionPane.showMessageDialog(null, "Teclee una opcion valida del menu");
                                 }
                                 switch (eleccionAdministrador) {
@@ -414,14 +414,73 @@ public class TestMaquinaCompleto {
                                         } while (!bandejaSaberId.equals("8"));
                                         break;
                                     case "6":
-                                        JOptionPane.showMessageDialog(null,"Se ha recaudado "+maquina1.getDineroRecaudadoConTarjeta()+" euros mediante tarjeta de credito");
+                                        JOptionPane.showMessageDialog(null, "Se ha recaudado " + maquina1.getDineroRecaudadoConTarjeta() + " euros mediante tarjeta de credito");
                                         break;
                                     case "7":
-                                        JOptionPane.showMessageDialog(null,"Dinero recaudado en total"+maquina1.getDineroRecaudadoTotal());
+                                        JOptionPane.showMessageDialog(null, "Dinero recaudado en total" + maquina1.getDineroRecaudadoTotal());
+                                        int[] monedasParaAdministrador = new int[10];
+                                        double dineroRecaudar = maquina1.getDineroRecaudadoTotal() - maquina1.getDineroRecaudadoConTarjeta();
 
+                                        if (dineroRecaudar > 0) {
+                                            for (int i = 0; i <= 10; i++) {
+                                                monedasParaAdministrador[i] = listaMonedas[i].cambioMonedas(dineroRecaudar);
+                                                dineroRecaudar -= monedasParaAdministrador[i] * listaMonedas[i].getValor();
+                                            }
+                                        }
                                         break;
+                                    case "8":
+                                        String texto = "";
+                                        String monedaElegidaReponerTexto = "";
+                                        int monedaElegidaReponerNumero = 0;
+                                        boolean monedaElegidaCorrecta = false;
+                                        boolean cantidadMonedaCorrecta = false;
+                                        String cantidadMonedasReponerTexto = "";
+                                        int cantidadMonedasReponerNumero = 0;
+
+                                        for (int i = 0; i < listaMonedas.length; i++) {
+
+                                            texto += (i + 1) + "." + listaMonedas[i].informacionMonedas() + "\n";
+                                        }
+
+                                        do {
+                                            monedaElegidaReponerTexto = JOptionPane.showInputDialog(null, "Seleccione una de las siguientes opciones \n"
+                                                    + texto + (listaMonedas.length+1) + ".Reponer todas la monedas con un minimo de 10 monedas");
+                                            try {
+                                                monedaElegidaReponerNumero = Integer.parseInt(monedaElegidaReponerTexto);
+                                                monedaElegidaCorrecta = true;
+                                            } catch (NumberFormatException nfe) {
+                                                JOptionPane.showMessageDialog(null, "Debe de introduccir un caracter numerico");
+                                            }
+
+                                        } while (!monedaElegidaCorrecta);
+                                        if (monedaElegidaReponerNumero < listaMonedas.length + 1) {
+
+                                            do {
+                                                cantidadMonedasReponerTexto = JOptionPane.showInputDialog("¿Cuanto quieres reponer");
+                                                try {
+                                                    cantidadMonedasReponerNumero = Integer.parseInt(cantidadMonedasReponerTexto);
+                                                    cantidadMonedaCorrecta = true;
+                                                } catch (NumberFormatException nfe) {
+                                                    JOptionPane.showMessageDialog(null, "Debe de introduccir un caracter numerico");
+                                                }
+
+                                            } while (!cantidadMonedaCorrecta);
+                                            listaMonedas[monedaElegidaReponerNumero - 1].meterMoneda(cantidadMonedasReponerNumero);
+                                        } else {
+                                            for (int i = 0; i < listaMonedas.length; i++) {
+                                                if (listaMonedas[i].getCantidadDeMonedas() < maquina1.MINIMO_MONEDAS_REPOSICION) {
+                                                    listaMonedas[i].meterMoneda(maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas());
+
+                                                }
+
+                                            }
+
+                                        }
+                                        break;
+
                                 }
-                            } while (!eleccionAdministrador.equals("8") && !eleccionAdministrador.equals("4"));
+
+                            } while (!eleccionAdministrador.equals("9") && !eleccionAdministrador.equals("4"));
                         }
                     } while (!codigoAdministrador.equals(maquina1.getContrasenaAdministrador()));
             }
@@ -467,28 +526,31 @@ public class TestMaquinaCompleto {
         } while (!numeroAMeterCorrecto);
         bandeja.meterProducto(numeroDeProductoAMeter);
     }
-    public static int pedirMonedaCliente(Moneda moneda){
-        boolean monedaCorrecta=false;
-        int numeroDeMonedadPedidas=0;
+
+    public static int pedirMonedaCliente(Moneda moneda) {
+        boolean monedaCorrecta = false;
+        int numeroDeMonedadPedidas = 0;
         do {
             try {
-                String texto=JOptionPane.showInputDialog("Introduzca la cantidad de dinero que introduces con valor "+moneda.getValor());
-                numeroDeMonedadPedidas=Integer.parseInt(texto);
-                monedaCorrecta=true;
+                String texto = JOptionPane.showInputDialog("Introduzca la cantidad de dinero que introduces con valor " + moneda.getValor());
+                numeroDeMonedadPedidas = Integer.parseInt(texto);
+                monedaCorrecta = true;
                 moneda.meterMoneda(numeroDeMonedadPedidas);
-            }catch (NumberFormatException nfe){
-                JOptionPane.showMessageDialog(null,"Introduzca un valor numerico");
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null, "Introduzca un valor numerico");
             }
-        }while(!monedaCorrecta);
+        } while (!monedaCorrecta);
         return numeroDeMonedadPedidas;
     }
-    public static double cantidadProporcionadaPorCliente(Moneda moneda,double valorAcumulado){
-        int numeroMonedas=pedirMonedaCliente(moneda);
-        valorAcumulado+=numeroMonedas*moneda.getValor();
+
+    public static double cantidadProporcionadaPorCliente(Moneda moneda, double valorAcumulado) {
+        int numeroMonedas = pedirMonedaCliente(moneda);
+        valorAcumulado += numeroMonedas * moneda.getValor();
         return valorAcumulado;
     }
-    public static double disminuirCambio(Moneda moneda,double cambio,int cantidadMonedas){
-        cambio-=moneda.getValor()+cantidadMonedas;
+
+    public static double disminuirCambio(Moneda moneda, double cambio, int cantidadMonedas) {
+        cambio -= moneda.getValor() + cantidadMonedas;
         return cambio;
     }
 }
