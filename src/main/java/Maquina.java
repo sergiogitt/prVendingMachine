@@ -1,4 +1,5 @@
 
+import java.time.LocalDate;
 import java.util.Random;
 import java.util.UUID;
 
@@ -30,7 +31,9 @@ public class Maquina {
     private TarjetaCredito tarjeta2;
     private TarjetaCredito tarjeta3;
 
-    private double dineroRecaudadoConTarjeta;
+    private double dineroRecaudadoConTarjeta=0;
+    private LocalDate fechaRecaudacionTotal;
+    private double dineroRecaudadoTotal=0;
 
     public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4,
             Bandeja bandeja5, Bandeja bandeja6,
@@ -54,6 +57,14 @@ public class Maquina {
     }
     public void compraConTarjeta(double valorAumentado){
         this.dineroRecaudadoConTarjeta+=valorAumentado;
+    }
+    public void compraTotal(double valorAumentado){
+        this.dineroRecaudadoTotal+=dineroRecaudadoConTarjeta+valorAumentado;
+    }
+    public void recaudarDinero(){
+        fechaRecaudacionTotal=LocalDate.now();
+        dineroRecaudadoConTarjeta=0;
+        dineroRecaudadoTotal=0;
     }
     public boolean tarjetaEnMiBaseDeDatos(TarjetaCredito tarjeta){
         return tarjeta1.tarjetaValida(tarjeta)||tarjeta2.tarjetaValida(tarjeta)||tarjeta3.tarjetaValida(tarjeta);
@@ -102,6 +113,11 @@ public class Maquina {
     public String getContrasenaAdministrador() {
         return contrasenaAdministrador;
     }
+
+    public double getDineroRecaudadoTotal() {
+        return dineroRecaudadoTotal;
+    }
+
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;

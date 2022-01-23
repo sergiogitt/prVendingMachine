@@ -44,7 +44,7 @@ public class TestMaquinaCompleto {
 
 
 
-        TarjetaCredito tarjeta1 = new TarjetaCredito("1234456884569563", LocalDate.now(), "569");
+        TarjetaCredito tarjeta1 = new TarjetaCredito("1234456884569563", LocalDate.of(1999,3,23), "569");
         TarjetaCredito tarjeta2 = new TarjetaCredito("1234456884879563", LocalDate.now(), "454");
         TarjetaCredito tarjeta3 = new TarjetaCredito("1234456886369563", LocalDate.now(), "586");
 
@@ -191,8 +191,11 @@ public class TestMaquinaCompleto {
                                                                     }
                                                                 }
                                                                 if (!devolucionCliente.equals("")){
-                                                                    JOptionPane.showMessageDialog(null,devolucionCliente);
-                                                                }else if (dineroProporcionadoPorClienteTotal>bandejaProductoCompra.getPrecioProducto()&&!listaMonedas[10].haySaldoSuficiente(cambioTotal)){
+                                                                    JOptionPane.showMessageDialog(null,devolucionCliente+"\nLa compra se realizo correctamente");
+                                                                    maquina1.compraTotal(bandejaProductoCompra.getPrecioProducto());
+                                                                }else if(devolucionCliente.equals("")&&dineroProporcionadoPorClienteTotal==bandejaProductoCompra.getPrecioProducto()){
+                                                                    maquina1.compraTotal(bandejaProductoCompra.getPrecioProducto());
+                                                                } else if (dineroProporcionadoPorClienteTotal>bandejaProductoCompra.getPrecioProducto()&&!listaMonedas[10].haySaldoSuficiente(cambioTotal)){
                                                                     dineroProporcionadoPorClienteTotal=0;
                                                                 }
                                                             }
@@ -274,7 +277,7 @@ public class TestMaquinaCompleto {
                         if (codigoAdministrador.equals(maquina1.getContrasenaAdministrador())) {
                             do {
                                 eleccionAdministrador = JOptionPane.showInputDialog(null, "Teclee la opcion que deseas realizar:\n1.Mostrar estado de la maquina\n"
-                                        + "2.Cambiar codigo de una bandeja\n3.Cambiar producto de una bandeja\n4.Apagar maquina\n5.Cambiar stock de bandejas\n6.Consultar dinero recaudado mediante tarjeta.\n7.Salir del modo administrador");
+                                        + "2.Cambiar codigo de una bandeja\n3.Cambiar producto de una bandeja\n4.Apagar maquina\n5.Cambiar stock de bandejas\n6.Consultar dinero recaudado mediante tarjeta.\n7.Consultar dinero recaudado en total.\n8.Salir del modo administrador");
                                 if (!eleccionAdministrador.equals("1") && !eleccionAdministrador.equals("2") && !eleccionAdministrador.equals("3")
                                         && !eleccionAdministrador.equals("4") && !eleccionAdministrador.equals("5")) {
                                     JOptionPane.showMessageDialog(null, "Teclee una opcion valida del menu");
@@ -413,8 +416,12 @@ public class TestMaquinaCompleto {
                                     case "6":
                                         JOptionPane.showMessageDialog(null,"Se ha recaudado "+maquina1.getDineroRecaudadoConTarjeta()+" euros mediante tarjeta de credito");
                                         break;
+                                    case "7":
+                                        JOptionPane.showMessageDialog(null,"Dinero recaudado en total"+maquina1.getDineroRecaudadoTotal());
+
+                                        break;
                                 }
-                            } while (!eleccionAdministrador.equals("7") && !eleccionAdministrador.equals("4"));
+                            } while (!eleccionAdministrador.equals("8") && !eleccionAdministrador.equals("4"));
                         }
                     } while (!codigoAdministrador.equals(maquina1.getContrasenaAdministrador()));
             }
