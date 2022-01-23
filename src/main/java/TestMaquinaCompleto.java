@@ -21,24 +21,24 @@ public class TestMaquinaCompleto {
         UUID id = new UUID(UUID.randomUUID().getMostSignificantBits(), UUID.randomUUID().getLeastSignificantBits());
         String direccion = "calle oporto";
 
-        Bandeja bandeja1 = new Bandeja(10, "cocacola", 2);
-        Bandeja bandeja2 = new Bandeja(10, "Agua1Litro", 1.5);
-        Bandeja bandeja3 = new Bandeja(1, "Biofrutas", 3);
-        Bandeja bandeja4 = new Bandeja(1, "PatatasJamon", 1);
-        Bandeja bandeja5 = new Bandeja(5, "Palomitas", 0.9);
-        Bandeja bandeja6 = new Bandeja(4, "Almendras", 2.5);
+        Bandeja bandeja1 = new Bandeja(10,"001", "cocacola", 2);
+        Bandeja bandeja2 = new Bandeja(10,"002", "Agua1Litro", 1.5);
+        Bandeja bandeja3 = new Bandeja(1,"003",  "Biofrutas", 3);
+        Bandeja bandeja4 = new Bandeja(1,"101",  "PatatasJamon", 1);
+        Bandeja bandeja5 = new Bandeja(5,"102",  "Palomitas", 0.9);
+        Bandeja bandeja6 = new Bandeja(4,"103",  "Almendras", 2.5);
 
         Moneda monedas20 = new Moneda(20, 30);
         Moneda monedas10 = new Moneda(10, 30);
         Moneda monedas5 = new Moneda(5, 30);
         Moneda monedas2 = new Moneda(2, 0);
-        Moneda monedas1 = new Moneda(1, 0);
-        Moneda monedas0coma50 = new Moneda(0.50, 0);
-        Moneda monedas0coma20 = new Moneda(0.20, 0);
-        Moneda monedas0coma10 = new Moneda(0.10, 0);
-        Moneda monedas0coma5 = new Moneda(0.05, 0);
-        Moneda monedas0coma2 = new Moneda(0.02, 0);
-        Moneda monedas0coma1 = new Moneda(0.01, 0);
+        Moneda monedas1 = new Moneda(1, 15);
+        Moneda monedas0coma50 = new Moneda(0.50, 150);
+        Moneda monedas0coma20 = new Moneda(0.20, 10);
+        Moneda monedas0coma10 = new Moneda(0.10, 10);
+        Moneda monedas0coma5 = new Moneda(0.05, 101);
+        Moneda monedas0coma2 = new Moneda(0.02, 10);
+        Moneda monedas0coma1 = new Moneda(0.01, 10);
 
         Moneda listaMonedas[]={monedas20,monedas10,monedas5,monedas2,monedas1,monedas0coma50,monedas0coma20,monedas0coma10,monedas0coma5,monedas0coma2,monedas0coma1};
 
@@ -125,7 +125,7 @@ public class TestMaquinaCompleto {
                             case 2:
                                 String productoAComprar = "";
                                 String modoPago = "";
-                                Bandeja bandejaProductoCompra=new Bandeja(1,"prueba",10);
+                                Bandeja bandejaProductoCompra=new Bandeja(1,"303","prueba",10);
                                 do {
                                     productoAComprar = JOptionPane.showInputDialog("Tecle el identificador que desea comprar:\n "
                                             + bandeja1.getNombreProducto() + "tiene codigo: " + bandeja1.getId() + "\n"
@@ -192,6 +192,8 @@ public class TestMaquinaCompleto {
                                                                 }
                                                                 if (!devolucionCliente.equals("")){
                                                                     JOptionPane.showMessageDialog(null,devolucionCliente);
+                                                                }else if (dineroProporcionadoPorClienteTotal>bandejaProductoCompra.getPrecioProducto()&&!listaMonedas[10].haySaldoSuficiente(cambioTotal)){
+                                                                    dineroProporcionadoPorClienteTotal=0;
                                                                 }
                                                             }
                                                         }while(dineroProporcionadoPorClienteTotal<bandejaProductoCompra.getPrecioProducto()||!listaMonedas[10].haySaldoSuficiente(cambioTotal));

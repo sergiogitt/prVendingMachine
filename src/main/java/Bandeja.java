@@ -20,8 +20,12 @@ public class Bandeja {
         this.precioProducto = 0;
     }
 
-    public Bandeja(int stock, String nombreProducto, double precioProducto) {
-        this.id = numeroAleatorio();
+    public Bandeja(int stock,String id, String nombreProducto, double precioProducto) {
+        if (!comprobarId(id)) {
+            this.id = numeroAleatorio();
+        } else {
+            this.id = id;
+        }
         if (stock < 0) {                                 //control para que el stock sea positivo
             this.stock = Math.abs(stock);
         } else if (stock > MAXIMO_PRODUCTO_POR_BANDEJA) {//control para que no supere el stock maximo
@@ -62,7 +66,11 @@ public class Bandeja {
     }
 
     public void setId() {
-        this.id = numeroAleatorio();
+        if (!comprobarId(id)) {
+            this.id = numeroAleatorio();
+        } else {
+            this.id = id;
+        }
     }
 
     public void setStock(int stock) {
@@ -134,4 +142,16 @@ public class Bandeja {
         }
         return texto;
     }
+    private boolean comprobarId(String id) {
+        boolean idCorrecto = true;
+
+        for (int i = 0; i < id.length(); i++) {
+
+            if (!Character.isDigit(id.charAt(i))) {
+                idCorrecto = false;
+            }
+        }
+        return idCorrecto && id.length() == 3;
+    }
+
 }
