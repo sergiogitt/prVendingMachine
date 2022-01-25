@@ -64,7 +64,7 @@ public class TestMaquinaCompleto {
                     eleccionModo = Integer.parseInt(texto);
                     eleccionModoValida = true;
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, "Has introducido un caracter erroneo, introduce un caracter numerico ");
+                    //JOptionPane.showMessageDialog(null, "Has introducido un caracter erroneo, introduce un caracter numerico ");
                 }
             } while (!eleccionModoValida);
             if (eleccionModo != 1 && eleccionModo != 2) {
@@ -426,7 +426,26 @@ public class TestMaquinaCompleto {
                                                     monedasParaAdministrador[i] = listaMonedas[i].cambioMonedas(dineroRecaudar);
                                                     dineroRecaudar -= monedasParaAdministrador[i] * listaMonedas[i].getValor();
                                                 }
+                                                String monedasParaAdministradorTexto="";
+                                                for(int i=0;i<monedasParaAdministrador.length;i++){
+                                                    if (monedasParaAdministrador[i]!=0){
+                                                        monedasParaAdministradorTexto+="Tiene que recoger "+monedasParaAdministrador[i]+" monedas de valor "+listaMonedas[i].getValor();
+                                                    }
+                                                }
+                                                JOptionPane.showMessageDialog(null,monedasParaAdministradorTexto);
+
+
                                             }
+                                            String meterMonedas="";
+                                            for (int i = 0; i < listaMonedas.length; i++) {
+                                                if (listaMonedas[i].getCantidadDeMonedas() < maquina1.MINIMO_MONEDAS_REPOSICION) {
+                                                    listaMonedas[i].meterMoneda(maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas());
+                                                    meterMonedas+="Tiene que meter "+(maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas())+
+                                                            " monedas de valor "+listaMonedas[i].getValor()+"\n";
+
+                                                }
+                                            }
+                                            JOptionPane.showMessageDialog(null,meterMonedas);
                                             break;
                                         case "8":
                                             String texto = "";
