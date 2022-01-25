@@ -439,10 +439,9 @@ public class TestMaquinaCompleto {
                                             String meterMonedas="";
                                             for (int i = 0; i < listaMonedas.length; i++) {
                                                 if (listaMonedas[i].getCantidadDeMonedas() < maquina1.MINIMO_MONEDAS_REPOSICION) {
-                                                    listaMonedas[i].meterMoneda(maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas());
                                                     meterMonedas+="Tiene que meter "+(maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas())+
                                                             " monedas de valor "+listaMonedas[i].getValor()+"\n";
-
+                                                    listaMonedas[i].meterMoneda(maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas());
                                                 }
                                             }
                                             JOptionPane.showMessageDialog(null,meterMonedas);
