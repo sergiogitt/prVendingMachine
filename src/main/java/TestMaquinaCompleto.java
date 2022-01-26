@@ -28,7 +28,7 @@ public class TestMaquinaCompleto {
         Bandeja bandeja5 = new Bandeja(5, "102", "Palomitas", 0.9);
         Bandeja bandeja6 = new Bandeja(4, "103", "Almendras", 2.5);
 
-        Moneda monedas20 = new Moneda(20, 8);
+        Moneda monedas20 = new Moneda(20, 81);
         Moneda monedas10 = new Moneda(10, 15);
         Moneda monedas5 = new Moneda(5, 15);
         Moneda monedas2 = new Moneda(2, 15);
@@ -37,8 +37,8 @@ public class TestMaquinaCompleto {
         Moneda monedas0coma20 = new Moneda(0.20, 10);
         Moneda monedas0coma10 = new Moneda(0.10, 15);
         Moneda monedas0coma5 = new Moneda(0.05, 15);
-        Moneda monedas0coma2 = new Moneda(0.02, 0);
-        Moneda monedas0coma1 = new Moneda(0.01, 0);
+        Moneda monedas0coma2 = new Moneda(0.02, 10);
+        Moneda monedas0coma1 = new Moneda(0.01, 10);
 
         Moneda listaMonedas[] = {monedas20, monedas10, monedas5, monedas2, monedas1, monedas0coma50, monedas0coma20, monedas0coma10, monedas0coma5, monedas0coma2, monedas0coma1};
 
@@ -444,7 +444,12 @@ public class TestMaquinaCompleto {
                                                     listaMonedas[i].meterMoneda(maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas());
                                                 }
                                             }
-                                            JOptionPane.showMessageDialog(null,meterMonedas);
+                                            if(meterMonedas.equals("")){
+                                                JOptionPane.showMessageDialog(null,"La maquina tiene ,al menos,el minimo de monedas en todas las monedas.");
+                                            }else{
+                                                JOptionPane.showMessageDialog(null,meterMonedas);
+                                            }
+
                                             break;
                                         case "8":
                                             String texto = "";
