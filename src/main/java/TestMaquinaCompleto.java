@@ -21,7 +21,7 @@ public class TestMaquinaCompleto {
         UUID id = new UUID(UUID.randomUUID().getMostSignificantBits(), UUID.randomUUID().getLeastSignificantBits());
         String direccion = "calle oporto";
 
-        Bandeja bandeja1 = new Bandeja(10, "001", "cocacola", 2);
+        Bandeja bandeja1 = new Bandeja(0, "001", "cocacola", 2);
         Bandeja bandeja2 = new Bandeja(10, "002", "Agua1Litro", 1.5);
         Bandeja bandeja3 = new Bandeja(1, "003", "Biofrutas", 3);
         Bandeja bandeja4 = new Bandeja(1, "101", "PatatasJamon", 1);
@@ -133,27 +133,29 @@ public class TestMaquinaCompleto {
                                             + "-" + bandeja5.getNombreProducto() + " tiene codigo: " + bandeja5.getId() + "\n"
                                             + "-" + bandeja6.getNombreProducto() + " tiene codigo: " + bandeja6.getId());
                                     if (bandeja1.getId().equals(productoAComprar)) {
-                                        JOptionPane.showMessageDialog(null, bandeja1.getPrecioProducto());
+                                        JOptionPane.showMessageDialog(null, "El producto seleccionado vale "+bandeja1.getPrecioProducto()+"€");
                                         bandejaProductoCompra = bandeja1;
                                     } else if (bandeja2.getId().equals(productoAComprar)) {
-                                        JOptionPane.showMessageDialog(null, bandeja2.getPrecioProducto());
+                                        JOptionPane.showMessageDialog(null, "El producto seleccionado vale "+bandeja2.getPrecioProducto()+"€");
                                         bandejaProductoCompra = bandeja2;
                                     } else if (bandeja3.getId().equals(productoAComprar)) {
-                                        JOptionPane.showMessageDialog(null, bandeja3.getPrecioProducto());
+                                        JOptionPane.showMessageDialog(null, "El producto seleccionado vale "+bandeja3.getPrecioProducto()+"€");
                                         bandejaProductoCompra = bandeja3;
                                     } else if (bandeja4.getId().equals(productoAComprar)) {
-                                        JOptionPane.showMessageDialog(null, bandeja4.getPrecioProducto());
+                                        JOptionPane.showMessageDialog(null, "El producto seleccionado vale "+bandeja4.getPrecioProducto()+"€");
                                         bandejaProductoCompra = bandeja4;
                                     } else if (bandeja5.getId().equals(productoAComprar)) {
-                                        JOptionPane.showMessageDialog(null, bandeja5.getPrecioProducto());
+                                        JOptionPane.showMessageDialog(null, "El producto seleccionado vale "+bandeja5.getPrecioProducto()+"€");
                                         bandejaProductoCompra = bandeja5;
                                     } else if (bandeja6.getId().equals(productoAComprar)) {
-                                        JOptionPane.showMessageDialog(null, bandeja6.getPrecioProducto());
+                                        JOptionPane.showMessageDialog(null, "El producto seleccionado vale "+bandeja6.getPrecioProducto()+"€");
                                         bandejaProductoCompra = bandeja6;
                                     }
                                     if (!productoAComprar.equals(bandeja1.getId()) && !productoAComprar.equals(bandeja2.getId()) && !productoAComprar.equals(bandeja3.getId())
                                             && !productoAComprar.equals(bandeja4.getId()) && !productoAComprar.equals(bandeja5.getId()) && !productoAComprar.equals(bandeja6.getId())) {
                                         JOptionPane.showMessageDialog(null, "Introduzca un codigo valido");
+                                    } else if(bandejaProductoCompra.getStock()==0){
+                                        JOptionPane.showMessageDialog(null,"No hay stock del producto seleccionado\nLa compra de este producto ha sido cncelada");
                                     } else {
                                         do {
                                             modoPago = JOptionPane.showInputDialog("Selecciona el metodo de pago: \n1.Efectivo\n2.Tarjeta\n3.Cancelar compra ");
@@ -256,9 +258,9 @@ public class TestMaquinaCompleto {
                                             }
                                         } while (!modoPago.equals("1") && !modoPago.equals("2") && !modoPago.equals("3"));
                                     }
-                                } while ((!productoAComprar.equals(bandeja1.getId()) && !productoAComprar.equals(bandeja2.getId()) && !productoAComprar.equals(bandeja3.getId())
+                                } while (((!productoAComprar.equals(bandeja1.getId()) && !productoAComprar.equals(bandeja2.getId()) && !productoAComprar.equals(bandeja3.getId())
                                         && !productoAComprar.equals(bandeja4.getId()) && !productoAComprar.equals(bandeja5.getId()) && !productoAComprar.equals(bandeja6.getId()))
-                                        && !modoPago.equals("1") && !modoPago.equals("2") && !modoPago.equals("3"));
+                                        && !modoPago.equals("1") && !modoPago.equals("2") && !modoPago.equals("3"))||bandejaProductoCompra.getStock()==0);
                                 break;
                         }
                     } while (eleccionUsuario != 3);
