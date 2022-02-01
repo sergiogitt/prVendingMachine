@@ -511,7 +511,9 @@ public class TestMaquinaCompleto {
     public static void cambiarProducto(Bandeja bandeja) {
         String nuevoProducto = "";
         double nuevoPrecioProducto = 0;
+        int nuevoStockProducto=0;
         boolean precioCorrecto = false;
+        boolean stockCorrecto = false;
         nuevoProducto = JOptionPane.showInputDialog(null, "Introduce el nombre que va a tener el producto con codigo " + bandeja.getId());
         bandeja.setNombreProducto(nuevoProducto);
         do {
@@ -525,6 +527,17 @@ public class TestMaquinaCompleto {
             }
         } while (!precioCorrecto);
         bandeja.setPrecioProducto(nuevoPrecioProducto);
+        do {
+            try {
+                String texto = JOptionPane.showInputDialog(null, "Introduce el stock que va a tener el producto llamado " + bandeja.getNombreProducto());
+                nuevoStockProducto = Integer.parseInt(texto);
+                stockCorrecto = true;
+
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null, "Introduce un valor numerico");
+            }
+        } while (!stockCorrecto);
+        bandeja.setStock( nuevoStockProducto);
     }
 
     public static void cambiarId(Bandeja bandeja) {
