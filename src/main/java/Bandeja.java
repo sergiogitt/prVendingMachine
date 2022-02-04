@@ -29,11 +29,9 @@ public class Bandeja {
         if (stock < 0) {                                 //control para que el stock sea positivo
             this.stock = Math.abs(stock);
         } else if (stock > MAXIMO_PRODUCTO_POR_BANDEJA) {//control para que no supere el stock maximo
-            JOptionPane.showMessageDialog(null,"No puedes poner mas de "+MAXIMO_PRODUCTO_POR_BANDEJA+" de stock, asi que el stock se ha adaptado al maximo");
-
+          
             this.stock = MAXIMO_PRODUCTO_POR_BANDEJA;
         } else if(stock==0){
-            JOptionPane.showMessageDialog(null,"No puedes poner 0 de stock, te pongo por defecto 5");
             this.setStock(5);
         }else {
             this.stock = stock;

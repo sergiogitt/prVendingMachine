@@ -28,8 +28,8 @@ public class TestMaquinaCompleto {
         Bandeja bandeja5 = new Bandeja(5, "102", "Palomitas", 0.9);
         Bandeja bandeja6 = new Bandeja(4, "103", "Almendras", 2.5);
 
-        Moneda monedas20 = new Moneda(20, 81);
-        Moneda monedas10 = new Moneda(10, 15);
+        Moneda monedas20 = new Moneda(20,5);
+        Moneda monedas10 = new Moneda(10, 5);
         Moneda monedas5 = new Moneda(5, 15);
         Moneda monedas2 = new Moneda(2, 15);
         Moneda monedas1 = new Moneda(1, 15);
@@ -38,7 +38,7 @@ public class TestMaquinaCompleto {
         Moneda monedas0coma10 = new Moneda(0.10, 15);
         Moneda monedas0coma5 = new Moneda(0.05, 15);
         Moneda monedas0coma2 = new Moneda(0.02, 10);
-        Moneda monedas0coma1 = new Moneda(0.01, 10);
+        Moneda monedas0coma1 = new Moneda(0.01, 00);
 
         Moneda listaMonedas[] = {monedas20, monedas10, monedas5, monedas2, monedas1, monedas0coma50, monedas0coma20, monedas0coma10, monedas0coma5, monedas0coma2, monedas0coma1};
 
@@ -64,7 +64,7 @@ public class TestMaquinaCompleto {
                     eleccionModo = Integer.parseInt(texto);
                     eleccionModoValida = true;
                 } catch (NumberFormatException nfe) {
-                    //JOptionPane.showMessageDialog(null, "Has introducido un caracter erroneo, introduce un caracter numerico ");
+                    JOptionPane.showMessageDialog(null, "Has introducido un caracter erroneo, introduce un caracter numerico ");
                 }
             } while (!eleccionModoValida);
             if (eleccionModo != 1 && eleccionModo != 2) {
@@ -174,8 +174,8 @@ public class TestMaquinaCompleto {
                                                             JOptionPane.showMessageDialog(null, "Total efectivo proporcionado: " + dineroProporcionadoPorClienteTotal);
                                                             cambioTotal = dineroProporcionadoPorClienteTotal - bandejaProductoCompra.getPrecioProducto();
                                                             if (dineroProporcionadoPorClienteTotal < bandejaProductoCompra.getPrecioProducto()) {
-                                                                JOptionPane.showMessageDialog(null, "No has introducido sificiente efectivo para comprar " + bandejaProductoCompra.getNombreProducto()
-                                                                        + "\n.Por favor introduzca " + bandejaProductoCompra.getPrecioProducto());
+                                                                JOptionPane.showMessageDialog(null, "No has introducido suficiente efectivo para comprar " + bandejaProductoCompra.getNombreProducto()
+                                                                        + "\n.Por favor introduzca " + bandejaProductoCompra.getPrecioProducto()+"€");
                                                             } else {
                                                                 for (int i = 0; i <= 10; i++) {
                                                                     monedasParaElCliente[i] = listaMonedas[i].cambioMonedas(cambioTotal);
@@ -195,9 +195,12 @@ public class TestMaquinaCompleto {
                                                                     maquina1.compraTotal(bandejaProductoCompra.getPrecioProducto());
                                                                 } else if (devolucionCliente.equals("") && dineroProporcionadoPorClienteTotal == bandejaProductoCompra.getPrecioProducto()) {
                                                                     maquina1.compraTotal(bandejaProductoCompra.getPrecioProducto());
+                                                                     JOptionPane.showMessageDialog(null, devolucionCliente + "\nLa compra se realizo correctamente y no hay vuelta");
                                                                 } else if (dineroProporcionadoPorClienteTotal > bandejaProductoCompra.getPrecioProducto() && !listaMonedas[10].haySaldoSuficiente(cambioTotal)) {
                                                                     dineroProporcionadoPorClienteTotal = 0;
+                                                                    
                                                                 }
+                                                                
                                                             }
                                                         } while (dineroProporcionadoPorClienteTotal < bandejaProductoCompra.getPrecioProducto() || !listaMonedas[10].haySaldoSuficiente(cambioTotal));
                                                         break;
@@ -451,6 +454,7 @@ public class TestMaquinaCompleto {
                                             }else{
                                                 JOptionPane.showMessageDialog(null,meterMonedas);
                                             }
+                                            maquina1.setFechaRecaudacionTotal();
 
                                             break;
                                         case "8":

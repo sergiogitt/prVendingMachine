@@ -34,6 +34,7 @@ public class Maquina {
 
     private double dineroRecaudadoConTarjeta=0;
     private LocalDate fechaRecaudacionTotal;
+    
     private double dineroRecaudadoTotal=0;
 
     public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4,
@@ -100,6 +101,14 @@ public class Maquina {
         this.id = id;
     }
 
+    public void setFechaRecaudacionTotal() {
+        if(dineroRecaudadoTotal!=0){
+            this.fechaRecaudacionTotal = LocalDate.now();
+        }
+ 
+    }
+    
+
    
     
     
@@ -142,6 +151,11 @@ public class Maquina {
         for(int i=0;i<listaMonedas.length;i++){
             texto+="\n"+listaMonedas[i].informacionMonedas();
         }
+        String informacionFech="";
+       
+        informacionFech=(fechaRecaudacionTotal==null)?"Nunca se ha recaudado":("La ultima recaudacion se realizo "+fechaRecaudacionTotal);
+      
+        texto+="\n"+informacionFech;
         return texto;
     }
 }

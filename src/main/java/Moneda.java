@@ -94,9 +94,9 @@ public class Moneda {
     public String informacionMonedas() {
         String texto = "De la moneda " + valor + " hay " + cantidadDeMonedas + " unidades";
         if (this.cantidadDeMonedas == 0) {
-            texto += "\nHay que a�adir mas monedas";
+            texto += "\nHay que meter mas monedas";
         } else if (this.cantidadDeMonedas <= MAXIMO_MONEDA_AVISO_REPONER && this.cantidadDeMonedas >= MINIMA_MONEDA_AVISO_REPONER) {
-            texto += "\nSe recomienda a�adir mas stock";
+            texto += "\nSe recomienda meter mas stock";
         }
         return texto;
     }
