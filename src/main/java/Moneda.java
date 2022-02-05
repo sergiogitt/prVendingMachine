@@ -23,7 +23,6 @@ public class Moneda {
         if (cantidadDeMonedas > MAXIMA_CANTIDAD_MONEDAS) {
             this.cantidadDeMonedas = MAXIMA_CANTIDAD_MONEDAS;
         }
-
     }
 
     public void meterMoneda(int cantidad) {
@@ -35,7 +34,6 @@ public class Moneda {
         } else {
             this.cantidadDeMonedas += cantidad;
         }
-
     }
 
     public void sacarMoneda(int cantidad) {
@@ -49,10 +47,9 @@ public class Moneda {
             JOptionPane.showMessageDialog(null, "No hay cambio suficiente para la moneda de valor " + this.valor);
         } else {
             this.cantidadDeMonedas -= cantidad;
-
         }
-
     }
+
     public boolean haySaldoSuficiente(double cantidad){
         boolean haysaldo=true;
         if (this.cantidadDeMonedas - cantidad < 0){
@@ -60,6 +57,7 @@ public class Moneda {
         }
         return haysaldo;
     }
+
     public int cambioMonedas(double cambioADevolver) {
         int numMonedasADevolver;
         numMonedasADevolver = (int) (cambioADevolver / this.valor);
@@ -74,13 +72,24 @@ public class Moneda {
         return numMonedasADevolver;
     }
     
-    
     public double getValor() {
         return valor;
     }
 
     public int getCantidadDeMonedas() {
         return cantidadDeMonedas;
+    }
+
+    public int getMAXIMA_CANTIDAD_MONEDAS() {
+        return MAXIMA_CANTIDAD_MONEDAS;
+    }
+
+    public int getMINIMA_MONEDA_AVISO_REPONER() {
+        return MINIMA_MONEDA_AVISO_REPONER;
+    }
+
+    public int getMAXIMO_MONEDA_AVISO_REPONER() {
+        return MAXIMO_MONEDA_AVISO_REPONER;
     }
 
     public void setValor(double valor) {
@@ -94,9 +103,9 @@ public class Moneda {
     public String informacionMonedas() {
         String texto = "De la moneda " + valor + " hay " + cantidadDeMonedas + " unidades";
         if (this.cantidadDeMonedas == 0) {
-            texto += "\nHay que meter mas monedas";
+            texto += "\n***********Hay que meter mas monedas de valor "+this.getValor()+"**************";
         } else if (this.cantidadDeMonedas <= MAXIMO_MONEDA_AVISO_REPONER && this.cantidadDeMonedas >= MINIMA_MONEDA_AVISO_REPONER) {
-            texto += "\nSe recomienda meter mas stock";
+            texto += "\n***********Se recomienda meter mas stock de la moneda de valor "+this.getValor()+"**************";
         }
         return texto;
     }

@@ -34,6 +34,7 @@ public class Maquina {
 
     private double dineroRecaudadoConTarjeta=0;
     private LocalDate fechaRecaudacionTotal;
+    private LocalDate fechaUltimaRecarga;
     
     private double dineroRecaudadoTotal=0;
 
@@ -55,22 +56,27 @@ public class Maquina {
         this.tarjeta1=tarjeta1;
         this.tarjeta2=tarjeta2;
         this.tarjeta3=tarjeta3;
-        
     }
     public void compraConTarjeta(double valorAumentado){
+
         this.dineroRecaudadoConTarjeta+=valorAumentado;
+        this.dineroRecaudadoTotal+=valorAumentado;
     }
+
     public void compraTotal(double valorAumentado){
         this.dineroRecaudadoTotal+=dineroRecaudadoConTarjeta+valorAumentado;
     }
+
     public void recaudarDinero(){
         fechaRecaudacionTotal=LocalDate.now();
         dineroRecaudadoConTarjeta=0;
         dineroRecaudadoTotal=0;
     }
+
     public boolean tarjetaEnMiBaseDeDatos(TarjetaCredito tarjeta){
         return tarjeta1.tarjetaValida(tarjeta)||tarjeta2.tarjetaValida(tarjeta)||tarjeta3.tarjetaValida(tarjeta);
     }
+
     private String generarContrasenia() {
         String simbolo="";
         if (generarCaracterAleatorio(48,49)==0){
@@ -78,7 +84,6 @@ public class Maquina {
         }else{
             simbolo=String.valueOf(generarCaracterAleatorio(58,64));
         }
-
         String contrasena=String.valueOf(generarCaracterAleatorio(97,122))+
                 String.valueOf(generarCaracterAleatorio(65,90))+
                 String.valueOf(generarCaracterAleatorio(48,57)+
@@ -88,30 +93,49 @@ public class Maquina {
                         String.valueOf(generarCaracterAleatorio(33,122))+
                         String.valueOf(generarCaracterAleatorio(33,122)));
         return contrasena;
-
     }
+
     private char generarCaracterAleatorio(int rangoMinimo,int rangoMaximo){
         char caracterDevuelto;
         Random aleatorio=new Random();
         caracterDevuelto=(char)(aleatorio.nextInt(rangoMaximo-rangoMinimo+1)+rangoMinimo);
         return caracterDevuelto;
     }
-    
+
+    public boolean liquidoSuficienteParaVenta(double cambioTotal){
+        return listaMonedas[10].haySaldoSuficiente(cambioTotal);
+    }
+
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public void setDineroRecaudadoConTarjeta(double dineroRecaudadoConTarjeta) {
+        this.dineroRecaudadoConTarjeta = dineroRecaudadoConTarjeta;
+    }
+
+    public void setDineroRecaudadoTotal(double dineroRecaudadoTotal) {
+        this.dineroRecaudadoTotal = dineroRecaudadoTotal;
+    }
+
+    public void setFechaRecaudacionTotal(LocalDate fechaRecaudacionTotal) {
+        this.fechaRecaudacionTotal = fechaRecaudacionTotal;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setFechaUltimaRecarga(LocalDate fechaUltimaRecarga) {
+        this.fechaUltimaRecarga = fechaUltimaRecarga;
     }
 
     public void setFechaRecaudacionTotal() {
         if(dineroRecaudadoTotal!=0){
             this.fechaRecaudacionTotal = LocalDate.now();
         }
- 
     }
-    
 
-   
-    
-    
     public double getDineroRecaudadoConTarjeta() {
         return dineroRecaudadoConTarjeta;
     }
@@ -132,13 +156,6 @@ public class Maquina {
         return dineroRecaudadoTotal;
     }
 
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-    public boolean liquidoSuficienteParaVenta(double cambioTotal){
-        return listaMonedas[10].haySaldoSuficiente(cambioTotal);
-    }
     public String informacionCompletaMaquina() {
         String texto = "La maquina con id " + id + " que esta ubicada en la direccion " + direccion + " tiene: \n"
                 + "La palabra secreta del administrador es:" +contrasenaAdministrador+ "\n"
@@ -152,10 +169,11 @@ public class Maquina {
             texto+="\n"+listaMonedas[i].informacionMonedas();
         }
         String informacionFech="";
+        String informacionRecaudacion="";
        
         informacionFech=(fechaRecaudacionTotal==null)?"Nunca se ha recaudado":("La ultima recaudacion se realizo "+fechaRecaudacionTotal);
-      
-        texto+="\n"+informacionFech;
+        informacionRecaudacion=(fechaUltimaRecarga==null)?"Nunca se ha recargado":("La ultima recarga se realizo "+fechaUltimaRecarga);
+        texto+="\n"+informacionFech+"\n"+informacionRecaudacion;
         return texto;
     }
 }

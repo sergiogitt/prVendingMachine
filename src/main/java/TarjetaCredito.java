@@ -11,22 +11,9 @@ import java.time.LocalDate;
  * @author Windows10
  */
 public class TarjetaCredito {
-
     private String  numTarjeta;
     private LocalDate fechaVencimiento;
     private String cvv;
-
-    public String getNumTarjeta() {
-        return numTarjeta;
-    }
-
-    public LocalDate getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public String getCvv() {
-        return cvv;
-    }
 
     public TarjetaCredito(String numTarjeta, LocalDate fechaVencimiento, String cvv) {
 
@@ -35,17 +22,11 @@ public class TarjetaCredito {
         } else {
             this.numTarjeta = "1234123412341234";
         }
-
         if (fechaVencimiento.isBefore(LocalDate.now())) {                                  // Si la tarjeta ha caducado antes de hoy se crea otra
-                                                                                            //con un vencimiento de 5 a�os
-            this.fechaVencimiento = LocalDate.now().plusYears(5);
-
+            this.fechaVencimiento = LocalDate.now().plusYears(5);                        // con un vencimiento de 5 anios
         } else {
             this.fechaVencimiento = fechaVencimiento;
-
         }
-
-
         if (cvv.length() == 3) {                //comprobacion CVV tiene 3 cifras
             this.cvv = cvv;
         } else {
@@ -65,14 +46,24 @@ public class TarjetaCredito {
         this.cvv = cvv;
     }
 
+    public String getNumTarjeta() {
+        return numTarjeta;
+    }
+
+    public LocalDate getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public String getCvv() {
+        return cvv;
+    }
+
     public boolean tarjetaValida(TarjetaCredito tarjetaAValidar) { //comprobacion tarjeta iguales
         boolean tarjetaIgual = false;
         if (this.numTarjeta.equals(tarjetaAValidar.getNumTarjeta())  && this.fechaVencimiento.equals(tarjetaAValidar.getFechaVencimiento())
                 && this.cvv.equals(tarjetaAValidar.getCvv())) {
             tarjetaIgual = true;
-
         }
         return tarjetaIgual;
-
     }
 }

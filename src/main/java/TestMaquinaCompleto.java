@@ -42,7 +42,7 @@ public class TestMaquinaCompleto {
 
         Moneda listaMonedas[] = {monedas20, monedas10, monedas5, monedas2, monedas1, monedas0coma50, monedas0coma20, monedas0coma10, monedas0coma5, monedas0coma2, monedas0coma1};
 
-        TarjetaCredito tarjeta1 = new TarjetaCredito("1234456884569563", LocalDate.of(1999, 3, 23), "569");
+        TarjetaCredito tarjeta1 = new TarjetaCredito("1234456884569563", LocalDate.now(), "569");
         TarjetaCredito tarjeta2 = new TarjetaCredito("1234456884879563", LocalDate.now(), "454");
         TarjetaCredito tarjeta3 = new TarjetaCredito("1234456886369563", LocalDate.now(), "586");
 
@@ -57,7 +57,7 @@ public class TestMaquinaCompleto {
         boolean eleccionModoValida = false;
         int eleccionModo = 0;
         boolean apagarMaquina = false;
-        do {
+        do {//-------------bucle principal del programa que solo finaliza cuando el administrador apaga la maquina
             do {
                 String texto = JOptionPane.showInputDialog("Elige el modo de uso: \n 1.Modo venta \n 2.Modo Administardor");
                 try {
@@ -89,7 +89,7 @@ public class TestMaquinaCompleto {
                             JOptionPane.showInputDialog("Introduce un numero que este en el menu por favor");
                         }
                         switch (eleccionUsuario) {
-                            case 1:
+                            case 1://-----------------------Consultar precio--------------------------------------
                                 String saberPrecioProducto = "";
                                 do {
                                     saberPrecioProducto = JOptionPane.showInputDialog("Tecle el identificador del producto que "
@@ -126,12 +126,12 @@ public class TestMaquinaCompleto {
                                 Bandeja bandejaProductoCompra = new Bandeja(1, "303", "prueba", 10);
                                 do {
                                     productoAComprar = JOptionPane.showInputDialog("Tecle el identificador que desea comprar:\n "
-                                            + bandeja1.getNombreProducto() + "tiene codigo: " + bandeja1.getId() + "\n"
-                                            + "-" + bandeja2.getNombreProducto() + " tiene codigo: " + bandeja2.getId() + "\n"
-                                            + "-" + bandeja3.getNombreProducto() + " tiene codigo: " + bandeja3.getId() + "\n"
-                                            + "-" + bandeja4.getNombreProducto() + " tiene codigo: " + bandeja4.getId() + "\n"
-                                            + "-" + bandeja5.getNombreProducto() + " tiene codigo: " + bandeja5.getId() + "\n"
-                                            + "-" + bandeja6.getNombreProducto() + " tiene codigo: " + bandeja6.getId());
+                                            + "-" +bandeja1.getNombreProducto() + " tiene codigo: " + bandeja1.getId() + " con un precio de "+bandeja1.getPrecioProducto()+"\n"
+                                            + "-" + bandeja2.getNombreProducto() + " tiene codigo: " + bandeja2.getId()+ " con un precio de "+bandeja2.getPrecioProducto() +"\n"
+                                            + "-" + bandeja3.getNombreProducto() + " tiene codigo: " + bandeja3.getId() + " con un precio de "+bandeja3.getPrecioProducto() +"\n"
+                                            + "-" + bandeja4.getNombreProducto() + " tiene codigo: " + bandeja4.getId() +" con un precio de "+bandeja4.getPrecioProducto() + "\n"
+                                            + "-" + bandeja5.getNombreProducto() + " tiene codigo: " + bandeja5.getId() + " con un precio de "+bandeja5.getPrecioProducto() +"\n"
+                                            + "-" + bandeja6.getNombreProducto() + " tiene codigo: " + bandeja6.getId()+" con un precio de "+bandeja6.getPrecioProducto());
                                     if (bandeja1.getId().equals(productoAComprar)) {
                                         JOptionPane.showMessageDialog(null, "El producto seleccionado vale "+bandeja1.getPrecioProducto()+"€");
                                         bandejaProductoCompra = bandeja1;
@@ -208,52 +208,19 @@ public class TestMaquinaCompleto {
                                                         TarjetaCredito tarjetaTemporal = new TarjetaCredito("1", LocalDate.now(), "123");
                                                         do {
 
-                                                            String numeroTarjetaCliente = JOptionPane.showInputDialog(null, "Instroduce el numero de la tarjeta de credito");
-                                                            String numeroCVVCliente = JOptionPane.showInputDialog(null, "Instroduce el CVV de la tarjeta de credito");
-                                                            boolean diaCorrecto = false;
-                                                            boolean mesCorrecto = false;
-                                                            boolean anioCorrecto = false;
-                                                            int diaFechaVencimiento = 0;
-                                                            int mesFechaVencimiento = 0;
-                                                            int anioFechaVencimiento = 0;
+                                                            String numeroTarjetaCliente = JOptionPane.showInputDialog(null, "Introduce el numero de la tarjeta de credito");
+                                                            String numeroCVVCliente = JOptionPane.showInputDialog(null, "Introduce el CVV de la tarjeta de credito");
 
-                                                            do {//-----------------------------------------formato dia numerico----------------------------------------
-                                                                try {
-                                                                    String textoDiaFechaVencimiento = JOptionPane.showInputDialog(null, "Instroduce el dia de la tarjeta de redito");
-                                                                    diaFechaVencimiento = Integer.parseInt(textoDiaFechaVencimiento);
-                                                                    diaCorrecto = true;
-                                                                } catch (NumberFormatException nfe) {
-                                                                    JOptionPane.showMessageDialog(null, "Introduce una entrada valida");
-                                                                }
-                                                            } while (!diaCorrecto);
-                                                            do {//-------------------------------------------formato mes numerico---------------------------------------
-                                                                try {
-                                                                    String textoMesFechaVencimiento = JOptionPane.showInputDialog(null, "Introduce el mes de la tarjeta de redito");
-                                                                    mesFechaVencimiento = Integer.parseInt(textoMesFechaVencimiento);
-                                                                    mesCorrecto = true;
-                                                                } catch (NumberFormatException nfe) {
-                                                                    JOptionPane.showMessageDialog(null, "Introduce una entrada valida");
-                                                                }
-                                                            } while (!mesCorrecto);
-                                                            do {//-------------------------------------------formato anio numerico---------------------------------------------
-                                                                try {
-                                                                    String textoAnioFechaVencimiento = JOptionPane.showInputDialog(null, "Introduce el anio de la tarjeta de redito");
-                                                                    anioFechaVencimiento = Integer.parseInt(textoAnioFechaVencimiento);
-                                                                    anioCorrecto = true;
-                                                                } catch (NumberFormatException nfe) {
-                                                                    JOptionPane.showMessageDialog(null, "Introduce una entrada valida");
-                                                                }
-                                                            } while (!anioCorrecto);
-                                                            LocalDate fechaCliente = LocalDate.now();
+
+
                                                             tarjetaTemporal.setNumTarjeta(numeroTarjetaCliente);
-                                                            tarjetaTemporal.setFechaVencimiento(LocalDate.of(anioFechaVencimiento, mesFechaVencimiento, diaFechaVencimiento));
                                                             tarjetaTemporal.setCvv(numeroCVVCliente);
                                                             if (maquina1.tarjetaEnMiBaseDeDatos(tarjetaTemporal)) {
                                                                 maquina1.compraConTarjeta(bandejaProductoCompra.getPrecioProducto());
+
                                                                 JOptionPane.showMessageDialog(null, "La tarjeta introducida ha sido validada correctamente");
                                                             } else {
                                                                 JOptionPane.showMessageDialog(null, "La tarjeta introducida no se corresponde con ninguna de las que tenemos guardadas");
-
                                                             }
                                                         } while (!maquina1.tarjetaEnMiBaseDeDatos(tarjetaTemporal));
                                                         break;
@@ -374,52 +341,48 @@ public class TestMaquinaCompleto {
                                         case "5"://--------------------------------Cambiar stock de bandeja--------------------------------------
                                             do {
                                                 bandejaSaberId = JOptionPane.showInputDialog(null, "Teclee la bandeja que desees cambiar de stock \n"
-                                                        + "1.Bandeja que contiene " + bandeja1.getNombreProducto() + " con un stock de " + bandeja1.getStock() + "\n"
-                                                        + "2.Bandeja que contiene " + bandeja2.getNombreProducto() + " con un stock de " + bandeja2.getStock() + "\n"
-                                                        + "3.Bandeja que contiene " + bandeja3.getNombreProducto() + " con un stock de " + bandeja3.getStock() + "\n"
-                                                        + "4.Bandeja que contiene " + bandeja4.getNombreProducto() + " con un stock de " + bandeja4.getStock() + "\n"
-                                                        + "5.Bandeja que contiene " + bandeja5.getNombreProducto() + " con un stock de " + bandeja5.getStock() + "\n"
-                                                        + "6.Bandeja que contiene " + bandeja6.getNombreProducto() + " con un stock de " + bandeja6.getStock() + "\n"
-                                                        + "7.Reponer todas las bandejas con la maxima capacidad" + "\n"
-                                                        + "8.Volver al modo menu del administrador.");
+                                                        + "Bandeja que contiene " + bandeja1.getNombreProducto() + " con un stock de " + bandeja1.getStock() + " con ID "+bandeja1.getId()+"\n"
+                                                        + "Bandeja que contiene " + bandeja2.getNombreProducto() + " con un stock de " + bandeja2.getStock() + " con ID "+bandeja2.getId()+ "\n"
+                                                        + "Bandeja que contiene " + bandeja3.getNombreProducto() + " con un stock de " + bandeja3.getStock() + " con ID "+bandeja3.getId()+ "\n"
+                                                        + "Bandeja que contiene " + bandeja4.getNombreProducto() + " con un stock de " + bandeja4.getStock() + " con ID "+bandeja4.getId()+ "\n"
+                                                        + "Bandeja que contiene " + bandeja5.getNombreProducto() + " con un stock de " + bandeja5.getStock() + " con ID "+bandeja5.getId()+ "\n"
+                                                        + "Bandeja que contiene " + bandeja6.getNombreProducto() + " con un stock de " + bandeja6.getStock() + " con ID "+bandeja6.getId()+ "\n"
+                                                        + "Reponer todas las bandejas con la maxima capacidad (si desea esta opcion teclee 1234)" + "\n"
+                                                        + "Volver al modo menu del administrador.(si desea esta opcion teclee 4321)");
                                                 String nuevoProducto = "";
                                                 double nuevoPrecioProducto;
                                                 boolean precioCorrecto = false;
-                                                switch (bandejaSaberId) {
-                                                    case "1":
-                                                        cambiarStock(bandeja1);
-                                                        break;
-                                                    case "2":
-                                                        cambiarStock(bandeja2);
-                                                        break;
-                                                    case "3":
-                                                        cambiarStock(bandeja3);
-                                                        break;
-                                                    case "4":
-                                                        cambiarStock(bandeja4);
-                                                        break;
-                                                    case "5":
-                                                        cambiarStock(bandeja5);
-                                                        break;
-                                                    case "6":
-                                                        cambiarStock(bandeja6);
-                                                        break;
-                                                    case "7":
-                                                        bandeja1.rellenarBandeja();
-                                                        bandeja2.rellenarBandeja();
-                                                        bandeja3.rellenarBandeja();
-                                                        bandeja4.rellenarBandeja();
-                                                        bandeja5.rellenarBandeja();
-                                                        bandeja6.rellenarBandeja();
-                                                        break;
 
+                                                if (bandeja1.getId().equals(bandejaSaberId)) {
+                                                    cambiarStock(bandeja1);
+
+                                                } else if (bandeja2.getId().equals(bandejaSaberId)) {
+                                                    cambiarStock(bandeja2);
+                                                } else if (bandeja3.getId().equals(bandejaSaberId)) {
+                                                    cambiarStock(bandeja3);
+                                                } else if (bandeja4.getId().equals(bandejaSaberId)) {
+                                                    cambiarStock(bandeja4);
+                                                } else if (bandeja5.getId().equals(bandejaSaberId)) {
+                                                    cambiarStock(bandeja5);
+                                                } else if (bandeja6.getId().equals(bandejaSaberId)) {
+                                                    cambiarStock(bandeja6);
+                                                }else if(bandejaSaberId.equals("1234")){
+                                                    bandeja1.rellenarBandeja();
+                                                    bandeja2.rellenarBandeja();
+                                                    bandeja3.rellenarBandeja();
+                                                    bandeja4.rellenarBandeja();
+                                                    bandeja5.rellenarBandeja();
+                                                    bandeja6.rellenarBandeja();
                                                 }
-                                                if (!bandejaSaberId.equals("1") && !bandejaSaberId.equals("2") && !bandejaSaberId.equals("3") && !bandejaSaberId.equals("4") && !bandejaSaberId.equals("5") && !bandejaSaberId.equals("6") && !bandejaSaberId.equals("7") && !bandejaSaberId.equals("8")) {
+
+                                                if (!bandejaSaberId.equals(bandeja1.getId()) && !bandejaSaberId.equals(bandeja2.getId()) && !bandejaSaberId.equals(bandeja3.getId())
+                                                        && !bandejaSaberId.equals(bandeja4.getId()) && !bandejaSaberId.equals(bandeja5.getId()) && !bandejaSaberId.equals(bandeja6.getId())
+                                                        && !bandejaSaberId.equals("1234") && !bandejaSaberId.equals("4321")) {
                                                     JOptionPane.showMessageDialog(null, "Introduce un numero de los que se muestra en el menu");
                                                 }
-                                            } while (!bandejaSaberId.equals("8"));
+                                            } while (!bandejaSaberId.equals("4321"));
                                             break;
-                                        case "6":
+                                        case "6"://----------------------------------Consultar dinero recaudado mediante tarjeta------------------------
                                             JOptionPane.showMessageDialog(null, "Se ha recaudado " + maquina1.getDineroRecaudadoConTarjeta() + " euros mediante tarjeta de credito");
                                             break;
                                         case "7":
@@ -455,9 +418,11 @@ public class TestMaquinaCompleto {
                                                 JOptionPane.showMessageDialog(null,meterMonedas);
                                             }
                                             maquina1.setFechaRecaudacionTotal();
+                                            maquina1.setDineroRecaudadoTotal(0);
+                                            maquina1.setDineroRecaudadoConTarjeta(0);
 
                                             break;
-                                        case "8":
+                                        case "8"://--------------------------Recargar un tipo de moneda-------------------------------
                                             String texto = "";
                                             String monedaElegidaReponerTexto = "";
                                             int monedaElegidaReponerNumero = 0;
@@ -495,6 +460,7 @@ public class TestMaquinaCompleto {
 
                                                 } while (!cantidadMonedaCorrecta);
                                                 listaMonedas[monedaElegidaReponerNumero - 1].meterMoneda(cantidadMonedasReponerNumero);
+
                                             } else {
                                                 for (int i = 0; i < listaMonedas.length; i++) {
                                                     if (listaMonedas[i].getCantidadDeMonedas() < maquina1.MINIMO_MONEDAS_REPOSICION) {
@@ -502,6 +468,7 @@ public class TestMaquinaCompleto {
                                                     }
                                                 }
                                             }
+                                            maquina1.setFechaUltimaRecarga(LocalDate.now());
                                             break;
                                     }
                                 }
