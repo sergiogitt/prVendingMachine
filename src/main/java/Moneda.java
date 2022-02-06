@@ -2,14 +2,16 @@
 import javax.swing.JOptionPane;
 
 public class Moneda {
+//------------------------------------ATRIBUTOS--------------------------------------------------------
 
-    private double valor;
+    private int valor;
     private int cantidadDeMonedas;
     private final int MAXIMA_CANTIDAD_MONEDAS = 30;
     private final int MINIMA_MONEDA_AVISO_REPONER = 1;
     private final int MAXIMO_MONEDA_AVISO_REPONER = 10;
+//-------------------------------------CONSTRUCTOR---------------------------------------------
 
-    public Moneda(double valor, int cantidadDeMonedas) {
+    public Moneda(int valor, int cantidadDeMonedas) {
         if (valor < 0) {
             this.valor = Math.abs(valor);
         } else {
@@ -24,6 +26,7 @@ public class Moneda {
             this.cantidadDeMonedas = MAXIMA_CANTIDAD_MONEDAS;
         }
     }
+//----------------------------------------------------METODOS--------------------------------------------
 
     public void meterMoneda(int cantidad) {
         if (cantidad < 0) {                       //control cantidad positiva
@@ -50,29 +53,30 @@ public class Moneda {
         }
     }
 
-    public boolean haySaldoSuficiente(double cantidad){
-        boolean haysaldo=true;
-        if (this.cantidadDeMonedas - cantidad < 0){
-            haysaldo=false;
+    public boolean haySaldoSuficiente(double cantidad) {//devulve true si hay stock de la moneda en la maquina
+        boolean haysaldo = true;
+        if (this.cantidadDeMonedas - cantidad < 0) {
+            haysaldo = false;
         }
         return haysaldo;
     }
 
-    public int cambioMonedas(double cambioADevolver) {
+    public int cambioMonedas(double cambioADevolver) {//devulve la cantidad de monedas que se puede devolver respecto a un valor total a devolver
         int numMonedasADevolver;
         numMonedasADevolver = (int) (cambioADevolver / this.valor);
-        if (haySaldoSuficiente(cambioADevolver)){
+        if (haySaldoSuficiente(cambioADevolver)) {
             sacarMoneda(numMonedasADevolver);
-        }else if (!haySaldoSuficiente(cambioADevolver)&&this.valor==0.01){
-            numMonedasADevolver=0;
-            JOptionPane.showMessageDialog(null,"No hay cambio suficiente intenta introducir la cantidad excata");
-        }else{
-            numMonedasADevolver=0;
+        } else if (!haySaldoSuficiente(cambioADevolver) && this.valor == 0.01) {
+            numMonedasADevolver = 0;
+            JOptionPane.showMessageDialog(null, "No hay cambio suficiente intenta introducir la cantidad excata");
+        } else {
+            numMonedasADevolver = 0;
         }
         return numMonedasADevolver;
     }
-    
-    public double getValor() {
+
+    //--------------------------------------------------GETTERS---------------------------------------
+    public int getValor() {
         return valor;
     }
 
@@ -91,23 +95,25 @@ public class Moneda {
     public int getMAXIMO_MONEDA_AVISO_REPONER() {
         return MAXIMO_MONEDA_AVISO_REPONER;
     }
+//----------------------------------------------------SETTERS-----------------------------------------
 
-    public void setValor(double valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
     public void setCantidadDeMonedas(int cantidadDeMonedas) {
         this.cantidadDeMonedas = cantidadDeMonedas;
     }
+//----------------------------METODO TOSTRING MEJORADO-----------------------------------------------
 
     public String informacionMonedas() {
-        String texto = "De la moneda " + valor + " hay " + cantidadDeMonedas + " unidades";
+        String texto = "De la moneda " + valor/100.0 + " hay " + cantidadDeMonedas + " unidades";
         if (this.cantidadDeMonedas == 0) {
-            texto += "\n***********Hay que meter mas monedas de valor "+this.getValor()+"**************";
+            texto += "\n***********Hay que meter mas monedas de valor " + this.getValor()/100.0 + "**************";
         } else if (this.cantidadDeMonedas <= MAXIMO_MONEDA_AVISO_REPONER && this.cantidadDeMonedas >= MINIMA_MONEDA_AVISO_REPONER) {
-            texto += "\n***********Se recomienda meter mas stock de la moneda de valor "+this.getValor()+"**************";
+            texto += "\n***********Se recomienda meter mas stock de la moneda de valor " + this.getValor()/100.0 + "**************";
         }
         return texto;
     }
-    
+
 }

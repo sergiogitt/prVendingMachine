@@ -3,18 +3,11 @@ import java.time.LocalDate;
 import java.util.Random;
 import java.util.UUID;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Windows10
- */
+
 public class Maquina {
+  //------------------------------------ATRIBUTOS--------------------------------------------------------
     
-    public final int MINIMO_MONEDAS_REPOSICION= 10;
+    public final int MINIMO_MONEDAS_REPOSICION= 10; //Stock minimo para avisar al administrador que reponga
     private UUID id;
     private String contrasenaAdministrador;
     private String direccion;
@@ -33,11 +26,14 @@ public class Maquina {
     private TarjetaCredito tarjeta3;
 
     private double dineroRecaudadoConTarjeta=0;
+    private double dineroRecaudadoTotal=0;
+     
     private LocalDate fechaRecaudacionTotal;
     private LocalDate fechaUltimaRecarga;
     
-    private double dineroRecaudadoTotal=0;
-
+   
+//-------------------------------------CONSTRUCTOR---------------------------------------------
+    
     public Maquina(UUID id, String direccion, Bandeja bandeja1, Bandeja bandeja2, Bandeja bandeja3, Bandeja bandeja4,
             Bandeja bandeja5, Bandeja bandeja6,
             Moneda listaMonedas[],
@@ -57,13 +53,14 @@ public class Maquina {
         this.tarjeta2=tarjeta2;
         this.tarjeta3=tarjeta3;
     }
+    //----------------------------------------------------METODOS--------------------------------------------
+    
     public void compraConTarjeta(double valorAumentado){
-
         this.dineroRecaudadoConTarjeta+=valorAumentado;
         this.dineroRecaudadoTotal+=valorAumentado;
     }
 
-    public void compraTotal(double valorAumentado){
+    public void compraEfectivo(double valorAumentado){
         this.dineroRecaudadoTotal+=dineroRecaudadoConTarjeta+valorAumentado;
     }
 
@@ -73,7 +70,7 @@ public class Maquina {
         dineroRecaudadoTotal=0;
     }
 
-    public boolean tarjetaEnMiBaseDeDatos(TarjetaCredito tarjeta){
+    public boolean tarjetaEnMiBaseDeDatos(TarjetaCredito tarjeta){ //metodo que comprueba si la tarjeta del cliente esta almacenada en la maquina
         return tarjeta1.tarjetaValida(tarjeta)||tarjeta2.tarjetaValida(tarjeta)||tarjeta3.tarjetaValida(tarjeta);
     }
 
@@ -102,10 +99,10 @@ public class Maquina {
         return caracterDevuelto;
     }
 
-    public boolean liquidoSuficienteParaVenta(double cambioTotal){
+    public boolean liquidoSuficienteParaVenta(double cambioTotal){ //metodo para comprobar la posibilidad de hacer cambio
         return listaMonedas[10].haySaldoSuficiente(cambioTotal);
     }
-
+//----------------------------------------------------SETTERS-----------------------------------------
     public void setId(UUID id) {
         this.id = id;
     }
@@ -135,7 +132,7 @@ public class Maquina {
             this.fechaRecaudacionTotal = LocalDate.now();
         }
     }
-
+ //--------------------------------------------------GETTERS---------------------------------------
     public double getDineroRecaudadoConTarjeta() {
         return dineroRecaudadoConTarjeta;
     }
@@ -155,7 +152,7 @@ public class Maquina {
     public double getDineroRecaudadoTotal() {
         return dineroRecaudadoTotal;
     }
-
+//----------------------------METODO TOSTRING MEJORADO-----------------------------------------------
     public String informacionCompletaMaquina() {
         String texto = "La maquina con id " + id + " que esta ubicada en la direccion " + direccion + " tiene: \n"
                 + "La palabra secreta del administrador es:" +contrasenaAdministrador+ "\n"

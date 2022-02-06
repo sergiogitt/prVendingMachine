@@ -3,14 +3,18 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class Bandeja {
-
-    public static final int MAXIMO_PRODUCTO_POR_BANDEJA = 15;
+    
+//------------------------------------ATRIBUTOS--------------------------------------------------------
+    
+    public static final int MAXIMO_PRODUCTO_POR_BANDEJA = 15;// cantidad maxima stock productos
     private String id;
     private int stock;
     private String nombreProducto;
     private double precioProducto;
     private final int MINIMO_STOCK_BANDEJA_AVISO_REPONER = 1;//limite minimo para avisar sobre reposicion
     private final int MAXIMO_STOCK_BANDEJA_AVISO_REPONER = 5;//limite maximo para avisar sobre reposicion
+    
+//-------------------------------------CONSTRUCTORES---------------------------------------------
 
     public Bandeja() {
         this.id = numeroAleatorio();
@@ -19,7 +23,7 @@ public class Bandeja {
         this.precioProducto = 0;
     }
 
-    public Bandeja(int stock,String id, String nombreProducto, double precioProducto) {
+    public Bandeja(int stock, String id, String nombreProducto, double precioProducto) {
         if (!comprobarId(id)) {
             this.id = numeroAleatorio();
         } else {
@@ -29,25 +33,25 @@ public class Bandeja {
             this.stock = Math.abs(stock);
         } else if (stock > MAXIMO_PRODUCTO_POR_BANDEJA) {//control para que no supere el stock maximo
             this.stock = MAXIMO_PRODUCTO_POR_BANDEJA;
-        } else if(stock==0){
-            this.setStock(5);
-        }else {
+        } else if (stock == 0) {
+            this.setStock(5);                              //cuando el stock sea cero le obligamos a que ponga un stock de cinco unidades
+        } else {
             this.stock = stock;
         }
         this.nombreProducto = nombreProducto;
         if (precioProducto < 0) {
             this.precioProducto = Math.abs(precioProducto);
         } else if (precioProducto == 0) {
-            JOptionPane.showMessageDialog(null, "Has introducido un precio cero, vamos a poner por defecto un precio de 5 euros, si quieres cambiarlo hazlo manualmente");
-            this.precioProducto=5;
-        }else {
-            this.precioProducto=precioProducto;
+            this.precioProducto = 5;
+        } else {
+            this.precioProducto = precioProducto;
         }
     }
+//----------------------------------------------------METODOS--------------------------------------------
 
     public void sacarProducto() {
         if (this.stock - 1 == -1) {                     //no dejar sacar con un stock de 0 items
-             JOptionPane.showMessageDialog(null,"No es posible sacar producto.Esta acabado");
+            JOptionPane.showMessageDialog(null, "No es posible sacar producto.Esta acabado");
         } else {
             this.stock--;
         }
@@ -59,18 +63,19 @@ public class Bandeja {
             meterProducto(cantidad);
         }
         if (this.stock + cantidad > MAXIMO_PRODUCTO_POR_BANDEJA) {
-            JOptionPane.showMessageDialog(null,"Has introducido "+(getMAXIMO_PRODUCTO_POR_BANDEJA()-stock));
+            JOptionPane.showMessageDialog(null, "Has introducido " + (getMAXIMO_PRODUCTO_POR_BANDEJA() - stock));
             this.stock = MAXIMO_PRODUCTO_POR_BANDEJA;
         } else {
             this.stock += cantidad;
-            JOptionPane.showMessageDialog(null,"Has introducido "+cantidad);
+            JOptionPane.showMessageDialog(null, "Has introducido " + cantidad);
         }
     }
-    public void rellenarBandeja(){
+
+    public void rellenarBandeja() {
         this.setStock(Bandeja.MAXIMO_PRODUCTO_POR_BANDEJA);
     }
 
-    private boolean comprobarId(String id) {
+    private boolean comprobarId(String id) {    //metodo que comprueba la longitud correcta del id y que son tres digitos
         boolean idCorrecto = true;
         for (int i = 0; i < id.length(); i++) {
             if (!Character.isDigit(id.charAt(i))) {
@@ -80,7 +85,7 @@ public class Bandeja {
         return idCorrecto && id.length() == 3;
     }
 
-    public static String numeroAleatorio() {
+    private static String numeroAleatorio() { //genereación de un id aleatorio
         int numero;
         String texto = "";
         Random aleatorio = new Random();
@@ -90,6 +95,7 @@ public class Bandeja {
         }
         return texto;
     }
+//----------------------------------------------------SETTERS-----------------------------------------
 
     public void setId() {
         if (!comprobarId(id)) {
@@ -104,11 +110,11 @@ public class Bandeja {
             this.stock = Math.abs(stock);
         } else if (stock > MAXIMO_PRODUCTO_POR_BANDEJA) {//control para que no supere el stock maximo
             this.stock = MAXIMO_PRODUCTO_POR_BANDEJA;
-            JOptionPane.showMessageDialog(null,"No puedes poner mas de "+MAXIMO_PRODUCTO_POR_BANDEJA+" de stock, asi que el stock se ha adaptado al maximo");
-        } else if(stock==0){
-            JOptionPane.showMessageDialog(null,"No puedes poner 0 de stock, te pongo por defecto 5");
+            JOptionPane.showMessageDialog(null, "No puedes poner mas de " + MAXIMO_PRODUCTO_POR_BANDEJA + " de stock, asi que el stock se ha adaptado al maximo");
+        } else if (stock == 0) {
+            JOptionPane.showMessageDialog(null, "No puedes poner 0 de stock, te pongo por defecto 5");
             this.setStock(5);
-        }else {
+        } else {
             this.stock = stock;
         }
     }
@@ -122,10 +128,10 @@ public class Bandeja {
             this.precioProducto = Math.abs(precioProducto);
         } else if (precioProducto == 0) {
             JOptionPane.showMessageDialog(null, "Has introducido un precio cero, vamos a poner por defecto un precio de 5 euros, si quieres cambiarlo hazlo manualmente");
-            this.precioProducto=5;
+            this.precioProducto = 5;
         }
     }
-
+    //--------------------------------------------------GETTERS---------------------------------------
 
     public int getMAXIMO_PRODUCTO_POR_BANDEJA() {
         return MAXIMO_PRODUCTO_POR_BANDEJA;
@@ -158,15 +164,14 @@ public class Bandeja {
     public int getMAXIMO_STOCK_BANDEJA_AVISO_REPONER() {
         return MAXIMO_STOCK_BANDEJA_AVISO_REPONER;
     }
-
+//----------------------------METODO TOSTRING MEJORADO-----------------------------------------------
     public String informacionBandeja() {
         String texto = "Una bandeja con ID = " + id + " que contiene " + nombreProducto + " tiene un Stock " + stock
-                + " con un precio de " + precioProducto;
+                + " con un precio de " + precioProducto/100.0;
         if (this.stock == 0) {
-
-            texto += "\n******Hay que meter mas stock de la bandeja que contiene "+this.getNombreProducto()+"*******************";
+            texto += "\n******Hay que meter mas stock de la bandeja que contiene " + this.getNombreProducto() + "*******************";
         } else if (this.stock <= MAXIMO_STOCK_BANDEJA_AVISO_REPONER && this.stock >= MINIMO_STOCK_BANDEJA_AVISO_REPONER) {
-            texto += "\n******Se recomienda meter mas stock del producto "+this.getNombreProducto()+"**********";
+            texto += "\n******Se recomienda meter mas stock del producto " + this.getNombreProducto() + "**********";
         }
         return texto;
     }
