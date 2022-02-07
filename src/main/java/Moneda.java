@@ -6,9 +6,9 @@ public class Moneda {
 
     private int valor;
     private int cantidadDeMonedas;
-    private final int MAXIMA_CANTIDAD_MONEDAS = 30;
-    private final int MINIMA_MONEDA_AVISO_REPONER = 1;
-    private final int MAXIMO_MONEDA_AVISO_REPONER = 10;
+    private static final int MAXIMA_CANTIDAD_MONEDAS = 30;
+    private static final int MINIMA_MONEDA_AVISO_REPONER = 1;
+    private static final int MAXIMO_MONEDA_AVISO_REPONER = 10;
 //-------------------------------------CONSTRUCTOR---------------------------------------------
 
     public Moneda(int valor, int cantidadDeMonedas) {

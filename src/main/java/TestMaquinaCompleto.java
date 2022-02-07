@@ -390,15 +390,15 @@ public class TestMaquinaCompleto {
                                                 JOptionPane.showMessageDialog(null, monedasParaAdministradorTexto);
 
                                             }
-                                            String meterMonedas = "";//variable auxiliar usada para saber si hay que devolver algo
+                                            String meterMonedas = "Tiene que meter las siquientes monedas para tener un minimo de :\n"+maquina1.MINIMO_MONEDAS_REPOSICION;//variable auxiliar usada para saber si hay que devolver algo
                                             for (int i = 0; i < listaMonedas.length; i++) {
                                                 if (listaMonedas[i].getCantidadDeMonedas() < maquina1.MINIMO_MONEDAS_REPOSICION) {
-                                                    meterMonedas += "Tiene que meter " + (maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas())
-                                                            + " monedas de valor " + listaMonedas[i].getValor() / 100.0 + "\n";
+                                                    meterMonedas += "\nTiene que meter " + (maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas())
+                                                            + " monedas de valor " + listaMonedas[i].getValor() / 100.0 ;
                                                     listaMonedas[i].meterMoneda(maquina1.MINIMO_MONEDAS_REPOSICION - listaMonedas[i].getCantidadDeMonedas());
                                                 }
                                             }
-                                            if (meterMonedas.equals("")) {
+                                            if (meterMonedas.equals("Tiene que meter las siquientes monedas para tener un minimo de :\n"+maquina1.MINIMO_MONEDAS_REPOSICION)) {
                                                 JOptionPane.showMessageDialog(null, "La maquina tiene ,al menos,el minimo de monedas en todas las monedas.");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, meterMonedas);
@@ -425,7 +425,7 @@ public class TestMaquinaCompleto {
 
                                             do {
                                                 monedaElegidaReponerTexto = JOptionPane.showInputDialog(null, "Seleccione una de las siguientes opciones \n"
-                                                        + texto + (listaMonedas.length + 1) + ".Reponer todas la monedas con un minimo de 10 monedas");
+                                                        + texto + (listaMonedas.length + 1) + ".Reponer todas la monedas con un minimo de "+maquina1.MINIMO_MONEDAS_REPOSICION+ " monedas");
                                                 try {
                                                     monedaElegidaReponerNumero = Integer.parseInt(monedaElegidaReponerTexto);
                                                     monedaElegidaCorrecta = true;
@@ -437,7 +437,7 @@ public class TestMaquinaCompleto {
                                             if (monedaElegidaReponerNumero < listaMonedas.length + 1) {
 
                                                 do {
-                                                    cantidadMonedasReponerTexto = JOptionPane.showInputDialog("�Cuanto quieres reponer");
+                                                    cantidadMonedasReponerTexto = JOptionPane.showInputDialog("Cuanto quieres reponer");
                                                     try {
                                                         cantidadMonedasReponerNumero = Integer.parseInt(cantidadMonedasReponerTexto);
                                                         cantidadMonedaCorrecta = true;

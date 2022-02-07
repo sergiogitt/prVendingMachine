@@ -11,8 +11,8 @@ public class Bandeja {
     private int stock;
     private String nombreProducto;
     private double precioProducto;
-    private final int MINIMO_STOCK_BANDEJA_AVISO_REPONER = 1;//limite minimo para avisar sobre reposicion
-    private final int MAXIMO_STOCK_BANDEJA_AVISO_REPONER = 5;//limite maximo para avisar sobre reposicion
+    private static final int MINIMO_STOCK_BANDEJA_AVISO_REPONER = 1;//limite minimo para avisar sobre reposicion
+    private static final int MAXIMO_STOCK_BANDEJA_AVISO_REPONER = 5;//limite maximo para avisar sobre reposicion
     
 //-------------------------------------CONSTRUCTORES---------------------------------------------
 
