@@ -129,6 +129,8 @@ public class Bandeja {
         } else if (precioProducto == 0) {
             JOptionPane.showMessageDialog(null, "Has introducido un precio cero, vamos a poner por defecto un precio de 5 euros, si quieres cambiarlo hazlo manualmente");
             this.precioProducto = 5;
+        }else{
+            this.precioProducto=precioProducto;
         }
     }
     //--------------------------------------------------GETTERS---------------------------------------

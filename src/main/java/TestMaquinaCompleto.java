@@ -290,12 +290,12 @@ public class TestMaquinaCompleto {
                                         case "3"://------------------------------------Cambiar nombre y precio de bandeja------------------------------------
                                             do {
                                                 bandejaSaberId = JOptionPane.showInputDialog(null, "Teclee la bandeja que desees cambiar de producto: \n"
-                                                        + "1.Bandeja que tiene codigo " + bandeja1.getId() + " que contiene " + bandeja1.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() / 100.0 + "$\n"
-                                                        + "2.Bandeja que tiene codigo " + bandeja2.getId() + " que contiene " + bandeja2.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() / 100.0 + "$\n"
-                                                        + "3.Bandeja que tiene codigo " + bandeja3.getId() + " que contiene " + bandeja3.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() / 100.0 + "$\n"
-                                                        + "4.Bandeja que tiene codigo " + bandeja4.getId() + " que contiene " + bandeja4.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() / 100.0 + "$\n"
-                                                        + "5.Bandeja que tiene codigo " + bandeja5.getId() + " que contiene " + bandeja5.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() / 100.0 + "$\n"
-                                                        + "6.Bandeja que tiene codigo " + bandeja6.getId() + " que contiene " + bandeja6.getNombreProducto() + " a un precio de" + bandeja1.getPrecioProducto() / 100.0 + "$\n"
+                                                        + "1.Bandeja que tiene codigo " + bandeja1.getId() + " que contiene " + bandeja1.getNombreProducto() + " a un precio de " + bandeja1.getPrecioProducto() / 100.0 + "$\n"
+                                                        + "2.Bandeja que tiene codigo " + bandeja2.getId() + " que contiene " + bandeja2.getNombreProducto() + " a un precio de " + bandeja1.getPrecioProducto() / 100.0 + "$\n"
+                                                        + "3.Bandeja que tiene codigo " + bandeja3.getId() + " que contiene " + bandeja3.getNombreProducto() + " a un precio de " + bandeja1.getPrecioProducto() / 100.0 + "$\n"
+                                                        + "4.Bandeja que tiene codigo " + bandeja4.getId() + " que contiene " + bandeja4.getNombreProducto() + " a un precio de " + bandeja1.getPrecioProducto() / 100.0 + "$\n"
+                                                        + "5.Bandeja que tiene codigo " + bandeja5.getId() + " que contiene " + bandeja5.getNombreProducto() + " a un precio de " + bandeja1.getPrecioProducto() / 100.0 + "$\n"
+                                                        + "6.Bandeja que tiene codigo " + bandeja6.getId() + " que contiene " + bandeja6.getNombreProducto() + " a un precio de " + bandeja1.getPrecioProducto() / 100.0 + "$\n"
                                                         + "7.Volver al modo menu del administrador.");
                                                 String nuevoProducto = "";
                                                 double nuevoPrecioProducto;
