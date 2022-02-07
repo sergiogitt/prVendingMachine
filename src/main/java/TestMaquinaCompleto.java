@@ -42,7 +42,7 @@ public class TestMaquinaCompleto {
                 listaMonedas,
                 tarjeta1, tarjeta2, tarjeta3);
 
-        System.out.println(maquina1.informacionCompletaMaquina());
+        System.out.println(maquina1.getContrasenaAdministrador());
         System.out.println(tarjeta1.getCvv());
         System.out.println(tarjeta1.getNumTarjeta());
 
@@ -63,10 +63,10 @@ public class TestMaquinaCompleto {
                 JOptionPane.showMessageDialog(null, "Introduce un numero que este en el menu por favor");
             }
             switch (eleccionModo) {
-                case 1://-------------Modo usuario-----------------------
+                case 1://-----------------------------------------Modo usuario----------------------------------------------------------------------
                     int eleccionUsuario = 0;
                     boolean eleccionModoUsuarioValida = false;
-                    do {
+                    do {//bucle acciones para administrador que finalizan al salir del modo
                         do {
                             String text = JOptionPane.showInputDialog("Elige que opcion deseas realizar\n"
                                     + "1.Consultar precio\n2.Comprar producto\n3.Salir modo venta");
@@ -81,7 +81,7 @@ public class TestMaquinaCompleto {
                             JOptionPane.showInputDialog("Introduce un numero que este en el menu por favor");
                         }
                         switch (eleccionUsuario) {
-                            case 1://-----------------------Consultar precio--------------------------------------
+                            case 1://--------------------------------Consultar precio------------------------------------------
                                 String saberPrecioProducto = "";
                                 do {
                                     saberPrecioProducto = JOptionPane.showInputDialog("Tecle el identificador del producto que "
@@ -112,7 +112,7 @@ public class TestMaquinaCompleto {
                                         && !saberPrecioProducto.equals(bandeja4.getId()) && !saberPrecioProducto.equals(bandeja5.getId()) && !saberPrecioProducto.equals(bandeja6.getId()));
                                 break;
 
-                            case 2://---------------------Comprar producto--------------------
+                            case 2://---------------------------------------Comprar producto--------------------------------------------
                                 String productoAComprar = "";
                                 String modoPago = "";
                                 Bandeja bandejaProductoCompra = new Bandeja(1, "303", "prueba", 10);
@@ -168,7 +168,7 @@ public class TestMaquinaCompleto {
                                                             if (dineroProporcionadoPorClienteTotal < bandejaProductoCompra.getPrecioProducto()) {
                                                                 JOptionPane.showMessageDialog(null, "No has introducido suficiente efectivo para comprar " + bandejaProductoCompra.getNombreProducto()
                                                                         + "\n.Por favor introduzca " + bandejaProductoCompra.getPrecioProducto() / 100.0 + " Euros");
-                                                            } else {//calculo del cambio
+                                                            } else {       //calculo del cambio
                                                                 for (int i = 0; i <= 10; i++) {//ir dando monedas al cliente y actualizando el nuevo cambio que hay que darle al cliente
                                                                     monedasParaElCliente[i] = listaMonedas[i].cambioMonedas(cambioTotal);
                                                                     cambioTotal -= monedasParaElCliente[i] * listaMonedas[i].getValor();
@@ -546,7 +546,7 @@ public class TestMaquinaCompleto {
 
     public static double cantidadProporcionadaPorCliente(Moneda moneda, double valorAcumulado) {
         int numeroMonedas = pedirMonedaCliente(moneda);
-        valorAcumulado += numeroMonedas * moneda.getValor();
+        valorAcumulado += numeroMonedas * moneda.getValor(); //acumular el dinero que introduce el cliente en una variable y multiplicarla pur su valor
         return valorAcumulado;
     }
 }
