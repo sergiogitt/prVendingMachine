@@ -64,9 +64,9 @@ public class Moneda {
     public int cambioMonedas(double cambioADevolver) {//devulve la cantidad de monedas que se puede devolver respecto a un valor total a devolver
         int numMonedasADevolver;
         numMonedasADevolver = (int) (cambioADevolver / this.valor);
-        if (haySaldoSuficiente(cambioADevolver)) {
+        if (cantidadDeMonedas-numMonedasADevolver>=0) {
             sacarMoneda(numMonedasADevolver);
-        } else if (!haySaldoSuficiente(cambioADevolver) && this.valor == 0.01) {
+        } else if (!haySaldoSuficiente(cambioADevolver) && this.valor == 1) {
             numMonedasADevolver = 0;
             JOptionPane.showMessageDialog(null, "No hay cambio suficiente intenta introducir la cantidad excata");
         } else {

@@ -13,7 +13,7 @@ public class TestMaquinaCompleto {
         UUID id = new UUID(UUID.randomUUID().getMostSignificantBits(), UUID.randomUUID().getLeastSignificantBits());
         String direccion = "calle oporto";
 
-        Bandeja bandeja1 = new Bandeja(0, "001", "cocacola", 200);
+        Bandeja bandeja1 = new Bandeja(10, "001", "cocacola", 200);
         Bandeja bandeja2 = new Bandeja(10, "002", "Agua1Litro", 150);
         Bandeja bandeja3 = new Bandeja(1, "003", "Biofrutas", 300);
         Bandeja bandeja4 = new Bandeja(1, "101", "PatatasJamon", 100);
@@ -30,7 +30,7 @@ public class TestMaquinaCompleto {
         Moneda monedas0coma10 = new Moneda(10, 15);
         Moneda monedas0coma5 = new Moneda(5, 15);
         Moneda monedas0coma2 = new Moneda(2, 10);
-        Moneda monedas0coma1 = new Moneda(1, 10);
+        Moneda monedas0coma1 = new Moneda(1, 15);
 
         Moneda listaMonedas[] = {monedas20, monedas10, monedas5, monedas2, monedas1, monedas0coma50, monedas0coma20, monedas0coma10, monedas0coma5, monedas0coma2, monedas0coma1};
 
@@ -161,15 +161,15 @@ public class TestMaquinaCompleto {
                                                         int monedasParaElCliente[] = new int[11];
                                                         do { //calcular el dinero total ofrecido por el cliente mediante la suma de las monedas metidas multiplicadas por el valor que representan
                                                             for (int i = 0; i <= 10; i++) {
-                                                                dineroProporcionadoPorClienteTotal = cantidadProporcionadaPorCliente(listaMonedas[i], dineroProporcionadoPorClienteTotal);
+                                                                dineroProporcionadoPorClienteTotal = cantidadProporcionadaPorCliente(listaMonedas[i], dineroProporcionadoPorClienteTotal);//EN CENTIMOS
                                                             }
-                                                            JOptionPane.showMessageDialog(null, "Total efectivo proporcionado: " + dineroProporcionadoPorClienteTotal / 100);
+                                                            JOptionPane.showMessageDialog(null, "Total efectivo proporcionado: " + dineroProporcionadoPorClienteTotal / 100.0);
                                                             cambioTotal = dineroProporcionadoPorClienteTotal - bandejaProductoCompra.getPrecioProducto();
                                                             if (dineroProporcionadoPorClienteTotal < bandejaProductoCompra.getPrecioProducto()) {
                                                                 JOptionPane.showMessageDialog(null, "No has introducido suficiente efectivo para comprar " + bandejaProductoCompra.getNombreProducto()
-                                                                        + "\n.Por favor introduzca " + bandejaProductoCompra.getPrecioProducto() / 100.0 + " Euros");
-                                                            } else {       //calculo del cambio
-                                                                for (int i = 0; i <= 10; i++) {//ir dando monedas al cliente y actualizando el nuevo cambio que hay que darle al cliente
+                                                                        + "\nPor favor introduzca " + bandejaProductoCompra.getPrecioProducto() / 100.0 + " Euros");
+                                                            } else {                          //calculo del cambio
+                                                                for (int i = 0; i <monedasParaElCliente.length; i++) {//ir dando monedas al cliente y actualizando el nuevo cambio que hay que darle al cliente
                                                                     monedasParaElCliente[i] = listaMonedas[i].cambioMonedas(cambioTotal);
                                                                     cambioTotal -= monedasParaElCliente[i] * listaMonedas[i].getValor();
                                                                 }
@@ -191,7 +191,6 @@ public class TestMaquinaCompleto {
                                                                 } else if (dineroProporcionadoPorClienteTotal > bandejaProductoCompra.getPrecioProducto() && !listaMonedas[10].haySaldoSuficiente(cambioTotal)) {//no hay saldo para dar el cambio
                                                                     dineroProporcionadoPorClienteTotal = 0;
                                                                 }
-
                                                             }
                                                         } while (dineroProporcionadoPorClienteTotal < bandejaProductoCompra.getPrecioProducto() || !listaMonedas[10].haySaldoSuficiente(cambioTotal));
                                                         break;
@@ -206,7 +205,7 @@ public class TestMaquinaCompleto {
                                                             tarjetaTemporal.setCvv(numeroCVVCliente);
                                                             if (maquina1.tarjetaEnMiBaseDeDatos(tarjetaTemporal)) {
                                                                 maquina1.compraConTarjeta(bandejaProductoCompra.getPrecioProducto());
-                                                                JOptionPane.showMessageDialog(null, "La tarjeta introducida ha sido validada correctamente");
+                                                                JOptionPane.showMessageDialog(null, "La tarjeta introducida ha sido validada correctamente\n\nLa transaccion ha sido realizada");
                                                             } else {
                                                                 JOptionPane.showMessageDialog(null, "La tarjeta introducida no se corresponde con ninguna de las que tenemos guardadas");
                                                             }
@@ -374,7 +373,7 @@ public class TestMaquinaCompleto {
                                             JOptionPane.showMessageDialog(null, "Se ha recaudado " + maquina1.getDineroRecaudadoConTarjeta() + " euros mediante tarjeta de credito");
                                             break;
                                         case "7"://----------------------------------recaudar dinero y recarga con un minimo---------------------------------------------------
-                                            JOptionPane.showMessageDialog(null, "Dinero recaudado en total " + maquina1.getDineroRecaudadoTotal()+" euros");
+                                            JOptionPane.showMessageDialog(null, "Dinero recaudado en total " + maquina1.getDineroRecaudadoTotal()/100.0+" euros");
                                             int[] monedasParaAdministrador = new int[11];
                                             double dineroRecaudar = maquina1.getDineroRecaudadoTotal() - maquina1.getDineroRecaudadoConTarjeta();
                                             if (dineroRecaudar > 0) {
@@ -385,7 +384,7 @@ public class TestMaquinaCompleto {
                                                 String monedasParaAdministradorTexto = "";
                                                 for (int i = 0; i < monedasParaAdministrador.length; i++) {
                                                     if (monedasParaAdministrador[i] != 0) {
-                                                        monedasParaAdministradorTexto += "Tiene que recoger " + monedasParaAdministrador[i] + " monedas de valor " + listaMonedas[i].getValor() / 100.0;
+                                                        monedasParaAdministradorTexto += "Tiene que recoger " + monedasParaAdministrador[i] + " monedas de valor " + listaMonedas[i].getValor() / 100.0+"\n";
                                                     }
                                                 }
                                                 JOptionPane.showMessageDialog(null, monedasParaAdministradorTexto);
@@ -403,6 +402,7 @@ public class TestMaquinaCompleto {
                                                 JOptionPane.showMessageDialog(null, "La maquina tiene ,al menos,el minimo de monedas en todas las monedas.");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, meterMonedas);
+                                                maquina1.setFechaUltimaRecarga(LocalDate.now());
                                             }
                                             maquina1.setFechaRecaudacionTotal();
                                             maquina1.setDineroRecaudadoTotal(0);
