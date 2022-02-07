@@ -370,7 +370,7 @@ public class TestMaquinaCompleto {
                                             } while (!bandejaSaberId.equals("4321"));
                                             break;
                                         case "6"://----------------------------------Consultar dinero recaudado mediante tarjeta------------------------
-                                            JOptionPane.showMessageDialog(null, "Se ha recaudado " + maquina1.getDineroRecaudadoConTarjeta() + " euros mediante tarjeta de credito");
+                                            JOptionPane.showMessageDialog(null, "Se ha recaudado " + maquina1.getDineroRecaudadoConTarjeta()/100.0 + " euros mediante tarjeta de credito");
                                             break;
                                         case "7"://----------------------------------recaudar dinero y recarga con un minimo---------------------------------------------------
                                             JOptionPane.showMessageDialog(null, "Dinero recaudado en total " + maquina1.getDineroRecaudadoTotal()/100.0+" euros");
