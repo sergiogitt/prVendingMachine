@@ -57,7 +57,7 @@ public class Bandeja {
         }
     }
 
-    public void meterProducto(int cantidad) {
+    public void meterProducto(int cantidad) {  //mete producto hasta un maximo y se queda en este si se introduce mas del posible
         if (cantidad < 0) {
             cantidad = Math.abs(cantidad);
             meterProducto(cantidad);

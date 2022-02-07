@@ -9,7 +9,7 @@ public class TarjetaCredito {
 //-------------------------------------CONSTRUCTORES---------------------------------------------
     public TarjetaCredito(String numTarjeta, LocalDate fechaVencimiento, String cvv) {
 
-        if (numTarjeta.length() == 16) {                                                //comprobacion tarjeta tiene 16 cifas
+        if (comprobarSiEsNumericoYLongitud(numTarjeta,16)) {                 //comprobacion tarjeta tiene 16 cifas
             this.numTarjeta = numTarjeta;
         } else {
             this.numTarjeta = "1234123412341234";
@@ -19,7 +19,7 @@ public class TarjetaCredito {
         } else {
             this.fechaVencimiento = fechaVencimiento;
         }
-        if (cvv.length() == 3) {                                                        //comprobacion CVV tiene 3 cifras
+        if (comprobarSiEsNumericoYLongitud(cvv,3)) {                         //comprobacion CVV tiene 3 cifras
             this.cvv = cvv;
         } else {
             this.cvv = "123";
@@ -27,7 +27,11 @@ public class TarjetaCredito {
     }
 //----------------------------------------------------SETTERS-----------------------------------------
     public void setNumTarjeta(String numTarjeta) {
-        this.numTarjeta = numTarjeta;
+        if (comprobarSiEsNumericoYLongitud(numTarjeta,16)) {                 //comprobacion tarjeta tiene 16 cifas
+            this.numTarjeta = numTarjeta;
+        } else {
+            this.numTarjeta = "1234123412341234";
+        }
     }
 
     public void setFechaVencimiento(LocalDate fechaVencimiento) {
@@ -35,7 +39,11 @@ public class TarjetaCredito {
     }
 
     public void setCvv(String cvv) {
-        this.cvv = cvv;
+        if (comprobarSiEsNumericoYLongitud(cvv,3)) {                         //comprobacion CVV tiene 3 cifras
+            this.cvv = cvv;
+        } else {
+            this.cvv = "123";
+        }
     }
 //--------------------------------------------------GETTERS---------------------------------------
     public String getNumTarjeta() {
@@ -57,5 +65,14 @@ public class TarjetaCredito {
             tarjetaIgual = true;
         }
         return tarjetaIgual;
+    }
+    private boolean comprobarSiEsNumericoYLongitud(String texto, int longitud){
+        boolean cadenaNumerica=true;
+        for(int i=0;i<texto.length();i++){
+            if (!Character.isDigit(texto.charAt(i))){
+                cadenaNumerica=false;
+            }
+        }
+        return cadenaNumerica&&texto.length()==longitud;
     }
 }

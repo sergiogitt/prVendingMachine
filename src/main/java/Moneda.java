@@ -39,7 +39,7 @@ public class Moneda {
         }
     }
 
-    public void sacarMoneda(int cantidad) {
+    public void sacarMoneda(int cantidad) {             //metodo que saca moneda si hay stock de esta y avisa si no hay cambio posible
         if (cantidad < 0) {                     //control de cantidad positiva
             cantidad = Math.abs(cantidad);
             sacarMoneda(cantidad);
@@ -53,7 +53,7 @@ public class Moneda {
         }
     }
 
-    public boolean haySaldoSuficiente(double cantidad) {//devulve true si hay stock de la moneda en la maquina
+    public boolean haySaldoSuficiente(double cantidad) {        //devulve true si hay stock de la moneda en la maquina
         boolean haysaldo = true;
         if (this.cantidadDeMonedas - cantidad < 0) {
             haysaldo = false;
