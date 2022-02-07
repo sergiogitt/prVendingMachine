@@ -159,7 +159,7 @@ public class TestMaquinaCompleto {
                                                         double dineroProporcionadoPorClienteTotal = 0;
                                                         double cambioTotal = 0;
                                                         int monedasParaElCliente[] = new int[11];
-                                                        do {
+                                                        do { //calcular el dinero total ofrecido por el cliente mediante la suma de las monedas metidas multiplicadas por el valor que representan
                                                             for (int i = 0; i <= 10; i++) {
                                                                 dineroProporcionadoPorClienteTotal = cantidadProporcionadaPorCliente(listaMonedas[i], dineroProporcionadoPorClienteTotal);
                                                             }
@@ -168,12 +168,12 @@ public class TestMaquinaCompleto {
                                                             if (dineroProporcionadoPorClienteTotal < bandejaProductoCompra.getPrecioProducto()) {
                                                                 JOptionPane.showMessageDialog(null, "No has introducido suficiente efectivo para comprar " + bandejaProductoCompra.getNombreProducto()
                                                                         + "\n.Por favor introduzca " + bandejaProductoCompra.getPrecioProducto() / 100.0 + " Euros");
-                                                            } else {
-                                                                for (int i = 0; i <= 10; i++) {
+                                                            } else {//calculo del cambio
+                                                                for (int i = 0; i <= 10; i++) {//ir dando monedas al cliente y actualizando el nuevo cambio que hay que darle al cliente
                                                                     monedasParaElCliente[i] = listaMonedas[i].cambioMonedas(cambioTotal);
                                                                     cambioTotal -= monedasParaElCliente[i] * listaMonedas[i].getValor();
                                                                 }
-                                                                String devolucionCliente = "";
+                                                                String devolucionCliente = "";//variable auxliar que ira rellenandose si hay cambio
 
                                                                 for (int i = 0; i <= 10; i++) {
                                                                     if (monedasParaElCliente[i] != 0) {
@@ -182,15 +182,14 @@ public class TestMaquinaCompleto {
                                                                         }
                                                                     }
                                                                 }
-                                                                if (!devolucionCliente.equals("")) {
+                                                                if (!devolucionCliente.equals("")) {//si la variable auxiliar no esta vacia quiere decir que hay cambio
                                                                     JOptionPane.showMessageDialog(null, devolucionCliente + "\nLa compra se realizo correctamente");
                                                                     maquina1.compraEfectivo(bandejaProductoCompra.getPrecioProducto());
-                                                                } else if (devolucionCliente.equals("") && dineroProporcionadoPorClienteTotal == bandejaProductoCompra.getPrecioProducto()) {
+                                                                } else if (devolucionCliente.equals("") && dineroProporcionadoPorClienteTotal == bandejaProductoCompra.getPrecioProducto()) {//si la variable auxiliar esta vacia quiere decir que no hay cambio
                                                                     maquina1.compraEfectivo(bandejaProductoCompra.getPrecioProducto());
                                                                     JOptionPane.showMessageDialog(null, devolucionCliente + "\nLa compra se realizo correctamente y no hay vuelta");
-                                                                } else if (dineroProporcionadoPorClienteTotal > bandejaProductoCompra.getPrecioProducto() && !listaMonedas[10].haySaldoSuficiente(cambioTotal)) {
+                                                                } else if (dineroProporcionadoPorClienteTotal > bandejaProductoCompra.getPrecioProducto() && !listaMonedas[10].haySaldoSuficiente(cambioTotal)) {//no hay saldo para dar el cambio
                                                                     dineroProporcionadoPorClienteTotal = 0;
-
                                                                 }
 
                                                             }
@@ -207,7 +206,6 @@ public class TestMaquinaCompleto {
                                                             tarjetaTemporal.setCvv(numeroCVVCliente);
                                                             if (maquina1.tarjetaEnMiBaseDeDatos(tarjetaTemporal)) {
                                                                 maquina1.compraConTarjeta(bandejaProductoCompra.getPrecioProducto());
-
                                                                 JOptionPane.showMessageDialog(null, "La tarjeta introducida ha sido validada correctamente");
                                                             } else {
                                                                 JOptionPane.showMessageDialog(null, "La tarjeta introducida no se corresponde con ninguna de las que tenemos guardadas");
@@ -225,7 +223,7 @@ public class TestMaquinaCompleto {
                         }
                     } while (eleccionUsuario != 3);
                     break;
-                case 2://---------------------------------------------MODO ADMINISTRADOR-------------------------------------
+                case 2://---------------------------------------------MODO ADMINISTRADOR---------------------------------------------------
                     String codigoAdministrador = "";
                     String eleccionAdministrador = "";
                     do {
@@ -528,6 +526,7 @@ public class TestMaquinaCompleto {
         } while (!numeroAMeterCorrecto);
         bandeja.meterProducto(numeroDeProductoAMeter);
     }
+
 
     public static int pedirMonedaCliente(Moneda moneda) {
         boolean monedaCorrecta = false;

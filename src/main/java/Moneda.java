@@ -12,19 +12,19 @@ public class Moneda {
 //-------------------------------------CONSTRUCTOR---------------------------------------------
 
     public Moneda(int valor, int cantidadDeMonedas) {
-        if (valor < 0) {
+        if (valor < 0) {                                    //control cantidad positiva
             this.valor = Math.abs(valor);
-        } else {
+        }else {
             this.valor = valor;
         }
         if (cantidadDeMonedas < 0) {
             this.cantidadDeMonedas = Math.abs(cantidadDeMonedas);
-        } else {
+        } else if(cantidadDeMonedas > MAXIMA_CANTIDAD_MONEDAS){
+            this.cantidadDeMonedas = MAXIMA_CANTIDAD_MONEDAS;
+        }else {
             this.cantidadDeMonedas = cantidadDeMonedas;
         }
-        if (cantidadDeMonedas > MAXIMA_CANTIDAD_MONEDAS) {
-            this.cantidadDeMonedas = MAXIMA_CANTIDAD_MONEDAS;
-        }
+
     }
 //----------------------------------------------------METODOS--------------------------------------------
 
@@ -102,7 +102,13 @@ public class Moneda {
     }
 
     public void setCantidadDeMonedas(int cantidadDeMonedas) {
-        this.cantidadDeMonedas = cantidadDeMonedas;
+        if (cantidadDeMonedas < 0) {             //no hay cantidades negativas
+            this.cantidadDeMonedas = Math.abs(cantidadDeMonedas);
+        } else if(cantidadDeMonedas > MAXIMA_CANTIDAD_MONEDAS){
+            this.cantidadDeMonedas = MAXIMA_CANTIDAD_MONEDAS;
+        }else {
+            this.cantidadDeMonedas = cantidadDeMonedas;
+        }
     }
 //----------------------------METODO TOSTRING MEJORADO-----------------------------------------------
 
