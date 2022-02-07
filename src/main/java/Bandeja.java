@@ -75,7 +75,7 @@ public class Bandeja {
         this.setStock(Bandeja.MAXIMO_PRODUCTO_POR_BANDEJA);
     }
 
-    private boolean comprobarId(String id) {    //metodo que comprueba la longitud correcta del id y que son tres digitos
+    public boolean comprobarId(String id) {    //metodo que comprueba la longitud correcta del id y que son tres digitos
         boolean idCorrecto = true;
         for (int i = 0; i < id.length(); i++) {
             if (!Character.isDigit(id.charAt(i))) {
@@ -85,7 +85,7 @@ public class Bandeja {
         return idCorrecto && id.length() == 3;
     }
 
-    private static String numeroAleatorio() { //genereación de un id aleatorio
+    private static String numeroAleatorio() { //genereaciï¿½n de un id aleatorio
         int numero;
         String texto = "";
         Random aleatorio = new Random();
@@ -97,7 +97,7 @@ public class Bandeja {
     }
 //----------------------------------------------------SETTERS-----------------------------------------
 
-    public void setId() {
+    public void setId(String id) {
         if (!comprobarId(id)) {
             this.id = numeroAleatorio();
         } else {

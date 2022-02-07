@@ -330,7 +330,7 @@ public class TestMaquinaCompleto {
                                             break;
                                         case "5"://--------------------------------Cambiar stock de bandeja--------------------------------------
                                             do {
-                                                bandejaSaberId = JOptionPane.showInputDialog(null, "Teclee la bandeja que desees cambiar de stock \n"
+                                                bandejaSaberId = JOptionPane.showInputDialog(null, "Teclee el ID de la bandeja que desees cambiar de stock \n"
                                                         + "Bandeja que contiene " + bandeja1.getNombreProducto() + " con un stock de " + bandeja1.getStock() + " con ID " + bandeja1.getId() + "\n"
                                                         + "Bandeja que contiene " + bandeja2.getNombreProducto() + " con un stock de " + bandeja2.getStock() + " con ID " + bandeja2.getId() + "\n"
                                                         + "Bandeja que contiene " + bandeja3.getNombreProducto() + " con un stock de " + bandeja3.getStock() + " con ID " + bandeja3.getId() + "\n"
@@ -376,7 +376,7 @@ public class TestMaquinaCompleto {
                                             JOptionPane.showMessageDialog(null, "Se ha recaudado " + maquina1.getDineroRecaudadoConTarjeta() + " euros mediante tarjeta de credito");
                                             break;
                                         case "7"://----------------------------------recaudar dinero y recarga con un minimo---------------------------------------------------
-                                            JOptionPane.showMessageDialog(null, "Dinero recaudado en total" + maquina1.getDineroRecaudadoTotal());
+                                            JOptionPane.showMessageDialog(null, "Dinero recaudado en total " + maquina1.getDineroRecaudadoTotal()+" euros");
                                             int[] monedasParaAdministrador = new int[11];
                                             double dineroRecaudar = maquina1.getDineroRecaudadoTotal() - maquina1.getDineroRecaudadoConTarjeta();
                                             if (dineroRecaudar > 0) {
@@ -439,7 +439,7 @@ public class TestMaquinaCompleto {
                                             if (monedaElegidaReponerNumero < listaMonedas.length + 1) {
 
                                                 do {
-                                                    cantidadMonedasReponerTexto = JOptionPane.showInputDialog("¿Cuanto quieres reponer");
+                                                    cantidadMonedasReponerTexto = JOptionPane.showInputDialog("ï¿½Cuanto quieres reponer");
                                                     try {
                                                         cantidadMonedasReponerNumero = Integer.parseInt(cantidadMonedasReponerTexto);
                                                         cantidadMonedaCorrecta = true;
@@ -502,8 +502,15 @@ public class TestMaquinaCompleto {
     }
 
     public static void cambiarId(Bandeja bandeja) {
-        bandeja.setId();
-        JOptionPane.showMessageDialog(null, "La bandeja que contiene  " + bandeja.getNombreProducto() + " ahora tiene el codigo " + bandeja.getId());
+
+        String id=JOptionPane.showInputDialog("Introduce el id que quieres poner a la bandeja que contiene "+bandeja.getNombreProducto());
+        bandeja.setId(id);
+        if(!bandeja.comprobarId(id)){
+            JOptionPane.showMessageDialog(null,"Has introducido un id que no cumple las caracteristicas correctas y por tanto se te ha puesto un id aleatorioa que es "+bandeja.getId());
+        }else {
+            JOptionPane.showMessageDialog(null,"Se ha actualizado el id del producto "+bandeja.getNombreProducto()+" con el id "+bandeja.getId());
+
+        }
     }
 
     public static void cambiarStock(Bandeja bandeja) {
